@@ -6,11 +6,11 @@ import excepciones.VillanoEscapaException
 
 @Accessors
 class Villano extends Ocupante{
-	
-	var String nombre
-	var String sexo
-	var List<String> seniasParticulares
-	var List<String> hobbies
+
+    var String nombre
+    var String sexo
+    var List<String> seniasParticulares
+    var List<String> hobbies
 
     new(String unNombre, String genero, List<String> unasSenias, List<String> unosHobbies){
         nombre = unNombre
@@ -25,7 +25,7 @@ class Villano extends Ocupante{
 
     def mismasCaracteristicas(String... pistas){
         var cumpleCaracteristicas = true
-        for(p: pistas){
+        for(p: pistas) {
             cumpleCaracteristicas = cumpleCaracteristicas && tieneCaracteristica(p)
         }
 

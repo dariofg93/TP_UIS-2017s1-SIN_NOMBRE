@@ -29,10 +29,10 @@ class BibliotecaTest {
 
         seniasD = new ArrayList<String>()
         seniasD.add("Pelo rojo")
-            caracteristicasArg = new ArrayList<String>()
-            caracteristicasArg.add("Bandera Azul y Blanca")
-                hobbieVillanos = new ArrayList<String>()
-                hobbieVillanos.add("Leer un Libro")
+        caracteristicasArg = new ArrayList<String>()
+        caracteristicasArg.add("Bandera Azul y Blanca")
+        hobbieVillanos = new ArrayList<String>()
+        hobbieVillanos.add("Leer un Libro")
 
         unVillano = mock(Villano)
         when(unVillano.seniasParticulares).thenReturn(seniasD)
@@ -44,7 +44,7 @@ class BibliotecaTest {
         rnd = mock(Random)
         ocupante = new Cuidador
         unaBiblioteca = new Biblioteca("Provincia", ocupante)
-            unaBiblioteca.setRnd(rnd)
+        unaBiblioteca.setRnd(rnd)
     }
 
     @Test

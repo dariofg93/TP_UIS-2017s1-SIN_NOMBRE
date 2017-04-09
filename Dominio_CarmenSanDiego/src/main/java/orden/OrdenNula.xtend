@@ -10,5 +10,6 @@ class OrdenNula extends Orden{
         false
     }
 
-    override nombre() {}
+    override nombre() {
+    }
 }

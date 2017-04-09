@@ -22,5 +22,6 @@ class Caso {
         paisDelRobo = unPais
     }
 
-    new(){}
+    new(){
+    }
 }

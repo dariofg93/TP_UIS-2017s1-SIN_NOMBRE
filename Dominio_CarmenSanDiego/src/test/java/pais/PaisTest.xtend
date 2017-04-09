@@ -24,9 +24,9 @@ class PaisTest {
         bancoGalicia = mock(Banco) ; bibliotecaNacional = mock(Biblioteca) ; riverPlate = mock(Club)
 
         argentina = new Pais("Nombre",
-                        Arrays.asList("Moneda Peso","Bandera Celeste y Blanca","Hablan español"),
-                        Arrays.asList(brasil,uruguay,paraguay),
-                        Arrays.asList(bancoGalicia,bibliotecaNacional,riverPlate))
+        Arrays.asList("Moneda Peso","Bandera Celeste y Blanca","Hablan español"),
+        Arrays.asList(brasil,uruguay,paraguay),
+        Arrays.asList(bancoGalicia,bibliotecaNacional,riverPlate))
     }
 
     @Test

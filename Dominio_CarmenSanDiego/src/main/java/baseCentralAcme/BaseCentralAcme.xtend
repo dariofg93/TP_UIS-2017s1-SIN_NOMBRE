@@ -20,7 +20,7 @@ class BaseCentralAcme {
     var List<Villano> villanos
     var List<Pais> mapamundi
     var CreadorJuego creador
-
+    //bla bla hago cambios y ahora lo subo
     new() {
         villanos = new ArrayList<Villano>()
         mapamundi = new ArrayList<Pais>()
@@ -53,7 +53,7 @@ class BaseCentralAcme {
                 reporte,
                 obj,
                 lugarDelHecho
-                                     )
+        )
         var casoCreado = new HashMap<Detective,Caso>()
         casoCreado.put(detective,caso)
 

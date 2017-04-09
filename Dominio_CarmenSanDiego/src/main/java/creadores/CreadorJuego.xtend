@@ -11,11 +11,11 @@ class CreadorJuego {
     def Caso crearJuego(Villano responsable, List<Pais> rutaEscape, String reporte, String obj, Pais lugarDelHecho){
 
         var newCase = new Caso()
-            newCase.setResponsable(responsable)
-            newCase.setReporte(reporte)
-            newCase.setObjeto(obj)
-            newCase.setPaisDelRobo(lugarDelHecho)
-            newCase.setPlanDeEscape(rutaEscape)
+        newCase.setResponsable(responsable)
+        newCase.setReporte(reporte)
+        newCase.setObjeto(obj)
+        newCase.setPaisDelRobo(lugarDelHecho)
+        newCase.setPlanDeEscape(rutaEscape)
 
         repartirOcupantes(lugarDelHecho,responsable,newCase)
         repartirPistas(lugarDelHecho,responsable,rutaEscape,newCase)
@@ -30,7 +30,7 @@ class CreadorJuego {
         lugarDelHecho.asignarPistasALugares(responsable,recorrido.get(0))
         recorrido.remove(0)
 
-        for(pais: newCase.planDeEscape.subList(0,newCase.planDeEscape.size-1)){
+        for(pais: newCase.planDeEscape.subList(0,newCase.planDeEscape.size-1)) {
             pais.asignarPistasALugares(responsable,recorrido.get(0))
             recorrido.remove(0)
         }
@@ -44,7 +44,7 @@ class CreadorJuego {
         lugarDelHecho.asignarOcupantesALugares(paisAnterior)
         paisAnterior = lugarDelHecho
 
-        for(pais: newCase.planDeEscape){
+        for(pais: newCase.planDeEscape) {
             pais.asignarOcupantesALugares(paisAnterior)
             paisAnterior = pais
         }

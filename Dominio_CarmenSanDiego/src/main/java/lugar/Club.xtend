@@ -22,7 +22,7 @@ class Club extends Lugar{
         var String senia2 = responsable.seniasParticulares.get(rnd.nextInt(responsable.seniasParticulares.size()))
         pistas.add(senia2); responsable.seniasParticulares.remove(senia2)
 
-        if(rnd.nextInt(100) <= 70){
+        if(rnd.nextInt(100) <= 70) {
             var String hobbie = responsable.hobbies.get(rnd.nextInt(responsable.hobbies.size()))
             pistas.add(hobbie)
             responsable.hobbies.remove(hobbie)

@@ -59,8 +59,8 @@ class BaseCentralAcmeTest {
         unaBaseCentralAcme.registrarVillano(unVillanoMock)
         unaBaseCentralAcme.registrarVillano(unVillanoMock2)
 
-       Assert.assertEquals(unVillanoMock2.nombre,
-                (unaBaseCentralAcme.validarOrden("Pelo rojo","Juega bien al futbol")).nombre)
+        Assert.assertEquals(unVillanoMock2.nombre,
+        (unaBaseCentralAcme.validarOrden("Pelo rojo","Juega bien al futbol")).nombre)
     }
 
     @Test
@@ -68,9 +68,9 @@ class BaseCentralAcmeTest {
         var argentina = mock(Pais)
         var caso = mock(Caso)
 
-/*FEO!*/unaBaseCentralAcme.registrarVillano(unVillanoMock)
-/*pero*/unaBaseCentralAcme.registrarPais(argentina);unaBaseCentralAcme.registrarPais(argentina);unaBaseCentralAcme.registrarPais(argentina);unaBaseCentralAcme.registrarPais(argentina);
-/*bue.*/unaBaseCentralAcme.registrarPais(argentina);unaBaseCentralAcme.registrarPais(argentina);unaBaseCentralAcme.registrarPais(argentina);unaBaseCentralAcme.registrarPais(argentina);
+        /*FEO!*/unaBaseCentralAcme.registrarVillano(unVillanoMock)
+        /*pero*/unaBaseCentralAcme.registrarPais(argentina);unaBaseCentralAcme.registrarPais(argentina);unaBaseCentralAcme.registrarPais(argentina);unaBaseCentralAcme.registrarPais(argentina);
+        /*bue.*/unaBaseCentralAcme.registrarPais(argentina);unaBaseCentralAcme.registrarPais(argentina);unaBaseCentralAcme.registrarPais(argentina);unaBaseCentralAcme.registrarPais(argentina);
 
         var creador = mock(CreadorJuego)
         unaBaseCentralAcme.setCreador(creador)

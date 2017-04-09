@@ -35,18 +35,18 @@ abstract class Lugar{
     def String mostrarPistas(Orden orden){
         try{
             ocupante.actuar
-        }catch(NoEstaElVillanoException nv){
+        }catch(NoEstaElVillanoException nv) {
             return "Lo siento creo que se ha equivocado de Ciudad, no hay nadie con esas caracteristicas"
-        }catch(VillanoEscapaException ve){
+        }catch(VillanoEscapaException ve) {
             var sospechoso = (ocupante as Villano).nombre
             switch(orden.fueEmitida()){
-                case 1:  if(orden.esElVillano(sospechoso)){
-                                return "ALTO!!! Detengase: " + sospechoso
-                            }else{
-                                return "Ha detenido a " + sospechoso + ", pero usted tenia una orden contra " + orden.nombre + "." +
-                                        System.getProperty("line.separator") +
-                                        "Lamentablemente este crimen quedara impune."
-                            }
+                case 1:  if(orden.esElVillano(sospechoso)) {
+                    return "ALTO!!! Detengase: " + sospechoso
+                }else{
+                    return "Ha detenido a " + sospechoso + ", pero usted tenia una orden contra " + orden.nombre + "." +
+                            System.getProperty("line.separator") +
+                            "Lamentablemente este crimen quedara impune."
+                }
                 case 0: return "El villano ha escapado"
             }
         }

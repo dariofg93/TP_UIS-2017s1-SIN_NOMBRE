@@ -32,21 +32,21 @@ class Pais {
 
     def asignarOcupantesALugares(Pais paisAnterior){
         setearOcupantes(new Informante())
-        for(pais: conexiones){
-            if (!pais.equals(paisAnterior)){
+        for(pais: conexiones) {
+            if(!pais.equals(paisAnterior)) {
                 setearOcupantes(new Cuidador())
             }
         }
     }
 
     def setearOcupantes(Ocupante ocupanteType){
-        for(lugar: lugaresDeInteres){
+        for(lugar: lugaresDeInteres) {
             lugar.setOcupante(ocupanteType)
         }
     }
 
     def asignarUltimasPistas(){
-        for(lugar: lugaresDeInteres){
+        for(lugar: lugaresDeInteres) {
             lugar.setPistas(Arrays.asList("CUIDADO DETECTIVE!! ha estado a punto de caer en una trampa.."))
         }
     }

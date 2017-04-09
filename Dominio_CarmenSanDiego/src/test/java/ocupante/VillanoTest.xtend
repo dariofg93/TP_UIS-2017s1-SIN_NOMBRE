@@ -14,8 +14,8 @@ class VillanoTest {
     @Before
     def void setUp() {
         villano = new Villano("Carmen San Diego","Femenino",
-                    Arrays.asList("Pelo Rubio","Capa Roja"),
-                    Arrays.asList("Coleciona gemas","Estudia geologia","Anda en moto"))
+        Arrays.asList("Pelo Rubio","Capa Roja"),
+        Arrays.asList("Coleciona gemas","Estudia geologia","Anda en moto"))
     }
 
     @Test(expected=VillanoEscapaException)

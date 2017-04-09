@@ -24,7 +24,7 @@ class LugarTest {
         orden = mock(Orden)
 
         riverPlate = new Club("River Plate")
-            riverPlate.setPistas(Arrays.asList("Tiene pelo Rojo","Juega bien al Futbol"))
+        riverPlate.setPistas(Arrays.asList("Tiene pelo Rojo","Juega bien al Futbol"))
     }
 
     @Test

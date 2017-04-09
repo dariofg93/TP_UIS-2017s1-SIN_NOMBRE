@@ -27,20 +27,20 @@ class ClubTest {
     def void setUp() {
 
         seniasD = new ArrayList<String>()
-            seniasD.add("Pelo rojo")
-            seniasD.add("maneja un convertible")
+        seniasD.add("Pelo rojo")
+        seniasD.add("maneja un convertible")
 
         hobbieVillanos = new ArrayList<String>()
         hobbieVillanos.add("Leer un Libro")
 
         unVillano = mock(Villano)
-            when(unVillano.seniasParticulares).thenReturn(seniasD)
-            when(unVillano.hobbies).thenReturn(hobbieVillanos)
+        when(unVillano.seniasParticulares).thenReturn(seniasD)
+        when(unVillano.hobbies).thenReturn(hobbieVillanos)
 
         rnd = mock(Random)
         ocupante = new Cuidador
         unClub = new Club("Provincia", ocupante)
-            unClub.setRnd(rnd)
+        unClub.setRnd(rnd)
     }
 
     @Test

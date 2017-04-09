@@ -24,7 +24,7 @@ class Biblioteca extends Lugar{
         responsable.seniasParticulares.remove(senia)
         paisActual.caracteristicas.remove(pPais)
 
-        if(rnd.nextInt(100) <= 50){
+        if(rnd.nextInt(100) <= 50) {
             var String hobbie = responsable.hobbies.get(rnd.nextInt(responsable.hobbies.size()))
             pistas.add(hobbie)
             responsable.hobbies.remove(hobbie)
