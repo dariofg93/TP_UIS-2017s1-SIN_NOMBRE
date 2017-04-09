@@ -44,8 +44,6 @@ class PaisTest {
     def void asignarOcupantesALugares() {
         var paisAnterior = brasil
         argentina.asignarOcupantesALugares(paisAnterior)
-
-        //verify(uruguay).setearOcupantes(new Cuidador()) Creo que no lo toma porque la instancia de cuidador no son las mismas
     }
 
     @Test
