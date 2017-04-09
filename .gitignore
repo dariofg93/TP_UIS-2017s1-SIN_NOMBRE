@@ -1,12 +1,14 @@
-*.class
+Arena_CarmenSanDiego/target/
+Arena_CarmenSanDiego/.idea/
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+Dominio_CarmenSanDiego/target/
+Dominio_CarmenSanDiego/.idea/
 
-# Package Files #
-*.jar
-*.war
-*.ear
+*.iml
+*/xtend-gen/
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+.classpath
+.project
+.settings/
+*generated-sources*
+/bin
