@@ -1,6 +1,7 @@
 target
 .idea
 *.iml
+*.yml
 *xtend-gen*
 *generated-sources*
 
