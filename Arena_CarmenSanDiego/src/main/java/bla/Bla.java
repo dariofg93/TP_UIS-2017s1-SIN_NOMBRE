@@ -5,4 +5,5 @@ public class Bla {
     public Bla(){}
     public String getBle(){ return this.ble; }
     public void setBle(String blo){ this.ble = blo; }
+    
 }
