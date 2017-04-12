@@ -5,5 +5,5 @@ import org.uqbar.commons.utils.Observable
 
 @Accessors
 @Observable
-class PaisController {
+class PaisApplicationModel {
 }
