@@ -7,13 +7,40 @@
     <groupId>TpUis.SIN_NOMBRE</groupId>
     <artifactId>Arena_CarmenSanDiego</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <parent>
+        <groupId>org.uqbar-project</groupId>
+        <artifactId>arena-xtend-parent</artifactId>
+        <version>3.6.2</version>
+    </parent>
+
     <dependencies>
+
+        <dependency>
+            <groupId>TpUis.SIN_NOMBRE</groupId>
+            <artifactId>Dominio_CarmenSanDiego</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
+
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 
 </project>
