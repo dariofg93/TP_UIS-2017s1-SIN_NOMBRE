@@ -12,10 +12,12 @@ import java.util.Arrays
 @Accessors
 class Pais {
 
-    val String nombre
+    var String nombre
     var List<String> caracteristicas
     var List<Pais> conexiones
     var List<Lugar> lugaresDeInteres
+
+    new(){}
 
     new(String unNombre, List<String> unasCaracteristicas, List<Pais> unasConexiones, List<Lugar> unosLugares){
         nombre = unNombre
