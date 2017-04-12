@@ -7,9 +7,11 @@ import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.windows.ErrorsPanel
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Button
+import repositoriosLocales.Mapamundi
 
 class PaisWindow extends MainWindow<PaisApplicationModel>{
 
+    var paise = (new Mapamundi).paises
 
     new () {
         super(new PaisApplicationModel)
@@ -23,8 +25,11 @@ class PaisWindow extends MainWindow<PaisApplicationModel>{
 
         new ErrorsPanel(mainPanel, "Listo para convertir")
 
+
+
         new Button(mainPanel) => [
             caption = "Eliminar"
+
           //  onClick [ | this.modelObject.convertir ]
         ]
 
