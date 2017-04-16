@@ -17,7 +17,8 @@ class Pais {
     var List<Pais> conexiones
     var List<Lugar> lugaresDeInteres
 
-    new(){}
+    new(){
+    }
 
     new(String unNombre, List<String> unasCaracteristicas, List<Pais> unasConexiones, List<Lugar> unosLugares){
         nombre = unNombre

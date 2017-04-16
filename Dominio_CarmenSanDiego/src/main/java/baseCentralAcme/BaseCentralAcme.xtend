@@ -13,6 +13,7 @@ import orden.OrdenEmitida
 import org.eclipse.xtend.lib.annotations.Accessors
 import orden.OrdenNula
 import orden.Orden
+import java.util.Random
 
 @Accessors
 class BaseCentralAcme {
@@ -20,7 +21,7 @@ class BaseCentralAcme {
     var List<Villano> villanos
     var List<Pais> mapamundi
     var CreadorJuego creador
-    //bla bla hago cambios y ahora lo subo
+
     new() {
         villanos = new ArrayList<Villano>()
         mapamundi = new ArrayList<Pais>()
@@ -45,11 +46,14 @@ class BaseCentralAcme {
         return ordenEmitida
     }
 
-    def HashMap<Detective,Caso> crearCaso(String reporte, String obj, Pais lugarDelHecho){
+    def HashMap<Detective,Caso> crearCaso(String reporte, String obj){
+        var rutaDeEscape = randomSubList(mapamundi,8)
+        var lugarDelHecho = getLugarDelHecho(rutaDeEscape.get(0),rutaDeEscape.get(1))
         var detective = new Detective(this,lugarDelHecho)
+
         var caso = creador.crearJuego(
                 randomSubList(villanos,1).get(0),
-                randomSubList(mapamundi,8),
+                rutaDeEscape,
                 reporte,
                 obj,
                 lugarDelHecho
@@ -58,6 +62,15 @@ class BaseCentralAcme {
         casoCreado.put(detective,caso)
 
         return  casoCreado
+    }
+
+    private def Pais getLugarDelHecho(Pais primerDestino, Pais segundoDestino){
+        var lugarDelHecho = primerDestino
+
+        do { lugarDelHecho = primerDestino.conexiones.get(new Random().nextInt(2)) }
+        while(lugarDelHecho.equals(segundoDestino))
+
+        lugarDelHecho
     }
 
     private def <T> List<T> randomSubList(List<T> list, int newSize) {
