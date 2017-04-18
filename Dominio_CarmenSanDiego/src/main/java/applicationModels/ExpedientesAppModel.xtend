@@ -8,7 +8,7 @@ import java.util.List
 @Accessors
 @Observable
 class ExpedientesAppModel {
-	
-	List<Villano> villanos
-	Villano villanoSeleccionado
+
+    List<Villano> villanos
+    Villano villanoSeleccionado
 }

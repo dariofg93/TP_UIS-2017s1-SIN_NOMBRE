@@ -11,6 +11,7 @@ import baseCentralAcme.BaseCentralAcme
 import ocupante.Villano
 import creadores.CreadorJuego
 import caso.Caso
+import java.util.Arrays
 
 class BaseCentralAcmeTest {
 
@@ -28,6 +29,7 @@ class BaseCentralAcmeTest {
 
         argentina = mock(Pais)
         when(argentina.nombre).thenReturn("Argentina")
+        when(argentina.conexiones).thenReturn(Arrays.asList(unPaisMock,unPaisMock,unPaisMock))
 
         unaBaseCentralAcme = new BaseCentralAcme()
 
@@ -48,7 +50,6 @@ class BaseCentralAcmeTest {
 
     @Test
     def void registrarPaisTest() {
-        var argentina = mock(Pais)
         unaBaseCentralAcme.registrarPais(argentina)
 
         Assert.assertTrue(unaBaseCentralAcme.mapamundi.contains(argentina))
@@ -65,7 +66,6 @@ class BaseCentralAcmeTest {
 
     @Test
     def void crearCasoTest() {
-        var argentina = mock(Pais)
         var caso = mock(Caso)
 
         /*FEO!*/unaBaseCentralAcme.registrarVillano(unVillanoMock)
@@ -74,8 +74,8 @@ class BaseCentralAcmeTest {
 
         var creador = mock(CreadorJuego)
         unaBaseCentralAcme.setCreador(creador)
-        when(creador.crearJuego(unVillanoMock,unaBaseCentralAcme.mapamundi,"Los turros se robaron algo","Cadena de la Yeni",argentina)).thenReturn(caso)
+        when(creador.crearJuego(unVillanoMock,unaBaseCentralAcme.mapamundi,"Los turros se robaron algo","Cadena de la Yeni",unPaisMock)).thenReturn(caso)
 
-        Assert.assertTrue(unaBaseCentralAcme.crearCaso("Los turros se robaron algo","Cadena de la Yeni",argentina).values.contains(caso))
+        Assert.assertTrue(unaBaseCentralAcme.crearCaso("Los turros se robaron algo","Cadena de la Yeni").values.contains(caso))
     }
 }
