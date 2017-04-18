@@ -9,6 +9,7 @@ import org.uqbar.arena.windows.WindowOwner
 import ocupante.Villano
 import org.uqbar.arena.widgets.Label
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.arena.bindings.PropertyAdapter
 
 class ExpedientesWindow extends SimpleWindow<ExpedientesAppModel> {
 
@@ -31,7 +32,7 @@ class ExpedientesWindow extends SimpleWindow<ExpedientesAppModel> {
 		new Label(expedientesPanel).text = "Villano"
 		new List<Villano>(expedientesPanel) => [
             value <=> "villanoSeleccionado"
-            items <=> "villanos.nombre"
+            (items <=> "villanos").adapter = new PropertyAdapter(Villano, "nombre")
 		]
       
 		new Button(expedientesPanel) => [
@@ -44,9 +45,4 @@ class ExpedientesWindow extends SimpleWindow<ExpedientesAppModel> {
 		  //onClick[ | editarVillano  ]
 		]
 	}
-	
-	def static void main(WindowOwner parent, ExpedientesAppModel model) {
-		new ExpedientesWindow(parent, model)
-	}
-	
 }
