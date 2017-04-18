@@ -8,6 +8,7 @@ import ocupante.Informante
 import ocupante.Ocupante
 import ocupante.Cuidador
 import java.util.Arrays
+import java.util.ArrayList
 
 @Accessors
 class Pais {
@@ -56,5 +57,31 @@ class Pais {
 
     def asignarVillano(Villano responsable){
         lugaresDeInteres.get(1).setOcupante(responsable)
+    }
+
+    def clonar(){
+        var unasCaracteristicas = new ArrayList<String>() => [ addAll(caracteristicas) ]
+        var unasConexiones = new ArrayList<Pais> => [ addAll(conexiones) ]
+        var unosLugares = new ArrayList<Lugar>() => [ addAll(lugaresDeInteres) ]
+
+        return new Pais(nombre,unasCaracteristicas,unasConexiones,unosLugares)
+    }
+
+    def containsAny(List<Pais> mapamundi){
+        var found = false
+        for(Pais pais: conexiones){
+            found = found || mapamundi.contains(pais)
+        }
+
+        found
+    }
+
+    def findConexion(List<Pais> mapamundi){
+        var Pais found
+        for(Pais pais: conexiones){
+            if(mapamundi.contains(pais)) { found = pais }
+        }
+
+        found
     }
 }

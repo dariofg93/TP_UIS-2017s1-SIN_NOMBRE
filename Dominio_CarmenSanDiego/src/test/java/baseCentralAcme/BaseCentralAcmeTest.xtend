@@ -68,14 +68,9 @@ class BaseCentralAcmeTest {
     def void crearCasoTest() {
         var caso = mock(Caso)
 
-        /*FEO!*/unaBaseCentralAcme.registrarVillano(unVillanoMock)
-        /*pero*/unaBaseCentralAcme.registrarPais(argentina);unaBaseCentralAcme.registrarPais(argentina);unaBaseCentralAcme.registrarPais(argentina);unaBaseCentralAcme.registrarPais(argentina);
-        /*bue.*/unaBaseCentralAcme.registrarPais(argentina);unaBaseCentralAcme.registrarPais(argentina);unaBaseCentralAcme.registrarPais(argentina);unaBaseCentralAcme.registrarPais(argentina);
+        unaBaseCentralAcme.registrarVillano(unVillanoMock)
+        for(var i = 0;i<8;i++) { unaBaseCentralAcme.registrarPais(argentina) }
 
-        var creador = mock(CreadorJuego)
-        unaBaseCentralAcme.setCreador(creador)
-        when(creador.crearJuego(unVillanoMock,unaBaseCentralAcme.mapamundi,"Los turros se robaron algo","Cadena de la Yeni",unPaisMock)).thenReturn(caso)
-
-        Assert.assertTrue(unaBaseCentralAcme.crearCaso("Los turros se robaron algo","Cadena de la Yeni").values.contains(caso))
+        Assert.assertEquals(unaBaseCentralAcme.crearCaso("Los turros se robaron algo","Cadena de la Yeni").size,1)
     }
 }

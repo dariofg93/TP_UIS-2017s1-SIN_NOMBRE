@@ -8,16 +8,16 @@ import caso.CasoWindows
 
 class CarmenSandiegoApplication extends Application{
 
-	//Pongo como MainWindow expedientes para probar, pero deberia ir la vista de inicio por defecto
-	override protected createMainWindow() {
-		val model = new ExpedientesAppModel => [
-			villanos = VillanosRepositorio.getVillanos()
-		]
+    //Pongo como MainWindow expedientes para probar, pero deberia ir la vista de inicio por defecto
+    override protected createMainWindow() {
+        val model = new ExpedientesAppModel => [
+            villanos = VillanosRepositorio.getVillanos()
+        ]
 
-		new ExpedientesWindow(this, model)
-	}
+        new CasoWindows(this)
+    }
 
-	def static void main(String[] args) {
-		new CarmenSandiegoApplication().start
-	}
+    def static void main(String[] args) {
+        new CarmenSandiegoApplication().start
+    }
 }

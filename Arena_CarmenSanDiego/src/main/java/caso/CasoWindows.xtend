@@ -5,7 +5,7 @@ import org.uqbar.arena.windows.WindowOwner
 import applicationModels.CasoApplicationModel
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.widgets.Button
-import org.uqbar.arena.widgets.TextBox
+import org.uqbar.arena.widgets.Label
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
 class CasoWindows extends SimpleWindow<CasoApplicationModel>{
@@ -25,7 +25,9 @@ class CasoWindows extends SimpleWindow<CasoApplicationModel>{
     override createMainTemplate(Panel mainPanel) {
         this.title <=> "objetoRobado"
 
-        new TextBox(mainPanel).value <=> "reporte"
+        /*new Label(mainPanel) => [
+            value <=> "reporte"
+        ]*/
 
         new Button(mainPanel) => [
             caption = "Aceptar el caso"

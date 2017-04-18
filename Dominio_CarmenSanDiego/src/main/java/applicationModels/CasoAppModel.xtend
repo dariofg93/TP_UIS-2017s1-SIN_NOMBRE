@@ -15,11 +15,10 @@ class CasoApplicationModel {
     new(){ setearVariables }
 
     def setearVariables(){
-        //var numberCase = new Random().nextInt(cantidadDeCasos-1)
-        //if(numberCase.equals(-1)){ numberCase = 0 }
+        var numberCase = new Random().nextInt(cantidadDeCasos)
 
-        objetoRobado = getCasos.get(0).objeto
-        reporte = getCasos.get(0).reporte
-        detective = getDetectives.get(0)
+        objetoRobado = getCasos.get(numberCase).objeto
+        reporte = getCasos.get(numberCase).reporte
+        detective = getDetectives.get(numberCase)
     }
 }

@@ -27,6 +27,8 @@ class CasosRespositorio {
     def static getCasos(){ casos }
 
     def static void main(String[] args) {
-
+        println(cantidadDeCasos)
+        println(getDetectives.get(0).lugarActual)
+        println(getCasos.get(0).responsable.nombre)
     }
 }
