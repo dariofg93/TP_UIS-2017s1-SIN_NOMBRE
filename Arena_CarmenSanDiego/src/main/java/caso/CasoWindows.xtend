@@ -4,20 +4,32 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
 import applicationModels.CasoApplicationModel
 import org.uqbar.arena.windows.SimpleWindow
+import org.uqbar.arena.widgets.Button
+import org.uqbar.arena.widgets.TextBox
+import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
 class CasoWindows extends SimpleWindow<CasoApplicationModel>{
 
-    new(WindowOwner owner, CasoApplicationModel appModel) {
-        super(owner, appModel)
-        //title = "Expedientes"
+    new(WindowOwner parent) {
+        super(parent,new CasoApplicationModel())
     }
 
-    override addActions(Panel panel) {
-        throw new UnsupportedOperationException()
+    override protected addActions(Panel actionsPanel) {
+        //no queremos usar este template default
     }
 
-    override createFormPanel(Panel panel) {
-        throw new UnsupportedOperationException()
+    override protected createFormPanel(Panel mainPanel) {
+        //no queremos usar este template default
     }
 
+    override createMainTemplate(Panel mainPanel) {
+        this.title <=> "objetoRobado"
+
+        new TextBox(mainPanel).value <=> "reporte"
+
+        new Button(mainPanel) => [
+            caption = "Aceptar el caso"
+            //onClick[ | nuevoVillano  ]
+        ]
+    }
 }

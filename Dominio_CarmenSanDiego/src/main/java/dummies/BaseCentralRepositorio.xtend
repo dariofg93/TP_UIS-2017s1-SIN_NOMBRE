@@ -4,6 +4,9 @@ import baseCentralAcme.BaseCentralAcme
 import java.util.List
 import ocupante.Villano
 import pais.Pais
+import java.util.HashMap
+import detective.Detective
+import caso.Caso
 
 class BaseCentralRepositorio {
 
@@ -18,5 +21,9 @@ class BaseCentralRepositorio {
 
     def static List<Pais> getMapamundi() {
         return acme.mapamundi
+    }
+
+    def static HashMap<Detective,Caso> crearCaso(String reporte, String obj){
+        acme.crearCaso(reporte,obj)
     }
 }

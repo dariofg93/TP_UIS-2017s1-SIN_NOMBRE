@@ -1,4 +1,0 @@
-package applicationModels
-
-class CasoApplicationModel {
-}

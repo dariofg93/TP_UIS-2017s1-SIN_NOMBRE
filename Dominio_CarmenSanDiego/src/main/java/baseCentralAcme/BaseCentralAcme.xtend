@@ -47,7 +47,7 @@ class BaseCentralAcme {
     }
 
     def HashMap<Detective,Caso> crearCaso(String reporte, String obj){
-        var rutaDeEscape = randomSubList(mapamundi,8)
+        var rutaDeEscape = randomSubList(mapamundi,2)
         var lugarDelHecho = getLugarDelHecho(rutaDeEscape.get(0),rutaDeEscape.get(1))
         var detective = new Detective(this,lugarDelHecho)
 

@@ -11,10 +11,18 @@ class PaisesRepositorio {
     var static mapamundi = new ArrayList() => [
         var bbva = new Banco("BBVA Frances"); var carp = new Club("River Plate"); var biblioteca = new Biblioteca("Biblioteca Nacional")
         var brasil = new Pais()
+        brasil.setLugaresDeInteres(Arrays.asList(bbva,carp,biblioteca))
         var argentina = new Pais("Argentina",
         Arrays.asList("Hablan español", "Badera celeste y blanca","Toman mate"),
         Arrays.asList(brasil,brasil,brasil),    //Obvio que las conexiones estan horribles asi!
         Arrays.asList(bbva,carp,biblioteca))
+        add(argentina)
+        add(argentina)
+        add(argentina)
+        add(argentina)
+        add(argentina)
+        add(argentina)
+        add(argentina)
         add(argentina)
     ]
 
