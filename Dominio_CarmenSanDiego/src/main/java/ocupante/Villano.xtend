@@ -3,6 +3,7 @@ package ocupante
 import excepciones.VillanoEscapaException
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
+import java.util.ArrayList
 import org.uqbar.commons.utils.Observable
 
 @Observable
@@ -36,5 +37,12 @@ class Villano extends Ocupante{
 
     private def tieneCaracteristica(String pista){
         sexo == pista || seniasParticulares.contains(pista) || hobbies.contains(pista)
+    }
+
+    def clonar(){
+        var unasSenias = new ArrayList<String>() => [ addAll(seniasParticulares) ]
+        var unosHobbies = new ArrayList<String>() => [ addAll(hobbies) ]
+
+        return new Villano (nombre,sexo,unasSenias,unosHobbies)
     }
 }

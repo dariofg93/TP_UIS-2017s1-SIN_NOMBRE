@@ -10,12 +10,22 @@ class PaisesRepositorio {
 
     var static mapamundi = new ArrayList() => [
         var bbva = new Banco("BBVA Frances"); var carp = new Club("River Plate"); var biblioteca = new Biblioteca("Biblioteca Nacional")
-        var brasil = new Pais()
+
+        var brasil = new Pais("Brasil",
+        Arrays.asList("Hablan portugez", "Badera verde y amarilla y azul","pentacampeones del mundo"),
+        Arrays.asList(),
+        Arrays.asList(bbva,carp))
+
         var argentina = new Pais("Argentina",
         Arrays.asList("Hablan español", "Badera celeste y blanca","Toman mate"),
-        Arrays.asList(brasil,brasil,brasil),    //Obvio que las conexiones estan horribles asi!
-        Arrays.asList(bbva,carp,biblioteca))
+        Arrays.asList(),
+        Arrays.asList(bbva,carp))
+
+        brasil.setConexiones(Arrays.asList(argentina))
+        argentina.setConexiones(Arrays.asList(brasil))
+
         add(argentina)
+        add(brasil)
     ]
 
     def static List<Pais> getMapamundi() {

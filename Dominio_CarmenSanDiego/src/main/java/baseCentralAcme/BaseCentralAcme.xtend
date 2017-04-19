@@ -47,13 +47,13 @@ class BaseCentralAcme {
     }
 
     def HashMap<Detective,Caso> crearCaso(String reporte, String obj){
-        var rutaDeEscape = randomSubList(mapamundi,8)
-        var lugarDelHecho = getLugarDelHecho(rutaDeEscape.get(0),rutaDeEscape.get(1))
+        var paises = new ArrayList<Pais>() => [ addAll(mapamundi) ]
+        var lugarDelHecho = getLugarDelHecho(paises)
         var detective = new Detective(this,lugarDelHecho)
 
         var caso = creador.crearJuego(
-                randomSubList(villanos,1).get(0),
-                rutaDeEscape,
+                randomVillano,
+                paises,
                 reporte,
                 obj,
                 lugarDelHecho
@@ -64,18 +64,16 @@ class BaseCentralAcme {
         return  casoCreado
     }
 
-    private def Pais getLugarDelHecho(Pais primerDestino, Pais segundoDestino){
-        var lugarDelHecho = primerDestino
-
-        do { lugarDelHecho = primerDestino.conexiones.get(new Random().nextInt(2)) }
-        while(lugarDelHecho.equals(segundoDestino))
+    private def Pais getLugarDelHecho(ArrayList<Pais> paises){
+        var lugarDelHecho = paises.get(new Random().nextInt(paises.size))
+        paises.remove(lugarDelHecho)
 
         lugarDelHecho
     }
 
-    private def <T> List<T> randomSubList(List<T> list, int newSize) {
-        var newList = new ArrayList<T>(list)
+    private def Villano randomVillano() {
+        var newList = new ArrayList<Villano>() => [ addAll(villanos) ]
         Collections.shuffle(newList)
-        return newList.subList(0, newSize)
+        return newList.get(0)
     }
 }
