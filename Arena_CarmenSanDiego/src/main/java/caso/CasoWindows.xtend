@@ -9,6 +9,7 @@ import org.uqbar.arena.widgets.Label
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import applicationModels.ResolverMisterioAppModel
 import views.ResolverMisterioWindows
+import org.uqbar.arena.layout.HorizontalLayout
 
 class CasoWindows extends SimpleWindow<CasoApplicationModel>{
 
@@ -34,8 +35,7 @@ class CasoWindows extends SimpleWindow<CasoApplicationModel>{
         new Button(mainPanel) => [
             caption = "Aceptar el caso"
             val model = new ResolverMisterioAppModel(this.modelObject.getDetective,this.modelObject.getObjetoRobado)
-            onClick[ | new ResolverMisterioWindows(this,model).open]
+            onClick[ | this.close new ResolverMisterioWindows(this,model).open ]
         ]
-
     }
 }

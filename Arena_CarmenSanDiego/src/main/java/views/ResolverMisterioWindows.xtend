@@ -9,7 +9,8 @@ import org.uqbar.arena.widgets.Label
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.Button
-import org.uqbar.arena.bindings.PropertyAdapter
+import org.uqbar.arena.layout.VerticalLayout
+import lugar.Lugar
 
 class ResolverMisterioWindows extends SimpleWindow<ResolverMisterioAppModel>{
 
@@ -18,53 +19,85 @@ class ResolverMisterioWindows extends SimpleWindow<ResolverMisterioAppModel>{
     }
 
     override addActions(Panel actionsPanel) {
-        this.title = "Resolviendo: Robo del Faraon"
+        this.title = "Resolviendo: " + this.modelObject.getNombreCaso
     }
 
     override createFormPanel(Panel mainPanel) {
-
         val Panel detectivePanel = new Panel(mainPanel)
         detectivePanel.layout= new ColumnLayout(2)
         this.funcionesDetective(detectivePanel)
-        //this.vistasLugares(detectivePanel)
+        this.vistasLugares(detectivePanel)
     }
 
-    def funcionesDetective(Panel detectivePanel){
+    def funcionesDetective(Panel owner){
 
-        val Panel lugar = new Panel(detectivePanel)
+        val Panel acciones = new Panel(owner)
+        acciones.layout= new VerticalLayout
+
+        val Panel lugar = new Panel(acciones)
         lugar.layout= new HorizontalLayout
 
-        new Label(lugar).text = "Estás en: "
+        new Label(lugar) => [
+            text = "Estás en: "
+            fontSize = 12
+        ]
         new Label(lugar)=>[
             value <=> "detective.lugarActual.nombre"
             fontSize = 12
         ]
 
-        new Button(detectivePanel) => [
+        new Label(acciones).text = ""
+
+        new Button(acciones) => [
             caption = "Orden de arresto"
             //onClick[ | paisSeleccionado  ]
         ]
 
-        val Panel orden = new Panel(detectivePanel)
+        val Panel orden = new Panel(acciones)
         orden.layout= new HorizontalLayout
 
-        new Label(orden).text = "Orden ya emitida: "
+        new Label(orden)=>[
+            text = "Orden ya emitida: "
+            fontSize = 6
+        ]
         new Label(orden)=>[
             value <=> "detective.ordenEmitida.nombre"
-            fontSize = 8
+            fontSize = 6
         ]
 
-        new Button(detectivePanel) => [
+        new Button(acciones) => [
             caption = "Viajar"
             // onClick[ | paisSeleccionado  ]
         ]
 
-        new Button(detectivePanel) => [
+        new Label(acciones).text = ""
+
+        new Button(acciones) => [
             caption = "Expedientes"
             //onClick[ | paisSeleccionado  ]
         ]
 
+        new Label(acciones).text = ""
     }
 
+    def vistasLugares(Panel owner){
 
+        val Panel lugares = new Panel(owner)
+        lugares.layout= new VerticalLayout
+
+        new Label(lugares) => [
+            text = "Lugares"
+            fontSize = 12
+        ]
+
+        new Label(lugares).text = ""
+
+        for(Lugar lugar: this.modelObject.getDetective.lugarActual.lugaresDeInteres){
+            new Button(lugares) => [
+                caption = lugar.nombre
+                new Label(lugares).text = ""
+                //onClick[ | paisSeleccionado  ]
+            ]
+        }
+    }
 }

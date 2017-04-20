@@ -69,7 +69,7 @@ class MapamundiWindow extends SimpleWindow<MapamundiAppModel>{
         new Label(nombrePaisPanel).text = "Nombre:  "
         new Label(nombrePaisPanel)=>[
             (value <=> "paisSeleccionado.nombre")
-           fontSize = 11
+            fontSize = 11
         ]
 
         new Label(panelDeCaracteristicas).text = "Caracteristicas"
