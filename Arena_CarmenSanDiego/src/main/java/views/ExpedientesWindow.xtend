@@ -43,12 +43,13 @@ class ExpedientesWindow extends SimpleWindow<ExpedientesAppModel> {
       
 		new Button(villanosPanel) => [
 	      caption = "Nuevo"
-		  //onClick[ | nuevoVillano  ]
+	      val villanoNuevo = new Villano()
+		  onClick[ | new NuevoVillanoWindow(this, villanoNuevo).open]
 		]
 		
 		new Button(villanosPanel) => [
-		  caption = "Editar"
-		  //onClick[ | editarVillano  ]
+		  caption = "Editar"		  	  
+		  onClick[ | new EditarVillanoWindow(this, this.modelObject.villanoSeleccionado).open ]
 		]
 	}
 	
@@ -56,6 +57,7 @@ class ExpedientesWindow extends SimpleWindow<ExpedientesAppModel> {
 		
 		val Panel panelDerecho = new Panel(contentPanel)
 		
+		//Nombre villano
 		val Panel panelNombreVillano = new Panel(panelDerecho)
 		panelNombreVillano.layout = new ColumnLayout(2)
 		new Label(panelNombreVillano).text = "Nombre:"
@@ -63,7 +65,7 @@ class ExpedientesWindow extends SimpleWindow<ExpedientesAppModel> {
 			value <=> "villanoSeleccionado.nombre"
 			width = 120
 		]
-		
+		//Sexo villano
 		val Panel panelSexoVillano = new Panel(panelDerecho)
 		panelSexoVillano.layout = new ColumnLayout(2)
 		new Label(panelSexoVillano).text = "Sexo:"
@@ -71,14 +73,14 @@ class ExpedientesWindow extends SimpleWindow<ExpedientesAppModel> {
 			value <=> "villanoSeleccionado.sexo"
 			width = 120
 		]
-		
+		//Senias villano
 		new Label(panelDerecho).text = "Senias particulares"
 		new List<Villano>(panelDerecho) => [
 			height = 100
 			width = 130
             items <=> "villanoSeleccionado.seniasParticulares"
 		]
-		
+		//Hobbies villano
 		new Label(panelDerecho).text = "Hobbies"
 		new List<Villano>(panelDerecho) => [
 			height = 100
