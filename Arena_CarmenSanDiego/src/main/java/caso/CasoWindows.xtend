@@ -7,6 +7,8 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import applicationModels.ResolverMisterioAppModel
+import views.ResolverMisterioWindows
 
 class CasoWindows extends SimpleWindow<CasoApplicationModel>{
 
@@ -23,15 +25,17 @@ class CasoWindows extends SimpleWindow<CasoApplicationModel>{
     }
 
     override createMainTemplate(Panel mainPanel) {
-        this.title <=> "objetoRobado"
+        this.title = this.modelObject.getObjetoRobado
 
-        /*new Label(mainPanel) => [
+        new Label(mainPanel) => [
             value <=> "reporte"
-        ]*/
+        ]
 
         new Button(mainPanel) => [
             caption = "Aceptar el caso"
-            //onClick[ | nuevoVillano  ]
+            val model = new ResolverMisterioAppModel(this.modelObject.getDetective,this.modelObject.getObjetoRobado)
+            onClick[ | new ResolverMisterioWindows(this,model).open]
         ]
+
     }
 }
