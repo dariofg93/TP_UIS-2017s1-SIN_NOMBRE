@@ -1,10 +1,12 @@
 package ocupante
 
+import excepciones.VillanoEscapaException
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
-import excepciones.VillanoEscapaException
 import java.util.ArrayList
+import org.uqbar.commons.utils.Observable
 
+@Observable
 @Accessors
 class Villano extends Ocupante{
 

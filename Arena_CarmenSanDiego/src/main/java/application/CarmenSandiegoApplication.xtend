@@ -15,7 +15,7 @@ class CarmenSandiegoApplication extends Application{
             villanos = VillanosRepositorio.getVillanos()
         ]
 
-        new CasoWindows(this)
+        new ExpedientesWindow(this, model)
     }
 
     def static void main(String[] args) {
