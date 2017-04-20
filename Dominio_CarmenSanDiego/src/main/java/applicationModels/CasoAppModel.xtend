@@ -4,7 +4,9 @@ import detective.Detective
 import java.util.Random
 import static dummies.CasosRespositorio.*;
 import org.uqbar.commons.utils.Observable
+import org.eclipse.xtend.lib.annotations.Accessors
 
+@Accessors
 @Observable
 class CasoApplicationModel {
 
