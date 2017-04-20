@@ -36,5 +36,6 @@ class CasoWindows extends SimpleWindow<CasoApplicationModel>{
             val model = new ResolverMisterioAppModel(this.modelObject.getDetective,this.modelObject.getObjetoRobado)
             onClick[ | new ResolverMisterioWindows(this,model).open]
         ]
+
     }
 }
