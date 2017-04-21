@@ -9,8 +9,10 @@ import ocupante.Ocupante
 import ocupante.Cuidador
 import java.util.Arrays
 import java.util.ArrayList
+import org.uqbar.commons.utils.Observable
 
 @Accessors
+@Observable
 class Pais {
 
     var String nombre
