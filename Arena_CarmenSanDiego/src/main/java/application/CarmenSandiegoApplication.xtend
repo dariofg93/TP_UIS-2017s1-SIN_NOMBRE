@@ -5,7 +5,6 @@ import applicationModels.ExpedientesAppModel
 import dummies.VillanosRepositorio
 import views.ExpedientesWindow
 import caso.CasoWindows
-import menuDeAcciones.MenuDeAccionesWindow
 
 class CarmenSandiegoApplication extends Application{
 
@@ -15,7 +14,7 @@ class CarmenSandiegoApplication extends Application{
             villanos = VillanosRepositorio.getVillanos()
         ]
 
-        new ExpedientesWindow(this, model)
+        new CasoWindows(this)
     }
 
     def static void main(String[] args) {

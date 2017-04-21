@@ -13,58 +13,58 @@ import ocupante.Villano
 import applicationModels.EditarVillanoAppModel
 
 class EditarVillanoWindow extends Dialog<Villano>{
-	
-	new(WindowOwner owner, Villano model) {
-		super(owner, model)
-	}
-	
-	override createMainTemplate(Panel mainPanel) {
-		this.title = "Expedientes - Editar Villano"
-		
-		//Nombre villano
-		val Panel nombrePanel = new Panel(mainPanel)
-		nombrePanel.layout = new ColumnLayout(2)
-		new Label(nombrePanel).text = "Nombre:"
-		new TextBox(nombrePanel).value <=> "nombre"
-		
-		//Sexo villano
-		val Panel generoPanel = new Panel(mainPanel)
-		generoPanel.layout = new ColumnLayout(2)
-		new Label(generoPanel).text = "Sexo:"
-		new TextBox(generoPanel).value <=> "sexo"
-		
-		//Senias villano
-		val Panel seniasPanel = new Panel(mainPanel)
-		seniasPanel.layout = new ColumnLayout(2)
-		new Label(seniasPanel).text = "Senias Particulares:"
-		new Button(seniasPanel) => [
-			caption = "Editar Senias Particulares"
-			val editarVillanoAppModel = new EditarVillanoAppModel(this.modelObject)
-			onClick [ | new EditarSeniasWindow(this, editarVillanoAppModel).open]
-		]
-		new List<String>(mainPanel) => [
-			height = 80
-			width = 130
+
+    new(WindowOwner owner, Villano model) {
+        super(owner, model)
+    }
+
+    override createMainTemplate(Panel mainPanel) {
+        this.title = "Expedientes - Editar Villano"
+
+        //Nombre villano
+        val Panel nombrePanel = new Panel(mainPanel)
+        nombrePanel.layout = new ColumnLayout(2)
+        new Label(nombrePanel).text = "Nombre:"
+        new TextBox(nombrePanel).value <=> "nombre"
+
+        //Sexo villano
+        val Panel generoPanel = new Panel(mainPanel)
+        generoPanel.layout = new ColumnLayout(2)
+        new Label(generoPanel).text = "Sexo:"
+        new TextBox(generoPanel).value <=> "sexo"
+
+        //Senias villano
+        val Panel seniasPanel = new Panel(mainPanel)
+        seniasPanel.layout = new ColumnLayout(2)
+        new Label(seniasPanel).text = "Senias Particulares:"
+        new Button(seniasPanel) => [
+            caption = "Editar Senias Particulares"
+            val editarVillanoAppModel = new EditarVillanoAppModel(this.modelObject)
+            onClick [ | new EditarSeniasWindow(this, editarVillanoAppModel).open]
+        ]
+        new List<String>(mainPanel) => [
+            height = 80
+            width = 130
             items <=> "seniasParticulares"
-		]
-		
-		//Hobbies villano
-		new Label(mainPanel).text = "Hobbies"
-		new List<String>(mainPanel) => [
-			height = 80
-			width = 130
+        ]
+
+        //Hobbies villano
+        new Label(mainPanel).text = "Hobbies"
+        new List<String>(mainPanel) => [
+            height = 80
+            width = 130
             items <=> "hobbies"
-		]
-		
-		new Button(mainPanel)=> [
-			caption = "Aceptar"
-			onClick[ | this.close]
-		]
-		
-	}
-	
-	override protected createFormPanel(Panel mainPanel) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
+        ]
+
+        new Button(mainPanel)=> [
+            caption = "Aceptar"
+            onClick[ | this.close]
+        ]
+
+    }
+
+    override protected createFormPanel(Panel mainPanel) {
+        throw new UnsupportedOperationException("TODO: auto-generated method stub")
+    }
 
 }
