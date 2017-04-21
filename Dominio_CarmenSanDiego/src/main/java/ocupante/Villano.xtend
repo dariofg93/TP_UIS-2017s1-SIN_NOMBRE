@@ -21,6 +21,10 @@ class Villano extends Ocupante{
         seniasParticulares = unasSenias
         hobbies = unosHobbies
     }
+	
+	new() {
+	
+	}
 
     override actuar() {
         throw new VillanoEscapaException()
@@ -44,5 +48,13 @@ class Villano extends Ocupante{
         var unosHobbies = new ArrayList<String>() => [ addAll(hobbies) ]
 
         return new Villano (nombre,sexo,unasSenias,unosHobbies)
+    }
+    
+    def agregarSenia(String senia) {
+    	seniasParticulares.add(senia)
+    }
+    
+    def eliminarSenia(String senia) {
+    	seniasParticulares.remove(senia)
     }
 }
