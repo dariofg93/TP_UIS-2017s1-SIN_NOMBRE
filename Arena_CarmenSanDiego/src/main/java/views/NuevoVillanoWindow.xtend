@@ -9,6 +9,4 @@ class NuevoVillanoWindow extends EditarVillanoWindow {
 		super(owner, model)
 		title = "Expedientes - Nuevo Villano"
 	}
-
-	
 }
