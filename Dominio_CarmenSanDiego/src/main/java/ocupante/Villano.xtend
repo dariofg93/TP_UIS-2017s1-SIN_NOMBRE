@@ -57,4 +57,13 @@ class Villano extends Ocupante{
     def eliminarSenia(String senia) {
     	seniasParticulares.remove(senia)
     }
+	
+	def eliminarHobbie(String hobbie) {
+		hobbies.remove(hobbie)
+	}
+	
+	def agregarHobbie (String hobbie){
+		hobbies.add(hobbie)
+	}
+	
 }

@@ -11,6 +11,8 @@ class EditarVillanoAppModel {
 	Villano villanoSeleccionado
 	String seniaSeleccionada
 	String seniaParaAgregar
+	String hobbieSeleccionado
+	String hobbieParaAgregar
 	
 	new(Villano villano) {
 		villanoSeleccionado = villano
@@ -23,4 +25,13 @@ class EditarVillanoAppModel {
 	def eliminarSenia(String senia) {
 		villanoSeleccionado.eliminarSenia(senia)
 	}
+	
+	def agregarHobbie(String hobbie) {
+		villanoSeleccionado.eliminarHobbie(hobbie)
+	}
+	
+	def eliminarHobbie(String hobbie) {
+		villanoSeleccionado.eliminarHobbie(hobbie)
+	}
+	
 }

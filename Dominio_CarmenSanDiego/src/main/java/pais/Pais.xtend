@@ -86,4 +86,12 @@ class Pais {
 
         found
     }
+    
+    def eliminarCaracteristica(String caracteristica){
+    	caracteristicas.remove(caracteristica)
+    }
+    
+    def agregarCaracteristica(String caracteristica){
+    	caracteristicas.add(caracteristica)
+    }
 }

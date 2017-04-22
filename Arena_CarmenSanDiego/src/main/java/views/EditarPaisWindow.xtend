@@ -2,7 +2,6 @@ package views
 
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.widgets.Panel
-import applicationModels.PaisAppModel
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.List
