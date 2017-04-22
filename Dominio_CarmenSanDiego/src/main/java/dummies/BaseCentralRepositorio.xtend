@@ -26,4 +26,8 @@ class BaseCentralRepositorio {
     def static HashMap<Detective,Caso> crearCaso(String reporte, String obj){
         acme.crearCaso(reporte,obj)
     }
+
+    def static List<String> sexosPosibles(){
+       // return
+    }
 }
