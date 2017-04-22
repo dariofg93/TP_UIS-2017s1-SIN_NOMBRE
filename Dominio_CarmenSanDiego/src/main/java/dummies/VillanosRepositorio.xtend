@@ -1,26 +1,37 @@
 package dummies
 
-import java.util.ArrayList
-import java.util.Arrays
+
 import ocupante.Villano
 import java.util.List
+import java.util.ArrayList
+import java.util.Arrays
 
 class VillanosRepositorio {
+	
+	static List<String> seniasParticulares
+	static List<String> hobbies
+	
+	def List<String> senias() {
+		seniasParticulares.add("Pelo Rubio");seniasParticulares.add("Sobretodo rojo");seniasParticulares.add("Usa guantes")
+		
+		return seniasParticulares
+	}
 
     var static villanos = new ArrayList() => [
+    	
         var carmenSanDiego = new Villano("Carmen SanDiego", "Femenino",
-        Arrays.asList("Pelo Rubio","Sobretodo rojo","Usa guantes"),
-        Arrays.asList("Andar en moto","Joyas"))
+        seniasParticulares = new ArrayList<String>(Arrays.asList("Pelo Rubio","Sobretodo rojo","Usa guantes")),
+        hobbies = new ArrayList<String>(Arrays.asList("Andar en moto","Joyas")))
         add(carmenSanDiego)
         
         var ihorIhorovich = new Villano("Ihor Ihorovich", "Masculino",
-        Arrays.asList("Pelo Rubio","Maneja limosina","Tatuaje en su brazo", "Habla ucraniano"),
-        Arrays.asList("Croquet","Cocina"))
+        seniasParticulares = new ArrayList<String>(Arrays.asList("Pelo Rubio","Maneja limosina","Tatuaje en su brazo", "Habla ucraniano")),
+        hobbies = new ArrayList<String>(Arrays.asList("Croquet","Cocina")))
         add(ihorIhorovich)
         
         var alCapone = new Villano("Al Capone", "Masculino",
-        Arrays.asList("Pelo Castanio","Viste de traje", "Habla italiano"),
-        Arrays.asList("La mafia con los muchachos","Robar bancos"))
+        seniasParticulares = new ArrayList<String>(Arrays.asList("Pelo Castanio","Viste de traje", "Habla italiano")),
+        hobbies = new ArrayList<String>(Arrays.asList("La mafia con los muchachos","Robar bancos")))
         add(alCapone)
     ]
 

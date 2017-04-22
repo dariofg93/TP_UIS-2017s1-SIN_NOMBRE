@@ -1,10 +1,11 @@
 package ocupante
 
 import excepciones.VillanoEscapaException
+import java.util.ArrayList
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
-import java.util.ArrayList
 import org.uqbar.commons.utils.Observable
+import org.uqbar.commons.model.ObservableUtils
 
 @Observable
 @Accessors
@@ -55,7 +56,7 @@ class Villano extends Ocupante{
     }
     
     def eliminarSenia(String senia) {
-    	seniasParticulares.remove(senia)
+    	seniasParticulares.remove(senia)    	
     }
 	
 	def eliminarHobbie(String hobbie) {

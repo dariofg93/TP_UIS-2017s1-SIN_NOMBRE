@@ -30,7 +30,7 @@ class EditarSeniasWindow extends Dialog<EditarVillanoAppModel>{
 
         new Button(mainPanel)=> [
             caption = "Eliminar"
-            onClick[ | this.modelObject.eliminarSenia("seniaSeleccionada")]
+            onClick[ | this.modelObject.eliminarSenia(this.modelObject.seniaSeleccionada)]
         ]
 
         //Agregar senia
@@ -39,7 +39,7 @@ class EditarSeniasWindow extends Dialog<EditarVillanoAppModel>{
         new TextBox(agregarSeniaPanel).value <=> "seniaParaAgregar"
         new Button(agregarSeniaPanel) => [
             caption = "Agregar"
-            onClick [ | this.modelObject.agregarSenia("seniaParaAgregar")]
+            onClick [ | this.modelObject.villanoSeleccionado.agregarSenia(this.modelObject.seniaParaAgregar)]
         ]
 
         new Button(mainPanel)=> [
