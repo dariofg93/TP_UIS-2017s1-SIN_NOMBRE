@@ -25,7 +25,7 @@ class CarmenSandiegoApplication extends Application{
         Arrays.asList(bbva,carp))
 
         
-        new EditarPaisWindow(this, argentina)
+        new ExpedientesWindow(this, model)
     }
 
     def static void main(String[] args) {

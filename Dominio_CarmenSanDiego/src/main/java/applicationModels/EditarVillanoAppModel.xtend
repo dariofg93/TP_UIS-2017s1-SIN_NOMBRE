@@ -16,11 +16,8 @@ class EditarVillanoAppModel {
 		villanoSeleccionado = villano
 	}
 	
-	def agregarSenia(String senia) {
-		villanoSeleccionado.agregarSenia(senia)
+	def eliminarSenia() {
+		villanoSeleccionado.eliminarSenia(seniaSeleccionada)
 	}
 	
-	def eliminarSenia(String senia) {
-		villanoSeleccionado.eliminarSenia(senia)
-	}
 }
