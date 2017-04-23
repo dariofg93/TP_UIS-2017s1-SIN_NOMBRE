@@ -8,14 +8,13 @@ import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.layout.HorizontalLayout
 import mapamundi.MapamundiWindow
+import views.CasoWindows
+import views.ExpedientesWindow
 
 class MenuDeAccionesWindow extends SimpleWindow<MenuDeAccionesModel>{
 
-    override addActions(Panel actionsPanel) {
-        //no queremos usar este template default
-    }
 
-    override createFormPanel(Panel menuPanel) {
+    override createMainTemplate(Panel menuPanel) {
 
         this.title = "¿Donde esta Carmen San Diego?"
         new Label(menuPanel).text = "¿Que haremos ahora detective?"
@@ -28,7 +27,7 @@ class MenuDeAccionesWindow extends SimpleWindow<MenuDeAccionesModel>{
 
         new Button(menuPanel) => [
             caption = "Resolver Misterio"
-            //onClick[ | nuevoVillano  ]
+            onClick[ | new CasoWindows(this).open]
         ]
         new Button(menuPanel) => [
             caption = "Mapamundi"
@@ -36,11 +35,19 @@ class MenuDeAccionesWindow extends SimpleWindow<MenuDeAccionesModel>{
         ]
         new Button(menuPanel) => [
             caption = "Expediente"
-            //onClick[ | nuevoVillano  ]
+            onClick[ | new ExpedientesWindow(this).open]
         ]
     }
 
     new (WindowOwner parent) {
         super(parent, new MenuDeAccionesModel())
+    }
+
+    override protected addActions(Panel arg0) {
+        throw new UnsupportedOperationException("TODO: auto-generated method stub")
+    }
+
+    override protected createFormPanel(Panel arg0) {
+        throw new UnsupportedOperationException("TODO: auto-generated method stub")
     }
 }

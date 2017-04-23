@@ -6,7 +6,6 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.Label
-import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.widgets.List
 import pais.Pais
 import applicationModels.MapamundiAppModel
@@ -14,16 +13,15 @@ import org.uqbar.arena.bindings.PropertyAdapter
 import org.uqbar.arena.widgets.Button
 import lugar.Lugar
 import org.uqbar.arena.layout.HorizontalLayout
+import views.EditarPaisWindow
+import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
 class MapamundiWindow extends SimpleWindow<MapamundiAppModel>{
 
-    override addActions(Panel actionsPanel) {
+
+    override createMainTemplate(Panel mapPanel) {
+
         this.title = "Mapamundi"
-
-    }
-
-    override createFormPanel(Panel mapPanel) {
-
         val Panel tablaPanel = new Panel(mapPanel)
         tablaPanel.layout= new ColumnLayout(2)
         this.crearListaDePaises(tablaPanel)
@@ -37,22 +35,25 @@ class MapamundiWindow extends SimpleWindow<MapamundiAppModel>{
         new Label(panelDeListadoDePaises).text = "Paises"
         new List<Pais>(panelDeListadoDePaises) => [
             //this.title = "Paises"
-            (items <=> "paises").adapter = new PropertyAdapter(Pais, "nombre")
             height = 230
             width = 150
             value <=> "paisSeleccionado"
+            (items <=> "paises").adapter = new PropertyAdapter(Pais, "nombre")
+
         ]
         new Button(panelDeListadoDePaises) => [
             caption = "Eliminar"
-            //onClick[ | paisSeleccionado  ]
+            onClick[ |
+                this.modelObject.quitarPaisSeleccionado
+            ]
         ]
         new Button(panelDeListadoDePaises) => [
             caption = "Editar"
-            // onClick[ | paisSeleccionado  ]
+             onClick[ | new EditarPaisWindow(this, this.modelObject.paisSeleccionado).open ]
         ]
         new Button(panelDeListadoDePaises) => [
             caption = "Nuevo"
-            //onClick[ | paisSeleccionado  ]
+           // onClick[ | paisSeleccionado  ]
         ]
 
     }
@@ -99,9 +100,17 @@ class MapamundiWindow extends SimpleWindow<MapamundiAppModel>{
     }
 
 
-
-
     new (WindowOwner parent) {
         super(parent, new MapamundiAppModel())
+    }
+
+
+
+    override protected addActions(Panel arg0) {
+        throw new UnsupportedOperationException("TODO: auto-generated method stub")
+    }
+
+    override protected createFormPanel(Panel arg0) {
+        throw new UnsupportedOperationException("TODO: auto-generated method stub")
     }
 }

@@ -14,6 +14,10 @@ import org.uqbar.arena.layout.ColumnLayout
 
 class ExpedientesWindow extends SimpleWindow<ExpedientesAppModel> {
 
+    new(WindowOwner parent) {
+        super(parent, new ExpedientesAppModel())
+    }
+
     new(WindowOwner parent, ExpedientesAppModel model) {
         super(parent, model)
     }
@@ -41,12 +45,16 @@ class ExpedientesWindow extends SimpleWindow<ExpedientesAppModel> {
             (items <=> "villanos").adapter = new PropertyAdapter(Villano, "nombre")
         ]
 
+        //Agrega un villano
         new Button(villanosPanel) => [
             caption = "Nuevo"
             val villanoNuevo = new Villano()
-            onClick[ | new NuevoVillanoWindow(this, villanoNuevo).open]
+            onClick[ |
+                var Villano nuevo = this.modelObject.nuevoVillano
+                new NuevoVillanoWindow(this, nuevo).open]
         ]
 
+        //Edita un villano
         new Button(villanosPanel) => [
             caption = "Editar"
             onClick[ | new EditarVillanoWindow(this, this.modelObject.villanoSeleccionado).open ]

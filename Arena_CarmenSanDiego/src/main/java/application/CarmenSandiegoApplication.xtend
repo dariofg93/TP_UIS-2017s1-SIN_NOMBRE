@@ -4,6 +4,7 @@ import org.uqbar.arena.Application
 import applicationModels.ExpedientesAppModel
 import dummies.VillanosRepositorio
 import views.CasoWindows
+import menuDeAcciones.MenuDeAccionesWindow
 
 class CarmenSandiegoApplication extends Application{
 
@@ -13,7 +14,7 @@ class CarmenSandiegoApplication extends Application{
             villanos = VillanosRepositorio.getVillanos()
         ]
 
-        new CasoWindows(this)
+        new MenuDeAccionesWindow(this)
     }
 
     def static void main(String[] args) {
