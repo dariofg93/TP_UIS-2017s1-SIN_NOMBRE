@@ -13,7 +13,7 @@ class VillanosRepositorio {
 	
 	def List<String> senias() {
 		seniasParticulares.add("Pelo Rubio");seniasParticulares.add("Sobretodo rojo");seniasParticulares.add("Usa guantes")
-		
+
 		return seniasParticulares
 	}
 

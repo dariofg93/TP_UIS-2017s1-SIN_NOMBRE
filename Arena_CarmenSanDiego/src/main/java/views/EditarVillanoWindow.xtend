@@ -53,8 +53,8 @@ class EditarVillanoWindow extends Dialog<Villano>{
         hobbiesPanel.layout = new ColumnLayout(2)
         new Label(hobbiesPanel).text = "Hobbies:"
         new Button(hobbiesPanel) => [
-        	caption = "Editar Hobbies"
-        	//onClick [ | new EditarHobbiesWindow()]
+            caption = "Editar Hobbies"
+            //onClick [ | new EditarHobbiesWindow()]
         ]
         new List<String>(mainPanel) => [
             height = 80

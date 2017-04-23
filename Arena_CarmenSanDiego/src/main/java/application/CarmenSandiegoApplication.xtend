@@ -3,13 +3,7 @@ package application
 import org.uqbar.arena.Application
 import applicationModels.ExpedientesAppModel
 import dummies.VillanosRepositorio
-import views.ExpedientesWindow
-import caso.CasoWindows
-import pais.Pais
-import java.util.Arrays
-import lugar.Club
-import lugar.Banco
-import views.EditarPaisWindow
+import views.CasoWindows
 
 class CarmenSandiegoApplication extends Application{
 
@@ -18,14 +12,8 @@ class CarmenSandiegoApplication extends Application{
         val model = new ExpedientesAppModel => [
             villanos = VillanosRepositorio.getVillanos()
         ]
-         var bbva = new Banco("BBVA Frances"); var carp = new Club("River Plate")
-		 var argentina = new Pais("Argentina",
-        Arrays.asList("Hablan español", "Badera celeste y blanca","Toman mate"),
-        Arrays.asList(),
-        Arrays.asList(bbva,carp))
 
-        
-        new ExpedientesWindow(this, model)
+        new CasoWindows(this)
     }
 
     def static void main(String[] args) {

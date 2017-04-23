@@ -11,6 +11,7 @@ import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.layout.VerticalLayout
 import lugar.Lugar
+import org.uqbar.arena.widgets.List
 
 class ResolverMisterioWindows extends SimpleWindow<ResolverMisterioAppModel>{
 
@@ -18,20 +19,22 @@ class ResolverMisterioWindows extends SimpleWindow<ResolverMisterioAppModel>{
         super(parent, model)
     }
 
-    override addActions(Panel actionsPanel) {
-        this.title = "Resolviendo: " + this.modelObject.getNombreCaso
-    }
+    override addActions(Panel actionsPanel) { /* No es necesario */ }
 
     override createFormPanel(Panel mainPanel) {
+        this.title = "Resolviendo: " + this.modelObject.getNombreCaso
+
         val Panel detectivePanel = new Panel(mainPanel)
         detectivePanel.layout= new ColumnLayout(2)
+
         this.funcionesDetective(detectivePanel)
         this.vistasLugares(detectivePanel)
+        this.rastreoCriminal(mainPanel)
     }
 
-    def funcionesDetective(Panel owner){
+    def funcionesDetective(Panel detectivePanel){
 
-        val Panel acciones = new Panel(owner)
+        val Panel acciones = new Panel(detectivePanel)
         acciones.layout= new VerticalLayout
 
         val Panel lugar = new Panel(acciones)
@@ -57,11 +60,7 @@ class ResolverMisterioWindows extends SimpleWindow<ResolverMisterioAppModel>{
         orden.layout= new HorizontalLayout
 
         new Label(orden)=>[
-            text = "Orden ya emitida: "
-            fontSize = 6
-        ]
-        new Label(orden)=>[
-            value <=> "detective.ordenEmitida.nombre"
+            text = "Orden ya emitida: "+this.modelObject.getDetective.getNombreDeOrdenEmitida
             fontSize = 6
         ]
 
@@ -92,12 +91,33 @@ class ResolverMisterioWindows extends SimpleWindow<ResolverMisterioAppModel>{
 
         new Label(lugares).text = ""
 
-        for(Lugar lugar: this.modelObject.getDetective.lugarActual.lugaresDeInteres){
+        for(Lugar lugar: this.modelObject.getDetective.lugarActual.lugaresDeInteres) {
             new Button(lugares) => [
                 caption = lugar.nombre
                 new Label(lugares).text = ""
                 //onClick[ | paisSeleccionado  ]
             ]
         }
+    }
+
+    def rastreoCriminal(Panel mainPanel){
+
+        val Panel rastreoPanel = new Panel(mainPanel)
+        rastreoPanel.layout= new ColumnLayout(2)
+        val Panel panel1 = new Panel(rastreoPanel)
+
+        new Label(panel1).text = "Recorrido criminal:"
+
+        new Label(panel1) => [
+            text = this.modelObject.getDetective.recorridoCriminal.join("->")
+        ]
+
+        new Label(panel1).text = "Destino fallidos:"
+
+        new List<String>(panel1) => [
+            items <=> "detective.destinosFallidos"
+            height = 80
+            width = 10
+        ]
     }
 }
