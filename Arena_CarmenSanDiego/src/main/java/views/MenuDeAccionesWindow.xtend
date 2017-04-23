@@ -1,4 +1,4 @@
-package menuDeAcciones
+package views
 
 import applicationModels.MenuDeAccionesModel
 import org.uqbar.arena.windows.SimpleWindow
@@ -7,7 +7,7 @@ import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.layout.HorizontalLayout
-import mapamundi.MapamundiWindow
+import views.MapamundiWindow
 import views.CasoWindows
 import views.ExpedientesWindow
 

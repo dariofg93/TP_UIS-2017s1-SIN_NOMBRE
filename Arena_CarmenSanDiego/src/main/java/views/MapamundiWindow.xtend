@@ -1,4 +1,4 @@
-package mapamundi
+package views
 
 import applicationModels.MenuDeAccionesModel
 import org.uqbar.arena.windows.SimpleWindow

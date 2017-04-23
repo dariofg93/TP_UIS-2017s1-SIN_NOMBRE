@@ -4,7 +4,7 @@ import org.uqbar.arena.Application
 import applicationModels.ExpedientesAppModel
 import dummies.VillanosRepositorio
 import views.CasoWindows
-import menuDeAcciones.MenuDeAccionesWindow
+import views.MenuDeAccionesWindow
 
 class CarmenSandiegoApplication extends Application{
 
