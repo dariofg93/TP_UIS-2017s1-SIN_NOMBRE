@@ -18,24 +18,28 @@ abstract class Lugar{
     protected var List<String> pistas
     protected var Ocupante ocupante
     protected var Random rnd
+    protected var Boolean villanoEstuvo
 
     new(String unNombre, Ocupante alguien){
         nombre = unNombre
         ocupante = alguien
         pistas = new ArrayList<String>()
         rnd = new Random()
+        villanoEstuvo = true
     }
 
     new(String unNombre){
         nombre = unNombre
         pistas = new ArrayList<String>()
         rnd = new Random()
+        villanoEstuvo = true
     }
 
     def String mostrarPistas(Orden orden){
         try{
             ocupante.actuar
         }catch(NoEstaElVillanoException nv) {
+            villanoEstuvo = false
             return "Lo siento creo que se ha equivocado de Ciudad, no hay nadie con esas caracteristicas"
         }catch(VillanoEscapaException ve) {
             var sospechoso = (ocupante as Villano).nombre

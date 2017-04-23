@@ -1,4 +1,4 @@
-package caso
+package views
 
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
@@ -9,7 +9,6 @@ import org.uqbar.arena.widgets.Label
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import applicationModels.ResolverMisterioAppModel
 import views.ResolverMisterioWindows
-import org.uqbar.arena.layout.HorizontalLayout
 
 class CasoWindows extends SimpleWindow<CasoApplicationModel>{
 

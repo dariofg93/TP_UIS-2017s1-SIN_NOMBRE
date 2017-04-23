@@ -11,5 +11,6 @@ class OrdenNula extends Orden{
     }
 
     override nombre() {
+        "Nadie"
     }
 }

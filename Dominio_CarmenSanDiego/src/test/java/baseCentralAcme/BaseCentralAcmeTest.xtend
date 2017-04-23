@@ -9,8 +9,6 @@ import pais.Pais
 import static org.mockito.Mockito.*
 import baseCentralAcme.BaseCentralAcme
 import ocupante.Villano
-import creadores.CreadorJuego
-import caso.Caso
 import java.util.Arrays
 
 class BaseCentralAcmeTest {
@@ -66,8 +64,6 @@ class BaseCentralAcmeTest {
 
     @Test
     def void crearCasoTest() {
-        var caso = mock(Caso)
-
         unaBaseCentralAcme.registrarVillano(unVillanoMock)
         for(var i = 0;i<8;i++) { unaBaseCentralAcme.registrarPais(argentina) }
 
