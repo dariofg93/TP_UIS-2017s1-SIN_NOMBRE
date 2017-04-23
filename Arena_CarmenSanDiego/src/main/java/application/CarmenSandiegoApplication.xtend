@@ -17,6 +17,7 @@ class CarmenSandiegoApplication extends Application{
         new MenuDeAccionesWindow(this)
     }
 
+
     def static void main(String[] args) {
         new CarmenSandiegoApplication().start
     }
