@@ -1,6 +1,0 @@
-package views
-
-class FinDelJuego {
-
-
-}
