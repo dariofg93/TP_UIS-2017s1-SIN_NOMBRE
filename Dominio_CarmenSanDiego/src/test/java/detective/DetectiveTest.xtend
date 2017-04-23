@@ -1,14 +1,13 @@
 package detective
 
+import baseCentralAcme.BaseCentralAcme
+import lugar.Biblioteca
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-
 import pais.Pais
 
 import static org.mockito.Mockito.*
-import baseCentralAcme.BaseCentralAcme
-import lugar.Biblioteca
 
 class DetectiveTest {
 

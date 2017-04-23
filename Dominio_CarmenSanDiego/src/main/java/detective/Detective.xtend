@@ -1,14 +1,13 @@
 package detective
 
-import pais.Pais
-import org.eclipse.xtend.lib.annotations.Accessors
-import lugar.Lugar
 import baseCentralAcme.BaseCentralAcme
-import orden.OrdenNula
-import orden.Orden
-import registroVillano.RegistroVillano
 import java.util.stream.Collectors
-import java.util.List
+import lugar.Lugar
+import orden.Orden
+import orden.OrdenNula
+import org.eclipse.xtend.lib.annotations.Accessors
+import pais.Pais
+import registroVillano.RegistroVillano
 
 @Accessors
 class Detective{

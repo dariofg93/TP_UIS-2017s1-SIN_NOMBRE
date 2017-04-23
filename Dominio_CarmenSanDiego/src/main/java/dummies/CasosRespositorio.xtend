@@ -1,8 +1,8 @@
 package dummies
 
+import caso.Caso
 import detective.Detective
 import java.util.ArrayList
-import caso.Caso
 
 class CasosRespositorio {
 

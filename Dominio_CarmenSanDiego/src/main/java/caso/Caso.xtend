@@ -1,9 +1,9 @@
 package caso
 
 import java.util.List
-import pais.Pais
 import ocupante.Villano
 import org.eclipse.xtend.lib.annotations.Accessors
+import pais.Pais
 
 @Accessors
 class Caso {

@@ -1,14 +1,13 @@
 package creadores
 
+import java.util.ArrayList
+import ocupante.Villano
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-
 import pais.Pais
 
 import static org.mockito.Mockito.*
-import ocupante.Villano
-import java.util.ArrayList
 
 class CreadorJuegoTest {
 

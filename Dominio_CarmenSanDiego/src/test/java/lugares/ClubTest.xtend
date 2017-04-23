@@ -1,17 +1,16 @@
 package lugares
 
+import java.util.ArrayList
+import java.util.Random
+import lugar.Club
+import ocupante.Cuidador
+import ocupante.Villano
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-
 import pais.Pais
 
 import static org.mockito.Mockito.*
-import ocupante.Villano
-import java.util.ArrayList
-import ocupante.Cuidador
-import lugar.Club
-import java.util.Random
 
 class ClubTest {
 

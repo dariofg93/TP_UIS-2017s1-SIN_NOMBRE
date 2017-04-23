@@ -1,16 +1,15 @@
 package lugares
 
+import java.util.ArrayList
+import lugar.Banco
+import ocupante.Cuidador
+import ocupante.Villano
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-
 import pais.Pais
 
 import static org.mockito.Mockito.*
-import ocupante.Villano
-import lugar.Banco
-import java.util.ArrayList
-import ocupante.Cuidador
 
 class BancoTest {
 

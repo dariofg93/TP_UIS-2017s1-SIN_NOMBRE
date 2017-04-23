@@ -1,9 +1,9 @@
 package registroVillano
 
+import java.util.HashSet
+import java.util.Set
 import org.eclipse.xtend.lib.annotations.Accessors
 import pais.Pais
-import java.util.Set
-import java.util.HashSet
 
 @Accessors
 class RegistroVillano {

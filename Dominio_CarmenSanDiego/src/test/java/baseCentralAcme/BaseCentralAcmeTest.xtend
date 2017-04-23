@@ -1,15 +1,13 @@
 package baseCentralAcme
 
+import java.util.Arrays
+import ocupante.Villano
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-
 import pais.Pais
 
 import static org.mockito.Mockito.*
-import baseCentralAcme.BaseCentralAcme
-import ocupante.Villano
-import java.util.Arrays
 
 class BaseCentralAcmeTest {
 

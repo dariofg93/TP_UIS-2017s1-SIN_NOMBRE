@@ -1,8 +1,8 @@
 package ocupante
 
+import excepciones.NoEstaElVillanoException
 import org.junit.Before
 import org.junit.Test
-import excepciones.NoEstaElVillanoException
 
 class CuidadorTest {
 

@@ -1,11 +1,11 @@
 package ocupante
 
+import applicationModels.SexosPosibles
+import excepciones.VillanoEscapaException
+import java.util.Arrays
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import excepciones.NoEstaElVillanoException
-import excepciones.VillanoEscapaException
-import java.util.Arrays
 
 class VillanoTest {
 
@@ -13,7 +13,7 @@ class VillanoTest {
 
     @Before
     def void setUp() {
-        villano = new Villano("Carmen San Diego","Femenino",
+        villano = new Villano("Carmen San Diego",SexosPosibles.Masculino,
         Arrays.asList("Pelo Rubio","Capa Roja"),
         Arrays.asList("Coleciona gemas","Estudia geologia","Anda en moto"))
     }

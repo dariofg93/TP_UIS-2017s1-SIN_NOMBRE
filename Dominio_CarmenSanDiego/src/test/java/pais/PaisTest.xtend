@@ -1,16 +1,14 @@
 package pais
 
+import java.util.Arrays
+import lugar.Banco
+import lugar.Biblioteca
+import lugar.Club
+import ocupante.Villano
 import org.junit.Before
 import org.junit.Test
 
-import pais.Pais
-
 import static org.mockito.Mockito.*
-import lugar.Banco
-import lugar.Club
-import lugar.Biblioteca
-import java.util.Arrays
-import ocupante.Villano
 
 class PaisTest {
 

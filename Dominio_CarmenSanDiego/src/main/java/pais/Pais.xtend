@@ -1,14 +1,14 @@
 package pais
 
+import java.util.ArrayList
+import java.util.Arrays
 import java.util.List
-import org.eclipse.xtend.lib.annotations.Accessors
 import lugar.Lugar
-import ocupante.Villano
+import ocupante.Cuidador
 import ocupante.Informante
 import ocupante.Ocupante
-import ocupante.Cuidador
-import java.util.Arrays
-import java.util.ArrayList
+import ocupante.Villano
+import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 
 @Accessors
@@ -71,7 +71,7 @@ class Pais {
 
     def containsAny(List<Pais> mapamundi){
         var found = false
-        for(Pais pais: conexiones){
+        for(Pais pais: conexiones) {
             found = found || mapamundi.contains(pais)
         }
 
@@ -80,18 +80,18 @@ class Pais {
 
     def findConexion(List<Pais> mapamundi){
         var Pais found
-        for(Pais pais: conexiones){
+        for(Pais pais: conexiones) {
             if(mapamundi.contains(pais)) { found = pais }
         }
 
         found
     }
-    
+
     def eliminarCaracteristica(String caracteristica){
-    	caracteristicas.remove(caracteristica)
+        caracteristicas.remove(caracteristica)
     }
-    
+
     def agregarCaracteristica(String caracteristica){
-    	caracteristicas.add(caracteristica)
+        caracteristicas.add(caracteristica)
     }
 }

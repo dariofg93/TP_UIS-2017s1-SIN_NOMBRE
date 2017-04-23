@@ -1,10 +1,12 @@
 package dummies
 
-import java.util.List
-import pais.Pais
 import java.util.ArrayList
 import java.util.Arrays
-import lugar.*
+import java.util.List
+import lugar.Banco
+import lugar.Biblioteca
+import lugar.Club
+import pais.Pais
 
 class PaisesRepositorio {
 

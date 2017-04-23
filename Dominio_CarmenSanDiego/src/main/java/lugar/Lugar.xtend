@@ -1,15 +1,15 @@
 package lugar
 
-import java.util.List
-import org.eclipse.xtend.lib.annotations.Accessors
-import ocupante.Ocupante
-import java.util.ArrayList
-import pais.Pais
-import ocupante.Villano
-import java.util.Random
 import excepciones.NoEstaElVillanoException
 import excepciones.VillanoEscapaException
+import java.util.ArrayList
+import java.util.List
+import java.util.Random
+import ocupante.Ocupante
+import ocupante.Villano
 import orden.Orden
+import org.eclipse.xtend.lib.annotations.Accessors
+import pais.Pais
 
 @Accessors
 abstract class Lugar{

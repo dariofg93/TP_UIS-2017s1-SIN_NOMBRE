@@ -2,9 +2,10 @@ package applicationModels
 
 import detective.Detective
 import java.util.Random
-import static dummies.CasosRespositorio.*;
-import org.uqbar.commons.utils.Observable
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.Observable
+
+import static dummies.CasosRespositorio.*
 
 @Accessors
 @Observable

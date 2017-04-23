@@ -1,19 +1,19 @@
 package baseCentralAcme
 
-import ocupante.Villano
-import java.util.List
-import java.util.ArrayList
-import pais.Pais
+import caso.Caso
 import creadores.CreadorJuego
+import detective.Detective
+import java.util.ArrayList
 import java.util.Collections
 import java.util.HashMap
-import caso.Caso
-import detective.Detective
-import orden.OrdenEmitida
-import org.eclipse.xtend.lib.annotations.Accessors
-import orden.OrdenNula
-import orden.Orden
+import java.util.List
 import java.util.Random
+import ocupante.Villano
+import orden.Orden
+import orden.OrdenEmitida
+import orden.OrdenNula
+import org.eclipse.xtend.lib.annotations.Accessors
+import pais.Pais
 
 @Accessors
 class BaseCentralAcme {

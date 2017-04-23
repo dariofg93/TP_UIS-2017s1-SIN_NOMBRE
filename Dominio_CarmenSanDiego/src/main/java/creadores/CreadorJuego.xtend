@@ -1,10 +1,10 @@
 package creadores
 
-import ocupante.Villano
-import java.util.List
-import pais.Pais
 import caso.Caso
 import java.util.ArrayList
+import java.util.List
+import ocupante.Villano
+import pais.Pais
 
 class CreadorJuego {
 
@@ -62,7 +62,7 @@ class CreadorJuego {
         ]
         var cantPaises = 0
 
-        while(!(mapamundi.isEmpty) && cantPaises < 8 && rutaDeEscape.last.containsAny(mapamundi)){
+        while(!(mapamundi.isEmpty) && cantPaises < 8 && rutaDeEscape.last.containsAny(mapamundi)) {
             var nuevoDestino = rutaDeEscape.last.findConexion(mapamundi)
             mapamundi.remove(nuevoDestino)
             cantPaises++

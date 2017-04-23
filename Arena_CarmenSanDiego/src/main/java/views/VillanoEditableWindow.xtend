@@ -11,6 +11,7 @@ import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.List
 import ocupante.Villano
 import applicationModels.EditarVillanoAppModel
+import org.uqbar.arena.widgets.Selector
 
 class VillanoEditableWindow extends Dialog<Villano>{
 
@@ -32,7 +33,10 @@ class VillanoEditableWindow extends Dialog<Villano>{
         val Panel generoPanel = new Panel(mainPanel)
         generoPanel.layout = new ColumnLayout(2)
         new Label(generoPanel).text = "Sexo:"
-        new TextBox(generoPanel).value <=> "sexo"
+        new Selector(mainPanel) => [
+            items <=> "sexos"
+            value <=> "sexo"
+        ]
 
         //Senias villano
         val Panel seniasPanel = new Panel(mainPanel)

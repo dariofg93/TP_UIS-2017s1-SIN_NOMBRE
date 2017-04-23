@@ -1,19 +1,19 @@
 package lugares
 
+import excepciones.NoEstaElVillanoException
+import excepciones.VillanoEscapaException
+import java.util.Arrays
+import lugar.Club
+import lugar.Lugar
+import ocupante.Cuidador
+import ocupante.Informante
+import ocupante.Villano
+import orden.Orden
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
 import static org.mockito.Mockito.*
-import lugar.Lugar
-import ocupante.Cuidador
-import lugar.Club
-import java.util.Arrays
-import orden.Orden
-import ocupante.Informante
-import excepciones.NoEstaElVillanoException
-import ocupante.Villano
-import excepciones.VillanoEscapaException
 
 class LugarTest {
     Lugar riverPlate

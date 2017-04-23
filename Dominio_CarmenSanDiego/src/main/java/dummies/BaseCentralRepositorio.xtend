@@ -1,12 +1,12 @@
 package dummies
 
 import baseCentralAcme.BaseCentralAcme
+import caso.Caso
+import detective.Detective
+import java.util.HashMap
 import java.util.List
 import ocupante.Villano
 import pais.Pais
-import java.util.HashMap
-import detective.Detective
-import caso.Caso
 
 class BaseCentralRepositorio {
 
@@ -28,6 +28,6 @@ class BaseCentralRepositorio {
     }
 
     def static List<String> sexosPosibles(){
-       // return
+        // return
     }
 }

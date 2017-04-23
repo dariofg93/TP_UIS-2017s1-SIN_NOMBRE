@@ -17,6 +17,8 @@ class ExpedientesWindow extends SimpleWindow<ExpedientesAppModel> {
     new(WindowOwner parent) {
         super(parent, new ExpedientesAppModel())
     }
+    //lo agregue para poder correr menu de acciones, sino tengo q inicializarle
+    //el expediente.
 
     new(WindowOwner parent, ExpedientesAppModel model) {
         super(parent, model)
