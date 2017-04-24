@@ -10,7 +10,7 @@ import dummies.PaisesRepositorio
 @Observable
 @Accessors
 class EditarPaisAppModel {
-
+	
     Pais paisSeleccionado
     String caracteristicaSeleccionada
     String caracteristicaParaAgregar
@@ -49,4 +49,6 @@ class EditarPaisAppModel {
     def agregarLugar(Lugar lugar){
         paisSeleccionado.agregarLugar(lugar)
     }
+	
+	
 }

@@ -69,11 +69,15 @@ class EditarPaisWindow extends Dialog<Pais>{
             (items <=> "lugaresDeInteres").adapter = new PropertyAdapter(Lugar, "nombre")
         ]
 
-        new Button (mainPanel) => [ caption = "Aceptar"
-            onClick[| this.close]
-        ]
+     	this.agregarButton(mainPanel)
     }
 
+	def agregarButton(Panel panel){
+		new Button (panel) => [ 
+        	caption = "Aceptar"
+            onClick[| this.close]
+        ]
+	}
 
     override protected addActions(Panel actionsPanel) {
         throw new UnsupportedOperationException("TODO: auto-generated method stub")
