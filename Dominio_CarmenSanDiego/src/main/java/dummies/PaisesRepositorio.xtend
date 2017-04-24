@@ -21,7 +21,7 @@ class PaisesRepositorio {
         var argentina = new Pais("Argentina",
         Arrays.asList("Hablan español", "Badera celeste y blanca","Toman mate"),
         Arrays.asList(),
-        Arrays.asList(bbva,carp))
+        Arrays.asList(carp,bbva))
 
         brasil.setConexiones(Arrays.asList(argentina))
         argentina.setConexiones(Arrays.asList(brasil))
