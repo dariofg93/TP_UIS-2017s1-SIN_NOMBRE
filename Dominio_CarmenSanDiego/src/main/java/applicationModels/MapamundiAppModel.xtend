@@ -22,4 +22,16 @@ class MapamundiAppModel {
     def quitarPais(Pais unPais){
         paises.remove(unPais)
     }
+
+    def nuevoPais(){
+        val Pais nuevo = new Pais()
+        agregarPais(nuevo)
+        return nuevo
+    }
+
+    def agregarPais(Pais unPais){
+        paises.add(unPais)
+    }
+
+
 }
