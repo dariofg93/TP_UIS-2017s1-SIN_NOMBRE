@@ -47,9 +47,4 @@ class DetectiveTest {
 
         verify(acme).validarOrden("Pelo Rubio","Femenino")
     }
-
-    @Test
-    def void getNombreDeOrdenEmitida() {
-        Assert.assertEquals(sherlockHolmes.getNombreDeOrdenEmitida,"Nadie")
-    }
 }

@@ -15,4 +15,8 @@ class ResolverMisterioAppModel {
         nombreCaso = unCaso
         detective = unDetective
     }
+
+    def nombreOrdenEmitida(){
+        detective.ordenEmitida.nombre
+    }
 }

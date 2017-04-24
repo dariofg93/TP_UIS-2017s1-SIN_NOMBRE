@@ -1,6 +1,7 @@
 package views
 
 import applicationModels.ViajarAppModel
+import applicationModels.ViajarAppModel.*
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Panel
@@ -11,6 +12,7 @@ import org.uqbar.arena.bindings.PropertyAdapter
 import pais.Pais
 import org.uqbar.arena.widgets.Button
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import applicationModels.ResolverMisterioAppModel
 
 class ViajarWindows extends Dialog<ViajarAppModel>{
 
@@ -45,15 +47,22 @@ class ViajarWindows extends Dialog<ViajarAppModel>{
 
         new Button(acciones) => [
             caption = "Volver al País anterior"
-            onClick[ this.close ]
+            val model = new ResolverMisterioAppModel(this.modelObject.getDetective,this.modelObject.getNombreCaso)
+            onClick[ this.close new ResolverMisterioWindows(this,model).open ]
         ]
 
         new Button(acciones) => [
             caption = "Viajar"
             onClick[
-                this.modelObject.getDetective.viajar(this.modelObject.getPaisSeleccionado)
-                this.close
+                this.modelObject.viajar
+                val model = new ResolverMisterioAppModel(this.modelObject.getDetective,this.modelObject.getNombreCaso)
+                this.close new ResolverMisterioWindows(this,model).open
             ]
         ]
     }
+    /*
+            this.modelObject.getDetective.viajar(this.modelObject.getPaisSeleccionado)
+            val model = new ResolverMisterioAppModel(this.modelObject.getDetective,"asd")
+            onClick[ this.close new ResolverMisterioWindows(this,model).open ]
+    */
 }
