@@ -12,6 +12,7 @@ import org.uqbar.arena.widgets.List
 import ocupante.Villano
 import applicationModels.EditarVillanoAppModel
 import org.uqbar.arena.widgets.Selector
+import org.uqbar.arena.bindings.NotNullObservable
 
 class VillanoEditableWindow extends Dialog<Villano>{
 
@@ -69,9 +70,10 @@ class VillanoEditableWindow extends Dialog<Villano>{
 
         new Button(mainPanel)=> [
             caption = "Aceptar"
-            onClick[ | this.close]
+            onClick[ | this.close
+         ]
+            bindEnabled(new NotNullObservable("sexo"))
         ]
-
     }
 
 }

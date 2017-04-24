@@ -6,12 +6,14 @@ import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Label
-import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.layout.VerticalLayout
 import lugar.Lugar
 import org.uqbar.arena.widgets.List
+import applicationModels.ViajarAppModel
+import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import applicationModels.VisitarAppModel
 
 class ResolverMisterioWindows extends SimpleWindow<ResolverMisterioAppModel>{
 
@@ -66,7 +68,8 @@ class ResolverMisterioWindows extends SimpleWindow<ResolverMisterioAppModel>{
 
         new Button(acciones) => [
             caption = "Viajar"
-            // onClick[ | paisSeleccionado  ]
+            val model = new ViajarAppModel(this.modelObject.getDetective)
+            onClick[ | new ViajarWindows(this,model).open ]
         ]
 
         new Label(acciones).text = ""
@@ -94,9 +97,10 @@ class ResolverMisterioWindows extends SimpleWindow<ResolverMisterioAppModel>{
         for(Lugar lugar: this.modelObject.getDetective.lugarActual.lugaresDeInteres) {
             new Button(lugares) => [
                 caption = lugar.nombre
-                new Label(lugares).text = ""
-                //onClick[ | paisSeleccionado  ]
+                val model = new VisitarAppModel(this.modelObject.getDetective.visitar(lugar),lugar.nombre,this.modelObject.getNombreCaso)
+                onClick[ | new VisitarWindows(this,model).open ]
             ]
+            new Label(lugares).text = ""
         }
     }
 

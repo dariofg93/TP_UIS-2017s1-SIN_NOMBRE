@@ -53,16 +53,15 @@ class MapamundiWindow extends SimpleWindow<MapamundiAppModel>{
         ]
         new Button(panelDeListadoDePaises) => [
             caption = "Nuevo"
-           // onClick[ | paisSeleccionado  ]
+            onClick[ |
+                var Pais nuevoPais= this.modelObject.nuevoPais
+                new EditarPaisWindow(this, nuevoPais).open]
         ]
-
     }
 
     def caracteristicasDePaises(Panel owner){
 
         val Panel panelDeCaracteristicas = new Panel(owner)
-
-        //var Pais paisSelec = new PropertyAdapter(Pais, "paisSeleccionado")
 
         val Panel nombrePaisPanel= new Panel(panelDeCaracteristicas)
         nombrePaisPanel.layout= new HorizontalLayout
@@ -98,7 +97,6 @@ class MapamundiWindow extends SimpleWindow<MapamundiAppModel>{
             width = 200
         ]
     }
-
 
     new (WindowOwner parent) {
         super(parent, new MapamundiAppModel())

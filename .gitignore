@@ -4,6 +4,7 @@ target
 *.yml
 *xtend-gen*
 *generated-sources*
+/bin/
 
 .classpath
 .project

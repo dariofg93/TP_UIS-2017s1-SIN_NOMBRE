@@ -32,6 +32,12 @@ class PaisesRepositorio {
         caracteristicas = new ArrayList<String>(Arrays.asList("Hablan italiano", "Bandera blanca, roja y verde","Toman vino")),
         conexiones = new ArrayList<Pais>(Arrays.asList(argentina, brasil)),
         lugares = new ArrayList<Lugar>(Arrays.asList(bbva, biblioteca)))
+        Arrays.asList("Hablan español", "Badera celeste y blanca","Toman mate"),
+        Arrays.asList(),
+        Arrays.asList(carp,bbva))
+
+        brasil.setConexiones(Arrays.asList(argentina))
+        argentina.setConexiones(Arrays.asList(brasil))
 
         add(argentina)
         add(brasil)
