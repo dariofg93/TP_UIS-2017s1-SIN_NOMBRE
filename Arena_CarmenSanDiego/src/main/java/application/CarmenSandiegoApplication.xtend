@@ -5,6 +5,9 @@ import applicationModels.ExpedientesAppModel
 import dummies.VillanosRepositorio
 import views.CasoWindows
 import views.MenuDeAccionesWindow
+import views.ExpedientesWindow
+import dummies.PaisesRepositorio
+import views.EditarPaisWindow
 
 class CarmenSandiegoApplication extends Application{
 
@@ -13,8 +16,9 @@ class CarmenSandiegoApplication extends Application{
         val model = new ExpedientesAppModel => [
             villanos = VillanosRepositorio.getVillanos()
         ]
-
-        new MenuDeAccionesWindow(this)
+		
+		new ExpedientesWindow(this, model)
+        new EditarPaisWindow(this, PaisesRepositorio.getMapamundi().get(0))
     }
 
 

@@ -8,6 +8,8 @@ import org.uqbar.arena.widgets.Label
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Button
+import org.uqbar.arena.layout.ColumnLayout
+import org.uqbar.arena.widgets.TextBox
 
 class EditarCaracteristicasWindow extends Dialog<EditarPaisAppModel> {
 
@@ -22,14 +24,26 @@ class EditarCaracteristicasWindow extends Dialog<EditarPaisAppModel> {
         new List<String>(mainPanel) => [
             height=80
             width=130
-            value <=> "caracteristicasSeleccionadas"
+            value <=> "caracteristicaSeleccionada"
             items <=> "paisSeleccionado.caracteristicas"
 
         ]
-
         new Button(mainPanel) => [
             caption = "Eliminar"
-            onClick[ | this.modelObject.eliminarCaracteristica("caracteristicaSeleccionada")]
+            onClick[ | this.modelObject.eliminarCaracteristica(this.modelObject.caracteristicaSeleccionada)]
+        ]
+        
+        var textboxPanel = new Panel(mainPanel)
+        textboxPanel.layout = new ColumnLayout(2)
+        new TextBox(textboxPanel).value <=> "caracteristicaParaAgregar"
+        new Button(textboxPanel) => [
+        	caption = "Agregar"
+        	onClick [ | this.modelObject.agregarCaracteristica(this.modelObject.caracteristicaParaAgregar)]
+        ]
+        
+        new Button(mainPanel)=> [
+            caption = "Aceptar"
+            onClick[ | this.close]
         ]
     }
 

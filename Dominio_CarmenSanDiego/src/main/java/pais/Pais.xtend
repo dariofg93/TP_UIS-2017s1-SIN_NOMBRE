@@ -86,12 +86,28 @@ class Pais {
 
         found
     }
-
+	
+	//Caracteristicas
     def eliminarCaracteristica(String caracteristica){
         caracteristicas.remove(caracteristica)
     }
-
     def agregarCaracteristica(String caracteristica){
         caracteristicas.add(caracteristica)
+    }
+    
+    //Conexiones
+    def eliminarConexion(Pais conexion){
+        conexiones.remove(conexion)
+    }
+    def agregarConexion(Pais conexion){
+        conexiones.add(conexion)
+    }
+    
+    //Lugares
+    def eliminarLugar(Lugar lugar){
+        lugaresDeInteres.remove(lugar)
+    }
+    def agregarLugar(Lugar lugar){
+        lugaresDeInteres.add(lugar)
     }
 }

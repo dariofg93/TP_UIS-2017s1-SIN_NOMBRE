@@ -11,12 +11,6 @@ class VillanosRepositorio {
     static List<String> seniasParticulares
     static List<String> hobbies
 
-    def List<String> senias() {
-        seniasParticulares.add("Pelo Rubio");seniasParticulares.add("Sobretodo rojo");seniasParticulares.add("Usa guantes")
-
-        return seniasParticulares
-    }
-
     var static villanos = new ArrayList() => [
 
         var carmenSanDiego = new Villano("Carmen SanDiego",SexosPosibles.Femenino,

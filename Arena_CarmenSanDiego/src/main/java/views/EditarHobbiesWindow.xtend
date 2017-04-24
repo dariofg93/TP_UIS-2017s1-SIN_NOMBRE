@@ -30,7 +30,7 @@ class EditarHobbiesWindow extends Dialog<EditarVillanoAppModel>{
 
         new Button(mainPanel)=>[
             caption = "Eliminar"
-            onClick[ | this.modelObject.eliminarHobbie("hobbieSeleccionado") ]
+            onClick[ | this.modelObject.eliminarHobbie(this.modelObject.hobbieSeleccionado) ]
         ]
 
         //Agregar hobbie

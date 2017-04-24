@@ -10,6 +10,9 @@ import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.Button
+import applicationModels.EditarPaisAppModel
+import org.uqbar.arena.bindings.PropertyAdapter
+import lugar.Lugar
 
 class EditarPaisWindow extends Dialog<Pais>{
 
@@ -20,46 +23,50 @@ class EditarPaisWindow extends Dialog<Pais>{
     override createMainTemplate(Panel mainPanel){
 
         this.title = "Mapamundi - Editar Pais"
-
-
+        
+        //Instancio el app model para las vistas que lo necesiten
+        val editarPaisAppModel = new EditarPaisAppModel(this.modelObject)
+		
+		//Nombre pais
         val Panel nombrePais = new Panel(mainPanel)
         nombrePais.layout = new ColumnLayout(2)
         new Label (nombrePais).text = "Nombre:"
         new TextBox(nombrePais).value <=>"nombre"
 
+		//Caracteristicas pais
         val Panel caractPanel = new Panel(mainPanel)
         caractPanel.layout = new ColumnLayout(2)
         new Label(caractPanel).text = "Caracteristicas"
         new Button(caractPanel) =>[ caption = "Editar Caracteristicas"
-            // onClick[| ]
+            onClick[| new EditarCaracteristicasWindow(this, editarPaisAppModel).open]
         ]
         new Label (mainPanel).text = "Caracteristicas"
         new List<Pais>(mainPanel) => [
             items <=> "caracteristicas"
         ]
-
+		
+		//Conexiones pais
         val Panel conexionesPanel = new Panel(mainPanel)
         conexionesPanel.layout = new ColumnLayout(2)
         new Label (conexionesPanel).text = "Conexiones"
         new Button(conexionesPanel) => [ caption = "Editar Conexiones"
-            //onClick[| ]
-
+            onClick[| new EditarConexionesWindow(this, editarPaisAppModel).open]
         ]
         new Label(mainPanel).text = "Conexiones"
         new List<Pais>(mainPanel) => [
-            items <=> "conexiones"
+            (items <=> "conexiones").adapter = new PropertyAdapter(Pais, "nombre")
         ]
 
+		//Lugares pais
         val Panel lugaresPanel = new Panel(mainPanel)
         lugaresPanel.layout = new ColumnLayout(2)
         new Label(lugaresPanel).text = "Lugares de Interes"
         new Button (lugaresPanel)=> [ caption = "Editar Lugares de Interes"
             //onClick[| ]
         ]
-
         new Label(mainPanel).text = "Lugares de Interes"
         new List<Pais>(mainPanel) => [
-            items <=> "lugaresDeInteres"
+            (items <=> "lugaresDeInteres").adapter = new PropertyAdapter(Lugar, "nombre")
         ]
 
         new Button (mainPanel) => [ caption = "Aceptar"

@@ -19,18 +19,17 @@ class VillanoEditableWindow extends Dialog<Villano>{
         super(owner, model)
     }
 
-
     override protected createFormPanel(Panel mainPanel) {
         this.title = "Expedientes - Editar Villano"
 
         //Nombre villano
-        val Panel nombrePanel = new Panel(mainPanel)
+        var nombrePanel = new Panel(mainPanel)
         nombrePanel.layout = new ColumnLayout(2)
         new Label(nombrePanel).text = "Nombre:"
         new TextBox(nombrePanel).value <=> "nombre"
 
         //Sexo villano
-        val Panel generoPanel = new Panel(mainPanel)
+        var generoPanel = new Panel(mainPanel)
         generoPanel.layout = new ColumnLayout(2)
         new Label(generoPanel).text = "Sexo:"
         new Selector(mainPanel) => [
@@ -39,7 +38,7 @@ class VillanoEditableWindow extends Dialog<Villano>{
         ]
 
         //Senias villano
-        val Panel seniasPanel = new Panel(mainPanel)
+        var seniasPanel = new Panel(mainPanel)
         seniasPanel.layout = new ColumnLayout(2)
         new Label(seniasPanel).text = "Senias Particulares:"
         new Button(seniasPanel) => [
@@ -54,7 +53,14 @@ class VillanoEditableWindow extends Dialog<Villano>{
         ]
 
         //Hobbies villano
-        new Label(mainPanel).text = "Hobbies"
+        var hobbiesPanel = new Panel(mainPanel)
+        hobbiesPanel.layout = new ColumnLayout(2)
+        new Label(hobbiesPanel).text = "Hobbies:"
+        new Button(hobbiesPanel) => [
+        	caption = "Editar Hobbies"
+        	val editarVillanoAppModel = new EditarVillanoAppModel(this.modelObject)
+            onClick [ | new EditarHobbiesWindow(this, editarVillanoAppModel).open]
+        ]
         new List<String>(mainPanel) => [
             height = 80
             width = 130

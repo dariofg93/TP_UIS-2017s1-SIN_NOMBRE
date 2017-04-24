@@ -39,7 +39,7 @@ class EditarSeniasWindow extends Dialog<EditarVillanoAppModel>{
         new TextBox(agregarSeniaPanel).value <=> "seniaParaAgregar"
         new Button(agregarSeniaPanel) => [
             caption = "Agregar"
-            onClick [ | this.modelObject.villanoSeleccionado.agregarSenia(this.modelObject.seniaParaAgregar)]
+            onClick [ | this.modelObject.agregarSenia(this.modelObject.seniaParaAgregar)]
         ]
 
         new Button(mainPanel)=> [

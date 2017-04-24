@@ -27,7 +27,7 @@ class EditarVillanoAppModel {
     }
 
     def agregarHobbie(String hobbie) {
-        villanoSeleccionado.eliminarHobbie(hobbie)
+        villanoSeleccionado.agregarHobbie(hobbie)
     }
 
     def eliminarHobbie(String hobbie) {
