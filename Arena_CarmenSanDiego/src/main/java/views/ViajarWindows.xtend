@@ -6,11 +6,11 @@ import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Label
-import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.widgets.List
 import org.uqbar.arena.bindings.PropertyAdapter
 import pais.Pais
 import org.uqbar.arena.widgets.Button
+import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
 class ViajarWindows extends Dialog<ViajarAppModel>{
 

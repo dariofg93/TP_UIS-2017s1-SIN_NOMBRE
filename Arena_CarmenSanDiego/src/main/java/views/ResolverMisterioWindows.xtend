@@ -13,6 +13,7 @@ import lugar.Lugar
 import org.uqbar.arena.widgets.List
 import applicationModels.ViajarAppModel
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import applicationModels.VisitarAppModel
 
 class ResolverMisterioWindows extends SimpleWindow<ResolverMisterioAppModel>{
 
@@ -96,9 +97,10 @@ class ResolverMisterioWindows extends SimpleWindow<ResolverMisterioAppModel>{
         for(Lugar lugar: this.modelObject.getDetective.lugarActual.lugaresDeInteres) {
             new Button(lugares) => [
                 caption = lugar.nombre
-                new Label(lugares).text = ""
-                //onClick[ | paisSeleccionado  ]
+                val model = new VisitarAppModel(this.modelObject.getDetective.visitar(lugar),lugar.nombre,this.modelObject.getNombreCaso)
+                onClick[ | new VisitarWindows(this,model).open ]
             ]
+            new Label(lugares).text = ""
         }
     }
 
