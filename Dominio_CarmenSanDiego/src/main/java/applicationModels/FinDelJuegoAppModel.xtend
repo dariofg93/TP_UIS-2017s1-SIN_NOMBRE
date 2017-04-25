@@ -10,10 +10,12 @@ class FinDelJuegoAppModel {
 
     var Villano ocupanteDelLugar
     var Villano villanoDeLaOrdenEmitida
+    var String nombreDeCaso
 
-    new(Villano unOcupante, Villano villanoDeOrden){
+    new(Villano unOcupante, Villano villanoDeOrden, String unCaso){
         ocupanteDelLugar = unOcupante
         villanoDeLaOrdenEmitida = villanoDeOrden
+        nombreDeCaso = unCaso
     }
 
     def esElVIllano(){

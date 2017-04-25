@@ -15,6 +15,7 @@ import org.uqbar.arena.widgets.List
 import applicationModels.ViajarAppModel
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import applicationModels.VisitarAppModel
+import applicationModels.ExpedientesAppModel
 
 class ResolverMisterioWindows extends SimpleWindow<ResolverMisterioAppModel>{
 
@@ -56,7 +57,8 @@ class ResolverMisterioWindows extends SimpleWindow<ResolverMisterioAppModel>{
 
         new Button(acciones) => [
             caption = "Orden de arresto"
-            //onClick[ | paisSeleccionado  ]
+            val model = new ExpedientesAppModel()
+            onClick[ | new OrdenArrestoWindow(this,model).open  ]
         ]
 
         val Panel orden = new Panel(acciones)

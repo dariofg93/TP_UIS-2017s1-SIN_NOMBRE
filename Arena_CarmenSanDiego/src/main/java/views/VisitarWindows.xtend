@@ -38,7 +38,7 @@ class VisitarWindows extends Dialog<VisitarAppModel>{
 
     def abrirVentanaCorrespondiente(){
         if(this.modelObject.estaElVillano){
-            val model = new FinDelJuegoAppModel(this.modelObject.villanoDelLugar,this.modelObject.villanoDeOrden)
+            val model = new FinDelJuegoAppModel(this.modelObject.villanoDelLugar,this.modelObject.villanoDeOrden,this.modelObject.getNombreCaso)
             new FinDelJuegoWindow(this,model).open
         }else{
             val model = new ResolverMisterioAppModel(this.modelObject.getDetective,this.modelObject.getNombreCaso)
