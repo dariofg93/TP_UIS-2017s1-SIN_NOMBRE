@@ -13,6 +13,7 @@ import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.Selector
 import lugar.Lugar
+import org.uqbar.commons.model.UserException
 
 class EditarLugaresWindow extends Dialog<EditarPaisAppModel> {
 	
@@ -43,15 +44,25 @@ class EditarLugaresWindow extends Dialog<EditarPaisAppModel> {
 	]
 	new Button(agregarPanel) => [
 		caption = "Aceptar"
-		onClick [ | this.modelObject.agregarLugar(this.modelObject.lugarSeleccionado)]
+		onClick [ | ]
 	]
 	
 	new Button(mainPanel)=> [
 		caption = "Aceptar"
 		onClick [ | this.close]
 	]
-	
 	}
+	
+	//Validacion lugar
+	def validarLugar() {
+		if(this.modelObject.listaDeLugares.length <= 3 && !this.modelObject.listaDeLugares.contains(this.modelObject)) {
+			this.modelObject.agregarLugar(this.modelObject.lugarSeleccionado)
+		}
+		else {
+			throw new UserException("Los lugares deben ser exactamente 3 y no pueden estar repetidos.")
+		}
+	}
+	
 	new(WindowOwner owner, EditarPaisAppModel model) {
 		super(owner, model)
 	}

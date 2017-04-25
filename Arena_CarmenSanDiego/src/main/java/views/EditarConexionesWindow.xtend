@@ -12,6 +12,8 @@ import org.uqbar.arena.widgets.Button
 import pais.Pais
 import org.uqbar.arena.widgets.Selector
 import org.uqbar.arena.bindings.PropertyAdapter
+import org.uqbar.commons.model.UserException
+import java.util.Arrays
 
 class EditarConexionesWindow extends Dialog<EditarPaisAppModel> {
 
@@ -29,7 +31,6 @@ class EditarConexionesWindow extends Dialog<EditarPaisAppModel> {
             width=130
             value <=> "conexionSeleccionada"
             (items <=> "paisSeleccionado.conexiones").adapter = new PropertyAdapter(Pais, "nombre")
-
         ]
         new Button(mainPanel) => [
             caption = "Eliminar"
@@ -42,17 +43,26 @@ class EditarConexionesWindow extends Dialog<EditarPaisAppModel> {
         new Selector(selectorPanel) => [
         	 value <=> "conexionParaAgregar"
         	 (items <=> "listaDeConexiones").adapter = new PropertyAdapter(Pais, "nombre")
-        		 
        	]
         new Button(selectorPanel) => [
         	caption = "Agregar"
-        	onClick [ | this.modelObject.agregarConexion(this.modelObject.conexionParaAgregar)]
+        	onClick [ | validarConexion()]
         ]
         
         new Button(mainPanel)=> [
             caption = "Aceptar"
             onClick[ | this.close]
         ]
+    }
+    
+    //Validacion
+    def validarConexion() {
+    	if(this.modelObject.listaDeConexionesOriginal.contains(this.modelObject.conexionParaAgregar)) {
+    		this.modelObject.agregarConexion(this.modelObject.conexionParaAgregar)
+    	}
+    	else {
+    		throw new UserException("Las conexiones deben ser a países que se hayan ingresado al sistema previamente.")
+    	}
     }
 
     override protected createFormPanel(Panel mainPanel) {
