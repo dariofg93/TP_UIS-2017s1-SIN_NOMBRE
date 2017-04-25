@@ -20,17 +20,18 @@ class VillanoEditableWindow extends Dialog<Villano>{
         super(owner, model)
     }
 
+
     override protected createFormPanel(Panel mainPanel) {
-        this.title = "Expedientes - Editar Villano"
+        this.title = "Expedientes"
 
         //Nombre villano
-        var nombrePanel = new Panel(mainPanel)
+        val Panel nombrePanel = new Panel(mainPanel)
         nombrePanel.layout = new ColumnLayout(2)
         new Label(nombrePanel).text = "Nombre:"
         new TextBox(nombrePanel).value <=> "nombre"
 
         //Sexo villano
-        var generoPanel = new Panel(mainPanel)
+        val Panel generoPanel = new Panel(mainPanel)
         generoPanel.layout = new ColumnLayout(2)
         new Label(generoPanel).text = "Sexo:"
         new Selector(mainPanel) => [
@@ -39,7 +40,7 @@ class VillanoEditableWindow extends Dialog<Villano>{
         ]
 
         //Senias villano
-        var seniasPanel = new Panel(mainPanel)
+        val Panel seniasPanel = new Panel(mainPanel)
         seniasPanel.layout = new ColumnLayout(2)
         new Label(seniasPanel).text = "Senias Particulares:"
         new Button(seniasPanel) => [
@@ -54,12 +55,10 @@ class VillanoEditableWindow extends Dialog<Villano>{
         ]
 
         //Hobbies villano
-        var hobbiesPanel = new Panel(mainPanel)
-        hobbiesPanel.layout = new ColumnLayout(2)
-        new Label(hobbiesPanel).text = "Hobbies:"
-        new Button(hobbiesPanel) => [
-        	caption = "Editar Hobbies"
-        	val editarVillanoAppModel = new EditarVillanoAppModel(this.modelObject)
+        new Label(mainPanel).text = "Hobbies"
+        new Button(seniasPanel) => [
+            caption = "Editar Hobbies"
+            val editarVillanoAppModel = new EditarVillanoAppModel(this.modelObject)
             onClick [ | new EditarHobbiesWindow(this, editarVillanoAppModel).open]
         ]
         new List<String>(mainPanel) => [
@@ -73,6 +72,7 @@ class VillanoEditableWindow extends Dialog<Villano>{
             onClick[ | this.close
          ]
             bindEnabled(new NotNullObservable("sexo"))
+
         ]
     }
 

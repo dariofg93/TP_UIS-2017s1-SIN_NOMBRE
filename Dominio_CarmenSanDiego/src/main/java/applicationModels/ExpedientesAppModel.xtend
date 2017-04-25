@@ -14,7 +14,7 @@ class ExpedientesAppModel {
 
     var List<Villano> villanos = VillanosRepositorio.getVillanos()
     var Villano villanoSeleccionado
-    var List<String> sexosPosibles = Arrays.asList("Masculino")
+    var List<String> sexosPosibles = Arrays.asList("sexosPosibles")
 
 
     def nuevoVillano(){
