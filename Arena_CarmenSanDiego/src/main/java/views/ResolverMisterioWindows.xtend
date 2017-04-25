@@ -98,8 +98,10 @@ class ResolverMisterioWindows extends SimpleWindow<ResolverMisterioAppModel>{
         for(Lugar lugar: this.modelObject.getDetective.lugarActual.lugaresDeInteres) {
             new Button(lugares) => [
                 caption = lugar.nombre
-                val model = new VisitarAppModel(this.modelObject.getDetective.visitar(lugar),lugar.nombre,this.modelObject.getNombreCaso)
-                onClick[ | new VisitarWindows(this,model).open ]
+                onClick[
+                    val model = new VisitarAppModel(this.modelObject.getDetective.visitar(lugar),lugar.nombre,this.modelObject.getNombreCaso)
+                    new VisitarWindows(this,model).open
+                ]
             ]
             new Label(lugares).text = ""
         }
