@@ -20,17 +20,18 @@ class PaisesRepositorio {
     var static mapamundi = new ArrayList() => [
         var bbva = new Banco("BBVA Frances")
         var provincia = new Banco("Banco Provincia")
-        var cabj = new Club("Boca Juniors")
+        var aaaj = new Club("Argentinos Juniors")
         var juventus = new Club("Juventus FC.")
         var biblioteca = new Biblioteca("Biblioteca Nacional")
         var bibliotecaEgipto = new Biblioteca("Biblioteca de Alejandria")
         var embajadaMexico = new Embajada("Embajada Mexico")
-/*
+
+        var bibliotecaJapon = new Biblioteca("Biblioteca Braille")
         var bibliotecaCuba = new Biblioteca("Biblioteca Jose Marti")
         var embajadaEeuu = new Embajada("Embajada EEUU")
         var embajadaRusia = new Embajada("Embajada Rusia")
         var barcelona = new Club("Barcelona FC")
-*/
+
         var brasil = new Pais("Brasil",
         caracteristicas = new ArrayList<String>(Arrays.asList("Hablan portuges", "Bandera verde y amarilla y azul","pentacampeones del mundo")),
         conexiones = new ArrayList<Pais>(Arrays.asList()),
@@ -39,7 +40,7 @@ class PaisesRepositorio {
         var argentina = new Pais("Argentina",
         caracteristicas = new ArrayList<String>(Arrays.asList("Hablan español", "Bandera celeste y blanca","Toman mate")),
         conexiones = new ArrayList<Pais>(Arrays.asList(brasil)),
-        lugares = new ArrayList<Lugar>(Arrays.asList(provincia,cabj)))
+        lugares = new ArrayList<Lugar>(Arrays.asList(provincia,aaaj)))
         
         var italia = new Pais("Italia",
         caracteristicas = new ArrayList<String>(Arrays.asList("Hablan italiano", "Bandera blanca, roja y verde","Toman vino")),
@@ -56,7 +57,7 @@ class PaisesRepositorio {
         conexiones = new ArrayList<Pais>(Arrays.asList(egipto, brasil)),
         lugares = new ArrayList<Lugar>(Arrays.asList(embajadaMexico,bbva)))
 
-/*
+
         var rusia = new Pais("Rusia",
         caracteristicas = new ArrayList<String>(Arrays.asList("Hablan ruso", "Bandera roja, blanca y azul")),
         conexiones = new ArrayList<Pais>(Arrays.asList(egipto, japon, italia, argentina)),
@@ -81,17 +82,17 @@ class PaisesRepositorio {
         caracteristicas = new ArrayList<String>(Arrays.asList("Hablan español", "Bandera celeste y blanca")),
         conexiones = new ArrayList<Pais>(Arrays.asList(argentina)),
         lugares = new ArrayList<Lugar>(Arrays.asList(embajadaMexico,bbva)))
-*/
+
         add(argentina)
         add(brasil)
         add(italia)
         add(egipto)
         add(japon)
-        /* add(rusia)
-         add(españa)
-         add(cuba)
-         add(francia)
-         add(uruguay)*/
+        add(rusia)
+        add(españa)
+        add(cuba)
+        add(francia)
+        add(uruguay)
     ]
 
     def static List<Pais> getMapamundi() {
