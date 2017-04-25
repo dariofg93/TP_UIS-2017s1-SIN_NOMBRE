@@ -9,6 +9,7 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Button
 import applicationModels.ResolverMisterioAppModel
+import applicationModels.FinDelJuegoAppModel
 
 class VisitarWindows extends Dialog<VisitarAppModel>{
 
@@ -37,7 +38,8 @@ class VisitarWindows extends Dialog<VisitarAppModel>{
 
     def abrirVentanaCorrespondiente(){
         if(this.modelObject.estaElVillano){
-            new FinDelJuegoWindow(this).open
+            val model = new FinDelJuegoAppModel(this.modelObject.villanoDelLugar,this.modelObject.villanoDeOrden)
+            new FinDelJuegoWindow(this,model).open
         }else{
             val model = new ResolverMisterioAppModel(this.modelObject.getDetective,this.modelObject.getNombreCaso)
             new ResolverMisterioWindows(this,model).open

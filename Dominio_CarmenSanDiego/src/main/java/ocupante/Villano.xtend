@@ -24,19 +24,18 @@ class Villano extends Ocupante{
         hobbies = unosHobbies
     }
 
-    def sexos() {
-        var SexosPosibles[] sexosP = SexosPosibles.values;
-        return Arrays.asList(sexosP);
-    }
-
-
     new() {
-		seniasParticulares = new ArrayList<String>()
-		hobbies = new ArrayList<String>()
+        seniasParticulares = new ArrayList<String>()
+        hobbies = new ArrayList<String>()
     }
 
     override actuar() {
         throw new VillanoEscapaException()
+    }
+
+    def sexos() {
+        var SexosPosibles[] sexosP = SexosPosibles.values;
+        return Arrays.asList(sexosP);
     }
 
     def mismasCaracteristicas(String... pistas){
@@ -74,5 +73,4 @@ class Villano extends Ocupante{
     def agregarHobbie (String hobbie){
         hobbies.add(hobbie)
     }
-
 }

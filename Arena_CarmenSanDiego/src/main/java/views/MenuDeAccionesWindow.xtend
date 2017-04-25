@@ -13,7 +13,6 @@ import views.ExpedientesWindow
 
 class MenuDeAccionesWindow extends SimpleWindow<MenuDeAccionesModel>{
 
-
     override createMainTemplate(Panel menuPanel) {
 
         this.title = "¿Donde esta Carmen San Diego?"

@@ -41,7 +41,7 @@ class BaseCentralAcme {
 
         for(v: villanos) {
             if(v.mismasCaracteristicas(pistas))
-                ordenEmitida = new OrdenEmitida(v.nombre)
+                ordenEmitida = new OrdenEmitida(v)
         }
         return ordenEmitida
     }

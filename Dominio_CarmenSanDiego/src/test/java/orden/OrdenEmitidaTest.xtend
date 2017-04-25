@@ -3,14 +3,20 @@ package orden
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
+import ocupante.Villano
+
+import static org.mockito.Mockito.*
 
 class DetectiveTest {
 
     OrdenEmitida orden
+    Villano villanoMock
 
     @Before
     def void setUp() {
-        orden = new OrdenEmitida("Carmen San Diego")
+        villanoMock = mock(Villano)
+        when(villanoMock.nombre).thenReturn("Carmen San Diego")
+        orden = new OrdenEmitida(villanoMock)
     }
 
     @Test

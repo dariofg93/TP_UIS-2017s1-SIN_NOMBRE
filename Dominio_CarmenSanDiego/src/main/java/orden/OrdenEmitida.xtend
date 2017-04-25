@@ -1,23 +1,26 @@
 package orden
 
 import org.eclipse.xtend.lib.annotations.Accessors
+import ocupante.Villano
 
 @Accessors
 class OrdenEmitida extends Orden{
 
-    var String nombre
+    var Villano villano
 
-    new(String nombreDelVillano){
-        nombre = nombreDelVillano
+    new(Villano unVillano){
+        villano = unVillano
     }
 
     override esElVillano(String sospechoso){
-        nombre == sospechoso
+        villano.nombre == sospechoso
     }
 
     override fueEmitida() {
         1
     }
 
-    override nombre() { nombre }
+    override nombre() { villano.nombre }
+
+    override getVillano(){ villano }
 }
