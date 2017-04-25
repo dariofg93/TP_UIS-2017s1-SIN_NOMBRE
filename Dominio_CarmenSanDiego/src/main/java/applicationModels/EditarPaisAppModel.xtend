@@ -17,6 +17,7 @@ class EditarPaisAppModel {
     Pais conexionSeleccionada
     Pais conexionParaAgregar
     List<Pais> listaDeConexiones = PaisesRepositorio.getMapamundi()
+    List<Pais> listaDeConexionesOriginal = PaisesRepositorio.getMapamundi()
     Lugar lugarSeleccionado
     Lugar lugarParaAgregar 
     List<Lugar> listaDeLugares = PaisesRepositorio.getLugares()
@@ -33,12 +34,11 @@ class EditarPaisAppModel {
         paisSeleccionado.agregarCaracteristica(caracteristica)
     }
 
-
 	//Conexiones
     def eliminarConexion(Pais conexion) {
         paisSeleccionado.eliminarConexion(conexion)
     }
-    def agregarConexion(Pais conexion){
+    def agregarConexion(Pais conexion){   		
         paisSeleccionado.agregarConexion(conexion)
     }
     

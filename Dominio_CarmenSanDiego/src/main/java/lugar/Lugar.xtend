@@ -60,5 +60,9 @@ abstract class Lugar{
         return String.join(", ", pistas)
     }
 
+    def Boolean estaElVillano(){
+        ocupante.class.simpleName == "Villano"
+    }
+
     def void pedirPistas(Villano responsable, Pais paisActual)
 }

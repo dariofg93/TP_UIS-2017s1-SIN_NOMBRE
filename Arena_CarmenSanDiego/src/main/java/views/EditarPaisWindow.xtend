@@ -13,6 +13,7 @@ import org.uqbar.arena.widgets.Button
 import applicationModels.EditarPaisAppModel
 import org.uqbar.arena.bindings.PropertyAdapter
 import lugar.Lugar
+import org.uqbar.commons.model.UserException
 
 class EditarPaisWindow extends Dialog<Pais>{
 
@@ -75,8 +76,16 @@ class EditarPaisWindow extends Dialog<Pais>{
 	def agregarButton(Panel panel){
 		new Button (panel) => [ 
         	caption = "Aceptar"
-            onClick[| this.close]
+            onClick[| validarNombre()]
         ]
+	}
+	
+	//Validacion nombre
+	def validarNombre() {
+		if(this.modelObject.nombre == null) {
+			throw new UserException("El nombre del pais es obligatorio.")
+		}
+		else { this.close }
 	}
 
     override protected addActions(Panel actionsPanel) {

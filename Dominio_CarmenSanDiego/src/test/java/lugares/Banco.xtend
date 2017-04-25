@@ -28,17 +28,13 @@ class BancoTest {
         caracteristicasArg = new ArrayList<String>()
         caracteristicasArg.add("Bandera Azul y Blanca")
 
-
         unVillano = mock(Villano)
         when(unVillano.seniasParticulares).thenReturn(seniasD)
         argentina = mock(Pais)
         when(argentina.caracteristicas).thenReturn(caracteristicasArg)
 
-
-
         ocupante = new Cuidador
         unBanco = new Banco("Provincia", ocupante)
-
     }
 
     @Test
@@ -47,8 +43,5 @@ class BancoTest {
         unBanco.pedirPistas(unVillano, argentina)
         Assert.assertTrue(unBanco.getPistas.contains("Pelo rojo"))
         Assert.assertTrue(unBanco.getPistas.contains("Bandera Azul y Blanca"))
-
     }
-
-
 }

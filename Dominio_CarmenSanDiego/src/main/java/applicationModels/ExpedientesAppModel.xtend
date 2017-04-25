@@ -1,6 +1,5 @@
 package applicationModels
 
-import java.util.ArrayList
 import java.util.Arrays
 import java.util.List
 import ocupante.Villano
@@ -16,7 +15,6 @@ class ExpedientesAppModel {
     var Villano villanoSeleccionado
     var List<String> sexosPosibles = Arrays.asList("sexosPosibles")
 
-
     def nuevoVillano(){
         val Villano nuevo = new Villano()
         agregarVillano(nuevo)
@@ -26,7 +24,4 @@ class ExpedientesAppModel {
     def agregarVillano(Villano unVillano){
         villanos.add(unVillano)
     }
-
-
-
 }
