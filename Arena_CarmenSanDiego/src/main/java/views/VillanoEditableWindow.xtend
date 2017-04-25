@@ -72,7 +72,7 @@ class VillanoEditableWindow extends Dialog<Villano>{
             onClick[ | this.close
          ]
             bindEnabled(new NotNullObservable("sexo"))
-            
+
         ]
     }
 
