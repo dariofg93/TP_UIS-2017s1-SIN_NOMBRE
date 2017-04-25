@@ -64,7 +64,7 @@ class LugarTest {
         Assert.assertEquals(riverPlate.mostrarPistas(orden),pistasEsperadas)
     }
 
-    @Test
+    /*@Test
     def void mostrarPistasVillanoEquivocado() {
         var villano = mock(Villano)
         when(villano.nombre).thenReturn("Carmen San Diego")
@@ -97,5 +97,5 @@ class LugarTest {
         var pistasEsperadas = "ALTO!!! Detengase: Carmen San Diego"
 
         Assert.assertEquals(riverPlate.mostrarPistas(orden),pistasEsperadas)
-    }
+    }*/
 }

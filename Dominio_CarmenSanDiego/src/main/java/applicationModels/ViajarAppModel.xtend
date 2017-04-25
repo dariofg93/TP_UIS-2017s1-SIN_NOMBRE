@@ -11,8 +11,14 @@ class ViajarAppModel {
 
     var Detective detective
     var Pais paisSeleccionado
+    var String nombreCaso
 
-    new(Detective unDetective){
+    new(Detective unDetective, String unCaso){
         detective = unDetective
+        nombreCaso = unCaso
+    }
+
+    def viajar(){
+        detective.viajar(paisSeleccionado)
     }
 }

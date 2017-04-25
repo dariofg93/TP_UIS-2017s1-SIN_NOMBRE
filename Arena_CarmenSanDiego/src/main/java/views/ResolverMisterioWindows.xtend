@@ -2,6 +2,7 @@ package views
 
 import org.uqbar.arena.windows.SimpleWindow
 import applicationModels.ResolverMisterioAppModel
+import applicationModels.ResolverMisterioAppModel.*
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.layout.HorizontalLayout
@@ -62,14 +63,14 @@ class ResolverMisterioWindows extends SimpleWindow<ResolverMisterioAppModel>{
         orden.layout= new HorizontalLayout
 
         new Label(orden)=>[
-            text = "Orden ya emitida: "+this.modelObject.getDetective.getNombreDeOrdenEmitida
+            text = "Orden ya emitida: "+this.modelObject.nombreOrdenEmitida
             fontSize = 6
         ]
 
         new Button(acciones) => [
             caption = "Viajar"
-            val model = new ViajarAppModel(this.modelObject.getDetective)
-            onClick[ | new ViajarWindows(this,model).open ]
+            val model = new ViajarAppModel(this.modelObject.getDetective,this.modelObject.getNombreCaso)
+            onClick[ | this.close new ViajarWindows(this,model).open ]
         ]
 
         new Label(acciones).text = ""
