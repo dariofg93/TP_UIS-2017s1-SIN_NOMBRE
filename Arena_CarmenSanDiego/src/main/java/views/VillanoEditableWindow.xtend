@@ -13,13 +13,13 @@ import ocupante.Villano
 import applicationModels.EditarVillanoAppModel
 import org.uqbar.arena.widgets.Selector
 import org.uqbar.arena.bindings.NotNullObservable
+import org.uqbar.commons.model.UserException
 
 class VillanoEditableWindow extends Dialog<Villano>{
 
     new(WindowOwner owner, Villano model) {
         super(owner, model)
     }
-
 
     override protected createFormPanel(Panel mainPanel) {
         this.title = "Expedientes"
@@ -34,7 +34,7 @@ class VillanoEditableWindow extends Dialog<Villano>{
         val Panel generoPanel = new Panel(mainPanel)
         generoPanel.layout = new ColumnLayout(2)
         new Label(generoPanel).text = "Sexo:"
-        new Selector(mainPanel) => [
+        new Selector(generoPanel) => [
             items <=> "sexos"
             value <=> "sexo"
         ]
@@ -55,12 +55,15 @@ class VillanoEditableWindow extends Dialog<Villano>{
         ]
 
         //Hobbies villano
-        new Label(mainPanel).text = "Hobbies"
-        new Button(seniasPanel) => [
+        val Panel hobbiesPanel = new Panel(mainPanel)
+        hobbiesPanel.layout = new ColumnLayout(2)
+        new Label(hobbiesPanel).text = "Hobbies"
+        new Button(hobbiesPanel) => [
             caption = "Editar Hobbies"
             val editarVillanoAppModel = new EditarVillanoAppModel(this.modelObject)
             onClick [ | new EditarHobbiesWindow(this, editarVillanoAppModel).open]
         ]
+
         new List<String>(mainPanel) => [
             height = 80
             width = 130
@@ -69,11 +72,19 @@ class VillanoEditableWindow extends Dialog<Villano>{
 
         new Button(mainPanel)=> [
             caption = "Aceptar"
-            onClick[ | this.close
+            onClick[ | validarNombre()
          ]
             bindEnabled(new NotNullObservable("sexo"))
 
         ]
+    }
+
+    //Validacion villano
+    def validarNombre() {
+        if(this.modelObject.nombre == null) {
+            throw new UserException("El nombre del villano es obligatorio.")
+        }
+        else { this.close }
     }
 
 }

@@ -8,21 +8,24 @@ import orden.OrdenEmitida
 import java.awt.Color
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.widgets.Button
+import applicationModels.FinDelJuegoAppModel
 
-class FinDelJuegoWindow extends SimpleWindow<OrdenEmitida> {
+class FinDelJuegoWindow extends SimpleWindow<FinDelJuegoAppModel> {
 
 
     override createMainTemplate(Panel finalPanel) {
 
         this.title = "Robo del Faraón - Resuelto"
-        juegoGanado(finalPanel)
-        juegoPerdido(finalPanel)
+        if(this.modelObject.esElVIllano()){
+            juegoGanado(finalPanel)
+        }else{ juegoPerdido(finalPanel)}
+
       }
 
     def juegoGanado(Panel mainPanel){
 
         new Label(mainPanel).text = "En Hora Buena!!!"
-        new Label(mainPanel).text = "He detenido a "+ this.modelObject.getNombre +
+        new Label(mainPanel).text = "He detenido a "+ this.modelObject.getOcupanteDelLugar.getNombre +
                 " y recuperado la tumba del Faraon"
         new Label(mainPanel) => [
             text ="Felicitaciones!!!"
@@ -42,8 +45,8 @@ class FinDelJuegoWindow extends SimpleWindow<OrdenEmitida> {
             text ="Mala Noticia!!!"
             background = Color.RED
         ]
-        new Label(mainPanel).text = "He detenido a "+ this.modelObject.getNombre+
-                " pero usted tenia una orden de arresto contra Carmen San Diego"
+        new Label(mainPanel).text = "He detenido a "+ this.modelObject.getOcupanteDelLugar.getNombre +
+                " pero usted tenia una orden de arresto contra" + this.modelObject.getVillanoDeLaOrdenEmitida.getNombre
 
         new Label(mainPanel).text = "Lamentablemente el crimen queda impune"
 
@@ -65,9 +68,12 @@ class FinDelJuegoWindow extends SimpleWindow<OrdenEmitida> {
         throw new UnsupportedOperationException()
     }
 
-    new (WindowOwner parent) {//UNA ORDEN DE ARRESTO DEBERIA TENER
-        super(parent,new OrdenEmitida("cc"))
+    new (WindowOwner parent, FinDelJuegoAppModel model) {
+        super(parent, model)
     }
+
+
+
 
 
 }
