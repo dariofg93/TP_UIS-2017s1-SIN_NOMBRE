@@ -76,7 +76,7 @@ class ResolverMisterioWindows extends SimpleWindow<ResolverMisterioAppModel>{
 
         new Button(acciones) => [
             caption = "Expedientes"
-            //onClick[ | paisSeleccionado  ]
+            onClick[ | new ExpedientesWindow2(this).open  ]
         ]
 
         new Label(acciones).text = ""

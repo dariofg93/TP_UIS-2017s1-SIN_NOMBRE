@@ -8,7 +8,9 @@ import orden.OrdenNula
 import org.eclipse.xtend.lib.annotations.Accessors
 import pais.Pais
 import registroVillano.RegistroVillano
+import org.uqbar.commons.utils.Observable
 
+@Observable
 @Accessors
 class Detective{
 

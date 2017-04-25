@@ -62,7 +62,7 @@ class EditarPaisWindow extends Dialog<Pais>{
         lugaresPanel.layout = new ColumnLayout(2)
         new Label(lugaresPanel).text = "Lugares de Interes"
         new Button (lugaresPanel)=> [ caption = "Editar Lugares de Interes"
-            //onClick[| ]
+            onClick[| new EditarLugaresWindow(this, editarPaisAppModel).open]
         ]
         new Label(mainPanel).text = "Lugares de Interes"
         new List<Pais>(mainPanel) => [

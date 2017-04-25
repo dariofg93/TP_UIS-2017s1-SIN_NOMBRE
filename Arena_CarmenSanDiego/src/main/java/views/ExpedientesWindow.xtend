@@ -46,11 +46,13 @@ class ExpedientesWindow extends SimpleWindow<ExpedientesAppModel> {
             value <=> "villanoSeleccionado"
             (items <=> "villanos").adapter = new PropertyAdapter(Villano, "nombre")
         ]
-
+        botonesEditarNuevo(villanosPanel)
+    }
+    
+    def botonesEditarNuevo(Panel villanosPanel){
         //Agrega un villano
         new Button(villanosPanel) => [
             caption = "Nuevo"
-            val villanoNuevo = new Villano()
             onClick[ |
                 var Villano nuevo = this.modelObject.nuevoVillano
                 new NuevoVillanoWindow(this, nuevo).open]
@@ -61,7 +63,8 @@ class ExpedientesWindow extends SimpleWindow<ExpedientesAppModel> {
             caption = "Editar"
             onClick[ | new EditarVillanoWindow(this, this.modelObject.villanoSeleccionado).open ]
         ]
-    }
+        
+	}
 
     def crearPanelDerecho(Panel contentPanel) {
 

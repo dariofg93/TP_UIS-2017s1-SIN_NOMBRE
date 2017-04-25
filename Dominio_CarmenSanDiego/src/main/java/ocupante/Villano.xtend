@@ -31,7 +31,8 @@ class Villano extends Ocupante{
 
 
     new() {
-
+		seniasParticulares = new ArrayList<String>()
+		hobbies = new ArrayList<String>()
     }
 
     override actuar() {

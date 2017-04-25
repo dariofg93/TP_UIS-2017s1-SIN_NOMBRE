@@ -10,7 +10,9 @@ import ocupante.Villano
 import orden.Orden
 import org.eclipse.xtend.lib.annotations.Accessors
 import pais.Pais
+import org.uqbar.commons.utils.Observable
 
+@Observable
 @Accessors
 abstract class Lugar{
 
