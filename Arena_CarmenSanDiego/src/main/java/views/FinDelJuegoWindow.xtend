@@ -26,7 +26,7 @@ class FinDelJuegoWindow extends SimpleWindow<FinDelJuegoAppModel> {
 
         new Label(mainPanel).text = "En Hora Buena!!!"
         new Label(mainPanel).text = "He detenido a "+ this.modelObject.getOcupanteDelLugar.getNombre +
-                " y recuperado la tumba del Faraon"
+                " y recuperado el " + this.modelObject.getNombreDeCaso
         new Label(mainPanel) => [
             text ="Felicitaciones!!!"
             background = Color.GREEN
@@ -46,7 +46,7 @@ class FinDelJuegoWindow extends SimpleWindow<FinDelJuegoAppModel> {
             background = Color.RED
         ]
         new Label(mainPanel).text = "He detenido a "+ this.modelObject.getOcupanteDelLugar.getNombre +
-                " pero usted tenia una orden de arresto contra" + this.modelObject.getVillanoDeLaOrdenEmitida.getNombre
+                " pero usted tenia una orden de arresto contra " + this.modelObject.getVillanoDeLaOrdenEmitida.getNombre
 
         new Label(mainPanel).text = "Lamentablemente el crimen queda impune"
 
@@ -55,9 +55,6 @@ class FinDelJuegoWindow extends SimpleWindow<FinDelJuegoAppModel> {
             onClick[ | this.close ]
         ]
     }
-
-
-
 
 
     override addActions(Panel actionsPanel) {

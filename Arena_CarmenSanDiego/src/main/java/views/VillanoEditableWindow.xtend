@@ -9,15 +9,15 @@ import org.uqbar.arena.widgets.TextBox
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.List
-import ocupante.Villano
 import applicationModels.EditarVillanoAppModel
 import org.uqbar.arena.widgets.Selector
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.commons.model.UserException
+import applicationModels.VillanoAppModel
 
-class VillanoEditableWindow extends Dialog<Villano>{
+class VillanoEditableWindow extends Dialog<VillanoAppModel>{
 
-    new(WindowOwner owner, Villano model) {
+    new(WindowOwner owner, VillanoAppModel model) {
         super(owner, model)
     }
 
@@ -45,13 +45,13 @@ class VillanoEditableWindow extends Dialog<Villano>{
         new Label(seniasPanel).text = "Senias Particulares:"
         new Button(seniasPanel) => [
             caption = "Editar Senias Particulares"
-            val editarVillanoAppModel = new EditarVillanoAppModel(this.modelObject)
+            val editarVillanoAppModel = new EditarVillanoAppModel(this.modelObject.villanoAAgregar)
             onClick [ | new EditarSeniasWindow(this, editarVillanoAppModel).open]
         ]
         new List<String>(mainPanel) => [
             height = 80
             width = 130
-            items <=> "seniasParticulares"
+            items <=> "villanoAAgregar.seniasParticulares"
         ]
 
         //Hobbies villano
@@ -60,24 +60,31 @@ class VillanoEditableWindow extends Dialog<Villano>{
         new Label(hobbiesPanel).text = "Hobbies"
         new Button(hobbiesPanel) => [
             caption = "Editar Hobbies"
-            val editarVillanoAppModel = new EditarVillanoAppModel(this.modelObject)
-            onClick [ | new EditarHobbiesWindow(this, editarVillanoAppModel).open]
+            val editarVillanoAppModel = new EditarVillanoAppModel(this.modelObject.villanoAAgregar)
+            onClick [ |
+                new EditarHobbiesWindow(this, editarVillanoAppModel).open
+            ]
         ]
 
         new List<String>(mainPanel) => [
             height = 80
             width = 130
-            items <=> "hobbies"
+            items <=> "villanoAAgregar.hobbies"
         ]
 
-        new Button(mainPanel)=> [
+        botonAceptar(mainPanel)
+    }
+
+
+    def botonAceptar(Panel unPanel){
+        new Button(unPanel)=> [
             caption = "Aceptar"
             onClick[ | validarNombre()
-         ]
+                this.modelObject.actualizaVillano]
             bindEnabled(new NotNullObservable("sexo"))
-
         ]
     }
+
 
     //Validacion villano
     def validarNombre() {

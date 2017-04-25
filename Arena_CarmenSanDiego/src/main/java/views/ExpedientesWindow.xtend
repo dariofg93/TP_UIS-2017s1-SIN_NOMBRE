@@ -11,6 +11,7 @@ import org.uqbar.arena.widgets.Label
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.bindings.PropertyAdapter
 import org.uqbar.arena.layout.ColumnLayout
+import applicationModels.VillanoAppModel
 
 class ExpedientesWindow extends SimpleWindow<ExpedientesAppModel> {
 
@@ -54,16 +55,17 @@ class ExpedientesWindow extends SimpleWindow<ExpedientesAppModel> {
         new Button(villanosPanel) => [
             caption = "Nuevo"
             onClick[ |
-                var Villano nuevo = this.modelObject.nuevoVillano
+                var VillanoAppModel nuevo = new VillanoAppModel(this.modelObject.nuevoVillano)
                 new NuevoVillanoWindow(this, nuevo).open]
         ]
 
         //Edita un villano
         new Button(villanosPanel) => [
             caption = "Editar"
-            onClick[ | new EditarVillanoWindow(this, this.modelObject.villanoSeleccionado).open ]
+            onClick[ |
+                var VillanoAppModel aEditar = new VillanoAppModel(this.modelObject.villanoSeleccionado)
+                new EditarVillanoWindow(this, aEditar).open ]
         ]
-        
 	}
 
     def crearPanelDerecho(Panel contentPanel) {
