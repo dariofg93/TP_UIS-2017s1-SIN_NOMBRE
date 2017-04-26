@@ -24,4 +24,9 @@ class ResolverMisterioAppModel {
     def nombreOrdenEmitida(){
         detective.ordenEmitida.nombre
     }
+	
+	def setOrden(Villano villano) {
+		detective.setOrden(villano)
+	}
+	
 }
