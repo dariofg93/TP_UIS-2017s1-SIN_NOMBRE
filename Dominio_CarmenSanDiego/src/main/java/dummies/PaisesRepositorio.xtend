@@ -102,7 +102,7 @@ class PaisesRepositorio {
     def static List<Lugar> getLugares() {
         var bbva = new Banco("BBVA Frances")
         var provincia = new Banco("Banco Provincia")
-        var cabj = new Club("Boca Juniors")
+        var aaaj = new Club("Boca Juniors")
         var juventus = new Club("Juventus FC.")
         var barcelona = new Club("Barcelona FC")
         var biblioteca = new Biblioteca("Biblioteca Nacional")
@@ -113,7 +113,7 @@ class PaisesRepositorio {
         var mexico = new Embajada("Embajada Mexico")
         var rusia = new Embajada("Embajada Rusia")
 
-        return new ArrayList<Lugar>(Arrays.asList(  bbva, provincia,cabj,juventus,
+        return new ArrayList<Lugar>(Arrays.asList(  bbva, provincia,aaaj,juventus,
         barcelona, eeuu, biblioteca,bibliotecaCuba, bibliotecaEgipto, bibliotecaJapon,
         mexico,rusia))
     }

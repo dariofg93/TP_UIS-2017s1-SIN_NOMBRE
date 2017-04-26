@@ -10,6 +10,7 @@ import ocupante.Ocupante
 import ocupante.Villano
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
+import java.util.Random
 
 @Accessors
 @Observable
@@ -43,7 +44,7 @@ class Pais {
         setearOcupantes(new Informante())
         for(pais: conexiones) {
             if(!pais.equals(paisAnterior)) {
-                setearOcupantes(new Cuidador())
+                pais.setearOcupantes(new Cuidador())
             }
         }
     }
@@ -61,7 +62,7 @@ class Pais {
     }
 
     def asignarVillano(Villano responsable){
-        lugaresDeInteres.get(1).setOcupante(responsable)
+        lugaresDeInteres.get(new Random().nextInt(lugaresDeInteres.size)).setOcupante(responsable)
     }
 
     def clonar(){

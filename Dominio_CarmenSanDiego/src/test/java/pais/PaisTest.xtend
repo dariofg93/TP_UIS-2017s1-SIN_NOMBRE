@@ -53,9 +53,11 @@ class PaisTest {
 
     @Test
     def void asignarVillano() {
+        argentina.setLugaresDeInteres(Arrays.asList(riverPlate))
+
         var alCapone = mock(Villano)
         argentina.asignarVillano(alCapone)
 
-        verify(bibliotecaNacional).setOcupante(alCapone)
+        verify(riverPlate).setOcupante(alCapone)
     }
 }

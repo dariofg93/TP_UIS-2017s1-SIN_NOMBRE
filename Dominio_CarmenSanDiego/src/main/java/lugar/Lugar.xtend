@@ -44,16 +44,8 @@ abstract class Lugar{
             villanoEstuvo = false
             return "Lo siento creo que se ha equivocado de Ciudad, no hay nadie con esas caracteristicas"
         }catch(VillanoEscapaException ve) {
-            var sospechoso = (ocupante as Villano).nombre
             switch(orden.fueEmitida()){
                 case 1: return "ALTO!!! Detengase: " + orden.nombre
-                    /*if(orden.esElVillano(sospechoso)) {
-                        return "ALTO!!! Detengase: " + sospechoso
-                }else{
-                    return "Ha detenido a " + sospechoso + ", pero usted tenia una orden contra " + orden.nombre + "." +
-                            System.getProperty("line.separator") +
-                            "Lamentablemente este crimen quedara impune."
-                }*/
                 case 0: return "El villano ha escapado"
             }
         }

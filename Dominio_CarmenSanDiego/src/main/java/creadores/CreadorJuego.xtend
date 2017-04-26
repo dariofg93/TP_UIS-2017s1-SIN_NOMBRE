@@ -25,7 +25,7 @@ class CreadorJuego {
         newCase
     }
 
-    private def repartirPistas(Pais lugarDelHecho, Villano responsable, List<Pais> rutaEscape, Caso newCase){
+    def repartirPistas(Pais lugarDelHecho, Villano responsable, List<Pais> rutaEscape, Caso newCase){
         var recorrido = new ArrayList<Pais>()
         recorrido.addAll(rutaEscape)
 
@@ -40,7 +40,7 @@ class CreadorJuego {
         newCase.planDeEscape.last.asignarUltimasPistas()
     }
 
-    private def repartirOcupantes(Pais lugarDelHecho, Villano responsable, Caso newCase){
+    def repartirOcupantes(Pais lugarDelHecho, Villano responsable, Caso newCase){
         var Pais paisAnterior = null
 
         lugarDelHecho.asignarOcupantesALugares(paisAnterior)
@@ -54,7 +54,7 @@ class CreadorJuego {
         newCase.planDeEscape.last.asignarVillano(responsable)
     }
 
-    private def List<Pais> crearRutaEscape(List<Pais> mapamundi, Pais lugarDelHecho){
+    def List<Pais> crearRutaEscape(List<Pais> mapamundi, Pais lugarDelHecho){
         var rutaDeEscape = new ArrayList<Pais>() => [
             var nuevoDestino = lugarDelHecho.findConexion(mapamundi)
             add(lugarDelHecho)
