@@ -59,7 +59,7 @@ class BaseCentralAcmeTest {
         Assert.assertEquals(unVillanoMock2.nombre,
         (unaBaseCentralAcme.validarOrden("Pelo rojo","Juega bien al futbol")).nombre)
     }
-
+/*
     @Test
     def void crearCasoTest() {
         unaBaseCentralAcme.registrarVillano(unVillanoMock)
@@ -67,4 +67,5 @@ class BaseCentralAcmeTest {
 
         Assert.assertEquals(unaBaseCentralAcme.crearCaso("Los turros se robaron algo","Cadena de la Yeni").size,1)
     }
+    */
 }

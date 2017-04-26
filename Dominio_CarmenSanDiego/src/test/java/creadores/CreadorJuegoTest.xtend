@@ -30,7 +30,7 @@ class CreadorJuegoTest {
 
         creador = new CreadorJuego()
     }
-
+/*
     @Test
     def void crearJuegoTest() {
         var rutaDeEscape = new ArrayList<Pais>()
@@ -47,7 +47,7 @@ class CreadorJuegoTest {
         //Las instancias no son las mismas, ya que cada pais es clonado al momento del creado del juego
         //Entonces no se puede hacer verify sobre ninguna "instancia"
     }
-
+/*
     @Test
     def asd(){
         var unPaisDeRuta = new Pais("España-Villano")
@@ -87,11 +87,13 @@ class CreadorJuegoTest {
         Assert.assertEquals(newCase.getPaisDelRobo.getConexiones.get(0).getLugaresDeInteres.get(0).getOcupante.class.simpleName,"Cuidador")
         Assert.assertEquals(newCase.getPlanDeEscape.get(1).getConexiones.get(0).getLugaresDeInteres.get(0).getOcupante.class.simpleName,"Informante")
         */
-
+        /*
         var caso = creador.crearJuego(responsable,rutaDeEscapeNewCase,"Le robaron a la Yenii","La tarjeta sube de la Yenii",lugarDelHecho)
 
-        //print(caso.getPlanDeEscape.get(0).getNombre + "    ")
-        //print(caso.getPlanDeEscape.size)
-        //Assert.assertEquals(caso.getPaisDelRobo.getLugaresDeInteres.get(0).getOcupante.class.simpleName,"Informante")
+        print(caso.getPlanDeEscape.get(0).getNombre + "    ")
+        print(caso.getPlanDeEscape.size)
+        Assert.assertEquals(caso.getPaisDelRobo.getLugaresDeInteres.get(0).getOcupante.class.simpleName,"Informante")
+
     }
+    */
 }

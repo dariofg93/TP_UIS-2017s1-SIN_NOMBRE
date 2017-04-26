@@ -55,15 +55,16 @@ class CreadorJuego {
     }
 
     def List<Pais> crearRutaEscape(List<Pais> mapamundi, Pais lugarDelHecho){
-        var rutaDeEscape = new ArrayList<Pais>() => [
+        var rutaDeEscape = new ArrayList<Pais>()
             var nuevoDestino = lugarDelHecho.findConexion(mapamundi)
-            add(lugarDelHecho)
+            rutaDeEscape.add(nuevoDestino)
             mapamundi.remove(nuevoDestino)
-        ]
+
         var cantPaises = 0
 
         while(!(mapamundi.isEmpty) && cantPaises < 8 && rutaDeEscape.last.containsAny(mapamundi)) {
-            var nuevoDestino = rutaDeEscape.last.findConexion(mapamundi)
+            nuevoDestino = rutaDeEscape.last.findConexion(mapamundi)
+            rutaDeEscape.add(nuevoDestino)
             mapamundi.remove(nuevoDestino)
             cantPaises++
         }
