@@ -33,7 +33,7 @@ class OrdenArrestoWindow extends SimpleWindow<ResolverMisterioAppModel> {
 		new Button(mainPanel) => [
 			caption = "Generar Orden De Arresto"
 			onClick[| 
-				this.modelObject.detective.emitirOrden("villanoSeleccionado.seniasParticulares")
+				modelObject.setOrden(modelObject.villanoSeleccionado)
 				this.close
 			]
 		]

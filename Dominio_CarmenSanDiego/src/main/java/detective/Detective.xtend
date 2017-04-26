@@ -9,6 +9,8 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import pais.Pais
 import registroVillano.RegistroVillano
 import org.uqbar.commons.utils.Observable
+import orden.OrdenEmitida
+import ocupante.Villano
 
 @Observable
 @Accessors
@@ -52,4 +54,9 @@ class Detective{
     def destinosFallidos(){
         registroVillano.lugaresNoVisitados.stream.map(p | p.nombre).collect(Collectors.toList())
     }
+	
+	def setOrden(Villano villano) {
+		ordenEmitida = new OrdenEmitida(villano)
+	}
+	
 }
