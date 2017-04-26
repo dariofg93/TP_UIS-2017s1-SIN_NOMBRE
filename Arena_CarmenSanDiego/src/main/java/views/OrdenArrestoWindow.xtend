@@ -7,14 +7,16 @@ import applicationModels.ResolverMisterioAppModel
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Selector
-import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.bindings.PropertyAdapter
 import ocupante.Villano
 import org.uqbar.arena.widgets.Button
+import applicationModels.OrdenDeArrestoAppModel
+import applicationModels.OrdenDeArrestoAppModel.*
+import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
-class OrdenArrestoWindow extends SimpleWindow<ResolverMisterioAppModel> {
+class OrdenArrestoWindow extends SimpleWindow<OrdenDeArrestoAppModel> {
 
-    new(WindowOwner parent, ResolverMisterioAppModel model) {
+    new(WindowOwner parent, OrdenDeArrestoAppModel model) {
         super(parent, model)
     }
 
@@ -32,9 +34,10 @@ class OrdenArrestoWindow extends SimpleWindow<ResolverMisterioAppModel> {
 
 		new Button(mainPanel) => [
 			caption = "Generar Orden De Arresto"
+            val model = new ResolverMisterioAppModel(this.modelObject.getDetective,this.modelObject.getNombreCaso)
 			onClick[| 
-				modelObject.setOrden(modelObject.villanoSeleccionado)
-				this.close
+				modelObject.setOrden()
+                this.close new ResolverMisterioWindows(this,model).open
 			]
 		]
 
@@ -47,5 +50,4 @@ class OrdenArrestoWindow extends SimpleWindow<ResolverMisterioAppModel> {
     override protected createFormPanel(Panel mainPanel) {
         throw new UnsupportedOperationException("TODO: auto-generated method stub")
     }
-
 }
