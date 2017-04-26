@@ -57,8 +57,7 @@ class ResolverMisterioWindows extends SimpleWindow<ResolverMisterioAppModel>{
 
         new Button(acciones) => [
             caption = "Orden de arresto"
-            val model = new ExpedientesAppModel()
-            onClick[ | new OrdenArrestoWindow(this,model).open  ]
+            onClick[ | new OrdenArrestoWindow(this,modelObject).open  ]
         ]
 
         val Panel orden = new Panel(acciones)
