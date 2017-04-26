@@ -39,12 +39,12 @@ class EditarLugaresWindow extends Dialog<EditarPaisAppModel> {
 	var agregarPanel = new Panel(mainPanel)
 	agregarPanel.layout = new ColumnLayout(2)
 	new Selector(agregarPanel) => [
-		value <=> "lugarSeleccionado"
+		value <=> "lugarParaAgregar"
 		(items <=> "listaDeLugares").adapter = new PropertyAdapter(Lugar, "nombre")
 	]
 	new Button(agregarPanel) => [
-		caption = "Aceptar"
-		onClick [ | ]
+		caption = "Agregar"
+		onClick [ | validarLugar()]
 	]
 	
 	new Button(mainPanel)=> [
@@ -55,8 +55,9 @@ class EditarLugaresWindow extends Dialog<EditarPaisAppModel> {
 	
 	//Validacion lugar
 	def validarLugar() {
-		if(this.modelObject.listaDeLugares.length <= 3 && !this.modelObject.listaDeLugares.contains(this.modelObject)) {
-			this.modelObject.agregarLugar(this.modelObject.lugarSeleccionado)
+		if((this.modelObject.paisSeleccionado.lugaresDeInteres.size < 3) &&
+		  (!this.modelObject.paisSeleccionado.lugaresDeInteres.contains(this.modelObject.lugarParaAgregar))) { 
+			this.modelObject.agregarLugar(this.modelObject.lugarParaAgregar)
 		}
 		else {
 			throw new UserException("Los lugares deben ser exactamente 3 y no pueden estar repetidos.")

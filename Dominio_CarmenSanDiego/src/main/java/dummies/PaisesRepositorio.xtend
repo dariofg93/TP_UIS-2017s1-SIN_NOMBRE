@@ -113,7 +113,7 @@ class PaisesRepositorio {
         var mexico = new Embajada("Embajada Mexico")
         var rusia = new Embajada("Embajada Rusia")
 
-        return new ArrayList(Arrays.asList(  bbva, provincia,cabj,juventus,
+        return new ArrayList<Lugar>(Arrays.asList(  bbva, provincia,cabj,juventus,
         barcelona, eeuu, biblioteca,bibliotecaCuba, bibliotecaEgipto, bibliotecaJapon,
         mexico,rusia))
     }
