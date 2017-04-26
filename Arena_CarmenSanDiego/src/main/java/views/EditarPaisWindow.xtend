@@ -20,10 +20,12 @@ class EditarPaisWindow extends Dialog<Pais>{
     new(WindowOwner parent, Pais model) {
         super(parent, model)
     }
+    
+    def String title(){return "Mapamundi - Editar Pais"}
 
     override createMainTemplate(Panel mainPanel){
 
-        this.title = "Mapamundi - Editar Pais"
+       	this.title = title()
         
         //Instancio el app model para las vistas que lo necesiten
         val editarPaisAppModel = new EditarPaisAppModel(this.modelObject)

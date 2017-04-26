@@ -7,8 +7,10 @@ class NuevoPaisWindow extends EditarPaisWindow{
 	
 	new(WindowOwner parent, Pais model) {
 		super(parent, model)
-		title = "Mapamundi - Nuevo Pais"
 	}
 	
+	override String title() {
+		return "Mapamundi - Nuevo Pais" 
+	}
 	
 }

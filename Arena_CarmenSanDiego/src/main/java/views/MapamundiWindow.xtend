@@ -54,8 +54,8 @@ class MapamundiWindow extends SimpleWindow<MapamundiAppModel>{
         new Button(panelDeListadoDePaises) => [
             caption = "Nuevo"
             onClick[ |
-                var Pais nuevoPais= this.modelObject.nuevoPais
-                new EditarPaisWindow(this, nuevoPais).open]
+                var Pais nuevoPais = this.modelObject.nuevoPais
+                new NuevoPaisWindow(this, nuevoPais).open]
         ]
     }
 

@@ -30,7 +30,6 @@ class OrdenArrestoWindow extends SimpleWindow<ResolverMisterioAppModel> {
         	
         ]
 
-
 		new Button(mainPanel) => [
 			caption = "Generar Orden De Arresto"
 			onClick[| 
