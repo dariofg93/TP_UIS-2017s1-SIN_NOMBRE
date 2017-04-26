@@ -58,44 +58,22 @@ class LugarTest {
         riverPlate.setOcupante(villano)
 
         when(orden.fueEmitida()).thenReturn(0)
-
         var pistasEsperadas = "El villano ha escapado"
 
         Assert.assertEquals(riverPlate.mostrarPistas(orden),pistasEsperadas)
     }
 
-    /*@Test
+    @Test
     def void mostrarPistasVillanoEquivocado() {
         var villano = mock(Villano)
-        when(villano.nombre).thenReturn("Carmen San Diego")
         doThrow(new VillanoEscapaException()).when(villano).actuar
         riverPlate.setOcupante(villano)
 
-        when(orden.esElVillano("Carmen San Diego")).thenReturn(false)
         when(orden.nombre).thenReturn("Al Capone")
-
         when(orden.fueEmitida()).thenReturn(1)
 
-        var pistasEsperadas = "Ha detenido a Carmen San Diego, pero usted tenia una orden contra Al Capone." +
-                System.getProperty("line.separator") +
-                "Lamentablemente este crimen quedara impune."
+        var pistasEsperadas = "ALTO!!! Detengase: Al Capone"
 
         Assert.assertEquals(riverPlate.mostrarPistas(orden),pistasEsperadas)
     }
-
-    @Test
-    def void mostrarPistasVillanoCorrecto() {
-        var villano = mock(Villano)
-        when(villano.nombre).thenReturn("Carmen San Diego")
-        doThrow(new VillanoEscapaException()).when(villano).actuar
-        riverPlate.setOcupante(villano)
-
-        when(orden.esElVillano("Carmen San Diego")).thenReturn(true)
-
-        when(orden.fueEmitida()).thenReturn(1)
-
-        var pistasEsperadas = "ALTO!!! Detengase: Carmen San Diego"
-
-        Assert.assertEquals(riverPlate.mostrarPistas(orden),pistasEsperadas)
-    }*/
 }

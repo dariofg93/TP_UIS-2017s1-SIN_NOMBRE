@@ -27,6 +27,13 @@ class Pais {
     	lugaresDeInteres = new ArrayList<Lugar>()
     }
 
+    new(String unNombre){
+        nombre = unNombre
+        caracteristicas = new ArrayList<String>()
+        conexiones = new ArrayList<Pais>()
+        lugaresDeInteres = new ArrayList<Lugar>()
+    }
+
     new(String unNombre, List<String> unasCaracteristicas, List<Pais> unasConexiones, List<Lugar> unosLugares){
         nombre = unNombre
         caracteristicas = unasCaracteristicas
