@@ -33,43 +33,43 @@ class PaisesRepositorio {
         var barcelona = new Club("Barcelona FC")
 
         var brasil = new Pais("Brasil",
-        caracteristicas = new ArrayList<String>(Arrays.asList("Hablan portuges", "Bandera verde y amarilla y azul","pentacampeones del mundo")),
+        caracteristicas = new ArrayList<String>(Arrays.asList("Hablan portuges", "Bandera verde y amarilla y azul","pentacampeones del mundo","rey pelee","Fabelas")),
         conexiones = new ArrayList<Pais>(Arrays.asList()),
         lugares = new ArrayList<Lugar>(Arrays.asList(bbva, biblioteca)))
 
         var argentina = new Pais("Argentina",
-        caracteristicas = new ArrayList<String>(Arrays.asList("Hablan español", "Bandera celeste y blanca","Toman mate")),
+        caracteristicas = new ArrayList<String>(Arrays.asList("Hablan español", "Bandera celeste y blanca","Toman mate","Villas","Pais de donde salio Maradona")),
         conexiones = new ArrayList<Pais>(Arrays.asList(brasil)),
         lugares = new ArrayList<Lugar>(Arrays.asList(provincia,aaaj)))
 
         var italia = new Pais("Italia",
-        caracteristicas = new ArrayList<String>(Arrays.asList("Hablan italiano", "Bandera blanca, roja y verde","Toman vino")),
+        caracteristicas = new ArrayList<String>(Arrays.asList("Hablan italiano", "Bandera blanca, roja y verde","Toman vino","Comen Pizza","Comen Pasta")),
         conexiones = new ArrayList<Pais>(Arrays.asList(argentina, brasil)),
         lugares = new ArrayList<Lugar>(Arrays.asList(bbva, biblioteca, juventus)))
 
         var egipto = new Pais("Egipto",
-        caracteristicas = new ArrayList<String>(Arrays.asList("Hablan arabe", "Bandera roja, blanca y negra","construllen piramides")),
+        caracteristicas = new ArrayList<String>(Arrays.asList("Hablan arabe", "Bandera roja, blanca y negra","construllen piramides","Tiene momias","Hace calor")),
         conexiones = new ArrayList<Pais>(Arrays.asList(brasil,italia,argentina)),
         lugares = new ArrayList<Lugar>(Arrays.asList(bbva, bibliotecaEgipto)))
 
         var japon = new Pais("Japon",
-        caracteristicas = new ArrayList<String>(Arrays.asList("Hablan japones", "Bandera roja y blanca","comen arroz")),
+        caracteristicas = new ArrayList<String>(Arrays.asList("Hablan japones", "Bandera roja y blanca","comen arroz","Comen Sushi","Comen con palitos")),
         conexiones = new ArrayList<Pais>(Arrays.asList(egipto, argentina,italia)),
         lugares = new ArrayList<Lugar>(Arrays.asList(embajadaMexico,bbva)))
 
 
         var rusia = new Pais("Rusia",
-        caracteristicas = new ArrayList<String>(Arrays.asList("Hablan ruso", "Bandera roja, blanca y azul","Sufren bajas temperaturas")),
+        caracteristicas = new ArrayList<String>(Arrays.asList("Hablan ruso", "Bandera roja, blanca y azul","Sufren bajas temperaturas","Toman Vodka","Pais comunista")),
         conexiones = new ArrayList<Pais>(Arrays.asList(egipto, japon, italia, argentina)),
         lugares = new ArrayList<Lugar>(Arrays.asList(bbva, bibliotecaJapon,embajadaEeuu)))
 
         var españa = new Pais("España",
-        caracteristicas = new ArrayList<String>(Arrays.asList("Hablan ruso", "Bandera amarrillo y rojo","Tienen a los mejores jugadores del mundo")),
+        caracteristicas = new ArrayList<String>(Arrays.asList("Hablan ruso", "Bandera amarrillo y rojo","Tienen a los mejores jugadores del mundo","Corridas de toros","Paeya")),
         conexiones = new ArrayList<Pais>(Arrays.asList(egipto, japon, italia, argentina)),
         lugares = new ArrayList<Lugar>(Arrays.asList(embajadaRusia,barcelona)))
 
         var cuba = new Pais("Cuba",
-        caracteristicas = new ArrayList<String>(Arrays.asList("Hablan español", "Bandera roja, blanca y azul","El pais es un Archipielago")),
+        caracteristicas = new ArrayList<String>(Arrays.asList("Hablan español", "Bandera roja, blanca y azul","El pais es un Archipielago","Son comunista","Tuvieron la revolucion Libertadora")),
         conexiones = new ArrayList<Pais>(Arrays.asList(rusia,egipto, japon, italia)),
         lugares = new ArrayList<Lugar>(Arrays.asList(embajadaEeuu,bibliotecaCuba)))
 
@@ -102,7 +102,7 @@ class PaisesRepositorio {
     def static List<Lugar> getLugares() {
         var bbva = new Banco("BBVA Frances")
         var provincia = new Banco("Banco Provincia")
-        var aaaj = new Club("Boca Juniors")
+        var aaaj = new Club("Argentinos Juniors")
         var juventus = new Club("Juventus FC.")
         var barcelona = new Club("Barcelona FC")
         var biblioteca = new Biblioteca("Biblioteca Nacional")
