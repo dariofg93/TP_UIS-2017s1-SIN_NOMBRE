@@ -3,6 +3,9 @@ package dummies
 import caso.Caso
 import detective.Detective
 import java.util.ArrayList
+import java.util.stream.Collectors
+import pais.Pais
+import lugar.Lugar
 
 class CasosRespositorio {
 
@@ -26,4 +29,35 @@ class CasosRespositorio {
 
     def static getDetectives(){ detectives }
     def static getCasos(){ casos }
+
+    def static void main(String[] args){
+        println(paisYocupantes(getCasos.get(0).getPaisDelRobo))
+        println(getCasos.get(0).getPaisDelRobo.getConexiones.stream.map(p | conexionesOcupantes(p)).collect(Collectors.toList))
+
+        println(" ")
+
+        println(getCasos.get(0).getPlanDeEscape.size)
+
+        println(" ")
+
+        println(getCasos.get(0).getPlanDeEscape.stream.map(p | paisYocupantes(p)).collect(Collectors.toList))
+    }
+
+    def static String paisYocupantes(Pais pais){
+        var r = pais.nombre
+
+        for(Lugar l: pais.getLugaresDeInteres){
+            r = r + " |||" + l.getOcupante().getClass.simpleName
+        }
+        r+">>><<<"
+    }
+
+    def static String conexionesOcupantes(Pais pais){
+        var r = "CONEXION: "+ pais.nombre
+
+        for(Lugar l: pais.getLugaresDeInteres){
+            r = r + " |||" + l.getOcupante().getClass.simpleName
+        }
+        r+">>><<<"
+    }
 }

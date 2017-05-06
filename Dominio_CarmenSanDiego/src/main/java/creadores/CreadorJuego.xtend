@@ -19,39 +19,39 @@ class CreadorJuego {
         newCase.setPaisDelRobo(lugarDelHecho)
         newCase.setPlanDeEscape(rutaEscape)
 
-        repartirOcupantes(lugarDelHecho,responsable,newCase)
-        repartirPistas(lugarDelHecho,responsable,rutaEscape,newCase)
+        repartirOcupantes(newCase)
+        repartirPistas(newCase)
 
         newCase
     }
 
-    def repartirPistas(Pais lugarDelHecho, Villano responsable, List<Pais> rutaEscape, Caso newCase){
+    def repartirPistas(Caso newCase){
         var recorrido = new ArrayList<Pais>()
-        recorrido.addAll(rutaEscape)
+        recorrido.addAll(newCase.planDeEscape)
 
-        lugarDelHecho.asignarPistasALugares(responsable.clonar,recorrido.get(0).clonar)
+        newCase.paisDelRobo.asignarPistasALugares(newCase.responsable.clonar,recorrido.get(0).clonar)
         recorrido.remove(0)
 
         for(pais: newCase.planDeEscape.subList(0,newCase.planDeEscape.size-1)) {
-            pais.asignarPistasALugares(responsable.clonar,recorrido.get(0).clonar)
+            pais.asignarPistasALugares(newCase.responsable.clonar,recorrido.get(0).clonar)
             recorrido.remove(0)
         }
 
         newCase.planDeEscape.last.asignarUltimasPistas()
     }
 
-    def repartirOcupantes(Pais lugarDelHecho, Villano responsable, Caso newCase){
+    def repartirOcupantes(Caso newCase){
         var Pais paisAnterior = null
 
-        lugarDelHecho.asignarOcupantesALugares(paisAnterior)
-        paisAnterior = lugarDelHecho
+        newCase.paisDelRobo.asignarOcupantesALugares(paisAnterior)
+        paisAnterior = newCase.paisDelRobo
 
         for(pais: newCase.planDeEscape) {
             pais.asignarOcupantesALugares(paisAnterior)
             paisAnterior = pais
         }
 
-        newCase.planDeEscape.last.asignarVillano(responsable)
+        newCase.planDeEscape.last.asignarVillano(newCase.responsable)
     }
 
     def List<Pais> crearRutaEscape(List<Pais> mapamundi, Pais lugarDelHecho){
@@ -68,7 +68,6 @@ class CreadorJuego {
             mapamundi.remove(nuevoDestino)
             cantPaises++
         }
-
         rutaDeEscape
     }
 }

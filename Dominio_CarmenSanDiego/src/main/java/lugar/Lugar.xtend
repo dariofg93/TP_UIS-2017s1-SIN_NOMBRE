@@ -35,6 +35,7 @@ abstract class Lugar{
         pistas = new ArrayList<String>()
         rnd = new Random()
         villanoEstuvo = true
+        ocupante = null
     }
 
     def String mostrarPistas(Orden orden){

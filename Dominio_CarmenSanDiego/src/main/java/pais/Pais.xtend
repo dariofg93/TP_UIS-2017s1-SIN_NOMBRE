@@ -57,8 +57,10 @@ class Pais {
     }
 
     def setearOcupantes(Ocupante ocupanteType){
-        for(lugar: lugaresDeInteres) {
-            lugar.setOcupante(ocupanteType)
+        for(Lugar lugar: lugaresDeInteres) {
+            if(lugar.getOcupante == null || lugar.getOcupante.getClass.simpleName.equals("Cuidador")){
+                lugar.setOcupante(ocupanteType)
+            }
         }
     }
 
@@ -68,8 +70,8 @@ class Pais {
         }
     }
 
-    def asignarVillano(Villano responsable){
-        lugaresDeInteres.get(new Random().nextInt(lugaresDeInteres.size)).setOcupante(responsable)
+    def asignarVillano(Ocupante responsable){
+        this.lugaresDeInteres.get(new Random().nextInt(lugaresDeInteres.size)).setOcupante(responsable)
     }
 
     def clonar(){
