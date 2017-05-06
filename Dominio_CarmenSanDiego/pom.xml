@@ -35,6 +35,12 @@
             <version>2.0.44-beta</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.uqbar</groupId>
+            <artifactId>xtrest</artifactId>
+            <version>0.1.6</version>
+        </dependency>
+
     </dependencies>
 
 </project>
