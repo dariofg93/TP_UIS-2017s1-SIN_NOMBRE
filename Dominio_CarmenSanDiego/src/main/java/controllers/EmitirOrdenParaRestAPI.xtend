@@ -10,13 +10,12 @@ import orden.OrdenNula
 
 @Controller
 class EmitirOrdenParaRestAPI {
-/*
     extension JSONUtils = new JSONUtils
 
+    //getPistas: Dado un lugar y un caso, devuelve la pista del lugar.
     @Get("/libros")//Faltan muchas cosas en este metodo...
     def getPista(Caso unCaso, Lugar unLugar) {
         response.contentType = ContentType.APPLICATION_JSON
         ok(unLugar.mostrarPistas(new OrdenNula()).toJson)
     }
-*/
 }

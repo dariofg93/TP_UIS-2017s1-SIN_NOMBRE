@@ -10,6 +10,7 @@ import dummies.BaseCentralRepositorio
 class PaisesRestAPI{
     extension JSONUtils = new JSONUtils
 
+    //Devuelve todos los paises registrados.
     @Get("/paises")
     def getPaises() {
         response.contentType = ContentType.APPLICATION_JSON
