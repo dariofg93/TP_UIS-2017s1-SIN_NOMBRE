@@ -13,7 +13,7 @@ class VillanoTest {
 
     @Before
     def void setUp() {
-        villano = new Villano("Carmen San Diego",SexosPosibles.Masculino,
+        villano = new Villano("Carmen San Diego", 1,SexosPosibles.Masculino,
         Arrays.asList("Pelo Rubio","Capa Roja"),
         Arrays.asList("Coleciona gemas","Estudia geologia","Anda en moto"))
     }

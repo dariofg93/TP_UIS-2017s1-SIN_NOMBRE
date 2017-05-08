@@ -10,9 +10,7 @@
 <listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
 <listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
 </listAttribute>
-<stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.m2e.launchconfig.classpathProvider"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="application.CarmenSandiegoApplication"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Arena_CarmenSanDiego"/>
-<stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.m2e.launchconfig.sourcepathProvider"/>
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Djava.system.class.loader=org.uqbar.apo.APOClassLoader -Duser.language=es -Duser.region=AR"/>
 </launchConfiguration>

@@ -13,12 +13,14 @@ import org.uqbar.commons.utils.Observable
 class Villano extends Ocupante{
 
     var String nombre
+    var int id
     var SexosPosibles sexo
     var List<String> seniasParticulares
     var List<String> hobbies
 
-    new(String unNombre, SexosPosibles genero, List<String> unasSenias, List<String> unosHobbies){
+    new(String unNombre, int unId, SexosPosibles genero, List<String> unasSenias, List<String> unosHobbies){
         nombre = unNombre
+        id = unId
         sexo = genero
         seniasParticulares = unasSenias
         hobbies = unosHobbies
@@ -55,7 +57,7 @@ class Villano extends Ocupante{
         var unasSenias = new ArrayList<String>() => [ addAll(seniasParticulares) ]
         var unosHobbies = new ArrayList<String>() => [ addAll(hobbies) ]
 
-        return new Villano (nombre,sexo,unasSenias,unosHobbies)
+        return new Villano (nombre,id,sexo,unasSenias,unosHobbies)
     }
 
     def agregarSenia(String senia) {
