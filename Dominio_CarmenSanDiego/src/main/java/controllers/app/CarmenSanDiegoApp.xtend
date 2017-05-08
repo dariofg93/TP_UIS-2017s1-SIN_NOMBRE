@@ -2,6 +2,7 @@ package controllers.app
 
 import org.uqbar.xtrest.api.XTRest
 import controllers.PaisesRestAPI
+import controllers.EmitirOrdenParaRestAPI
 
 class CarmenSanDiegoApp{
 
