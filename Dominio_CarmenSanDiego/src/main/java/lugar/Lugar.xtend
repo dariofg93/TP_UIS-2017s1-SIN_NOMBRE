@@ -11,6 +11,7 @@ import orden.Orden
 import org.eclipse.xtend.lib.annotations.Accessors
 import pais.Pais
 import org.uqbar.commons.utils.Observable
+import com.fasterxml.jackson.annotation.JsonIgnore
 
 @Observable
 @Accessors
@@ -19,8 +20,9 @@ abstract class Lugar{
     protected var String nombre
     protected var List<String> pistas
     protected var Ocupante ocupante
-    protected var Random rnd
     protected var Boolean villanoEstuvo
+    @JsonIgnore
+    protected var Random rnd
 
     new(String unNombre, Ocupante alguien){
         nombre = unNombre

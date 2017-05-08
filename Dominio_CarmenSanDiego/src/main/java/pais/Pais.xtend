@@ -11,6 +11,8 @@ import ocupante.Villano
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 import java.util.Random
+import java.util.Set
+import java.util.HashSet
 
 @Accessors
 @Observable
@@ -96,8 +98,18 @@ class Pais {
         for(Pais pais: conexiones) {
             if(mapamundi.contains(pais)) { found = pais }
         }
-
         found
+    }
+
+    def Set<Lugar> todosLosLugares(){
+        var todosLosLugaresEncontrados = new HashSet<Lugar>()
+        todosLosLugaresEncontrados.addAll(lugaresDeInteres)
+
+        for(Pais p: conexiones){
+            todosLosLugaresEncontrados.addAll(p.lugaresDeInteres)
+        }
+
+        todosLosLugaresEncontrados
     }
 	
 	//Caracteristicas
