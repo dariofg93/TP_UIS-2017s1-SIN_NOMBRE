@@ -12,21 +12,23 @@ import org.uqbar.xtrest.api.annotation.Body
 import applicationModels.ExpedientesAppModel
 import org.uqbar.xtrest.api.annotation.Put
 import org.uqbar.xtrest.api.annotation.Delete
+import viewModels.VillanoViewModel
 
 @Controller
 class VillanosRestAPI {
 	val List<Villano> villanosRepo = ExpedientesAppModel.getVillanos()
-		extension JSONUtils = new JSONUtils
+	extension JSONUtils = new JSONUtils
 	
 	@Get("/villanos")
 	def getVillanos() {
 		response.contentType = ContentType.APPLICATION_JSON
-		val List<String> villanosNombre = new ArrayList<String>()
+		val List<VillanoViewModel> villanosViewModel = new ArrayList<VillanoViewModel>()
 		
 		for(Villano villano : villanosRepo) {
-			villanosNombre.add(villano.nombre)
+			val villanoViewModel = new VillanoViewModel(villano.nombre, villano.id)
+			villanosViewModel.add(villanoViewModel)
 		}
-		ok(villanosNombre.toJson)
+		ok(villanosViewModel.toJson)
 	}
 	
 	@Get("/villanos/:id")
