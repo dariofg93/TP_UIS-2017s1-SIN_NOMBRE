@@ -19,7 +19,7 @@ class VillanosRestAPI {
 	val expedientesModel = new ExpedientesAppModel()
 	extension JSONUtils = new JSONUtils
 	
-	 /*@Get("/villanos")
+	 /* @Get("/villanos")
 	def getVillanos() {
 		response.contentType = ContentType.APPLICATION_JSON
 		val List<VillanoViewModel> villanosViewModel = new ArrayList<VillanoViewModel>()
