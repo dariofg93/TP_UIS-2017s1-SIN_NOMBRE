@@ -16,10 +16,10 @@ import ocupante.Villano
 @Accessors
 class Detective{
 
-    var Orden ordenEmitida
-    var Pais lugarActual
-    var BaseCentralAcme baseDeDatos
-    var RegistroVillano registroVillano
+    Orden ordenEmitida
+    Pais lugarActual
+    BaseCentralAcme baseDeDatos
+    RegistroVillano registroVillano
 
     new(BaseCentralAcme unaBase, Pais lugarDeLosHechos){
         baseDeDatos = unaBase

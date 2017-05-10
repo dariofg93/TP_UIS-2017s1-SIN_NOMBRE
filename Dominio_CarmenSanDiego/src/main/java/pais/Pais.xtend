@@ -140,7 +140,7 @@ class Pais {
         conexiones.add(conexion)
     }
     def Pais buscarConexion(int idPais) {
-    	conexiones.findFirst[ it.id == id]
+    	conexiones.findFirst[ it.id == idPais]
     }
     
     //Lugares
@@ -149,6 +149,10 @@ class Pais {
     }
     def agregarLugar(Lugar lugar){
         lugaresDeInteres.add(lugar)
+    }
+    
+    def Lugar buscarLugar(String nombreLugar){
+    	lugaresDeInteres.findFirst [ it.nombre == nombreLugar]
     }
 
     //BODY servicios

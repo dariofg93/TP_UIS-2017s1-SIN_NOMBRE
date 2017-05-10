@@ -7,6 +7,7 @@ import org.uqbar.xtrest.api.annotation.Body
 import caso.Caso
 import pais.Pais
 import dummies.CasosRespositorio
+import org.uqbar.xtrest.http.ContentType
 
 @Controller
 class ViajarRestAPI {
@@ -14,6 +15,8 @@ class ViajarRestAPI {
 	
 	@Post("/viajar/:idPais/:idCaso")
 	def viajar() {
+		response.contentType = ContentType.APPLICATION_JSON
+		
 		try {
 			val Caso caso = CasosRespositorio.buscarCaso(Integer.valueOf(idCaso))
 			val Pais paisAViajar = caso.buscarConexion(Integer.valueOf(idPais))

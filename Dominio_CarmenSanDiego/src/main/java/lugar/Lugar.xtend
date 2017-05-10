@@ -19,6 +19,7 @@ abstract class Lugar{
 
     protected var String nombre
     protected var List<String> pistas
+    @JsonIgnore
     protected var Ocupante ocupante
     protected var Boolean villanoEstuvo
     @JsonIgnore
