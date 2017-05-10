@@ -45,6 +45,6 @@ class Caso {
     }
 
     def detectiveEmiteOrdenContra(Villano unVillano){
-        detective.setOrden(unVillano)
+        detective.emitirOrden(unVillano)
     }
 }

@@ -30,11 +30,9 @@ class BaseCentralAcmeTest {
         unaBaseCentralAcme = new BaseCentralAcme()
 
         unVillanoMock = mock(Villano)
-        when(unVillanoMock.mismasCaracteristicas("Pelo rojo","Juega bien al futbol")).thenReturn(false)
 
         unVillanoMock2 = mock(Villano)
-        when(unVillanoMock2.mismasCaracteristicas("Pelo rojo","Juega bien al futbol")).thenReturn(true)
-        when(unVillanoMock2.nombre).thenReturn("Dario")
+        when(unVillanoMock2.nombre).thenReturn("Carmen San Diego")
     }
 
     @Test
@@ -49,15 +47,6 @@ class BaseCentralAcmeTest {
         unaBaseCentralAcme.registrarPais(argentina)
 
         Assert.assertTrue(unaBaseCentralAcme.mapamundi.contains(argentina))
-    }
-
-    @Test
-    def void validarOrdenTest() {
-        unaBaseCentralAcme.registrarVillano(unVillanoMock)
-        unaBaseCentralAcme.registrarVillano(unVillanoMock2)
-
-        Assert.assertEquals(unVillanoMock2.nombre,
-        (unaBaseCentralAcme.validarOrden("Pelo rojo","Juega bien al futbol")).nombre)
     }
 /*
     @Test

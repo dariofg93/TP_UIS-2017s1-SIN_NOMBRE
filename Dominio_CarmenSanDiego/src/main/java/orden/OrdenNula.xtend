@@ -8,10 +8,6 @@ class OrdenNula extends Orden{
         0
     }
 
-    override esElVillano(String sospechoso) {
-        false
-    }
-
     override nombre() {
         "Nadie"
     }

@@ -22,6 +22,6 @@ class OrdenDeArrestoAppModel {
     }
 
     def setOrden(){
-        detective.setOrden(villanoSeleccionado)
+        detective.emitirOrden(villanoSeleccionado)
     }
 }

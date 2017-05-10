@@ -16,7 +16,6 @@ class PaisesRepositorio {
     static List<Pais> conexiones
     static List<Lugar> lugares
 
-
     var static mapamundi = new ArrayList() => [
         var bbva = new Banco("BBVA Frances")
         var provincia = new Banco("Banco Provincia")

@@ -9,6 +9,7 @@ import org.junit.Before
 import org.junit.Test
 
 import static org.mockito.Mockito.*
+import org.junit.Assert
 
 class PaisTest {
 
@@ -49,6 +50,8 @@ class PaisTest {
         argentina.asignarUltimasPistas()
 
         verify(riverPlate).setPistas(Arrays.asList("CUIDADO DETECTIVE!! ha estado a punto de caer en una trampa.."))
+        verify(bancoGalicia).setPistas(Arrays.asList("CUIDADO DETECTIVE!! ha estado a punto de caer en una trampa.."))
+        verify(bibliotecaNacional).setPistas(Arrays.asList("CUIDADO DETECTIVE!! ha estado a punto de caer en una trampa.."))
     }
 
     @Test
@@ -59,5 +62,12 @@ class PaisTest {
         argentina.asignarVillano(alCapone)
 
         verify(riverPlate).setOcupante(alCapone)
+    }
+
+    @Test
+    def void clonarTest() {
+        var Pais unPais = argentina.clonar
+
+        //Assert.assertTrue(unPais.instanceof(Pais))
     }
 }

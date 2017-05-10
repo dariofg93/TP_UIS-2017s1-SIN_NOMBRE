@@ -9,6 +9,4 @@ class CrearJuegoRepositorio {
     def static CreadorDeJuegoAppModel getJuego() {
         return unJuego
     }
-
-
 }

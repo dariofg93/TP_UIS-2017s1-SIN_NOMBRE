@@ -22,14 +22,4 @@ class VillanoTest {
     def void actuar() {
         villano.actuar
     }
-
-    @Test
-    def void tieneLasMismasCaracteristicas() {
-        Assert.assertTrue(villano.mismasCaracteristicas("Pelo Rubio","Estudia geologia"))
-    }
-
-    @Test
-    def void tieneDiferentesCaracteristicas() {
-        Assert.assertFalse(villano.mismasCaracteristicas("Pelo Rubio","Juega bien al futbol"))
-    }
 }

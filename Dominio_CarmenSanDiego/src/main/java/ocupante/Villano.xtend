@@ -40,19 +40,6 @@ class Villano extends Ocupante{
         return Arrays.asList(sexosP);
     }
 
-    def mismasCaracteristicas(String... pistas){
-        var cumpleCaracteristicas = true
-        for(p: pistas) {
-            cumpleCaracteristicas = cumpleCaracteristicas && tieneCaracteristica(p)
-        }
-
-        cumpleCaracteristicas
-    }
-
-    private def tieneCaracteristica(String pista){
-        sexo == pista || seniasParticulares.contains(pista) || hobbies.contains(pista)
-    }
-
     def clonar(){
         var unasSenias = new ArrayList<String>() => [ addAll(seniasParticulares) ]
         var unosHobbies = new ArrayList<String>() => [ addAll(hobbies) ]

@@ -12,10 +12,6 @@ class OrdenEmitida extends Orden{
         villano = unVillano
     }
 
-    override esElVillano(String sospechoso){
-        villano.nombre == sospechoso
-    }
-
     override fueEmitida() {
         1
     }

@@ -8,6 +8,7 @@ import org.junit.Test
 import pais.Pais
 
 import static org.mockito.Mockito.*
+import ocupante.Villano
 
 class DetectiveTest {
 
@@ -43,8 +44,9 @@ class DetectiveTest {
 
     @Test
     def void emitirOrden() {
-        sherlockHolmes.emitirOrden("Pelo Rubio","Femenino")
+        var villanoMock = mock(Villano)
+        sherlockHolmes.emitirOrden(villanoMock)
 
-        verify(acme).validarOrden("Pelo Rubio","Femenino")
+        Assert.assertEquals(sherlockHolmes.ordenEmitida.getVillano,villanoMock)
     }
 }

@@ -89,7 +89,6 @@ class PaisesRestAPI{
         }
     }
 
-
     private def getErrorJson(String message) {
         '{ "error": "' + message + '" }'
     }

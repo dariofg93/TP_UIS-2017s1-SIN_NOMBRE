@@ -5,7 +5,6 @@ import creadores.CreadorJuego
 import detective.Detective
 import java.util.ArrayList
 import java.util.Collections
-import java.util.HashMap
 import java.util.List
 import java.util.Random
 import ocupante.Villano
@@ -34,16 +33,6 @@ class BaseCentralAcme {
 
     def registrarPais(Pais nuevoPais){
         mapamundi.add(nuevoPais)
-    }
-
-    def Orden validarOrden(String... pistas){
-        var Orden ordenEmitida =  new OrdenNula()
-
-        for(v: villanos) {
-            if(v.mismasCaracteristicas(pistas))
-                ordenEmitida = new OrdenEmitida(v)
-        }
-        return ordenEmitida
     }
 
     def Caso crearCaso(String reporte, String obj){

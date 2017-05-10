@@ -5,13 +5,11 @@ import java.util.ArrayList
 import java.util.Arrays
 import java.util.List
 import ocupante.Villano
-import org.uqbar.commons.model.UserException
 
 class VillanosRepositorio {
 
     var static List<String> seniasParticulares
     var static List<String> hobbies
-	
 
     var static villanos = new ArrayList() => [
 
@@ -34,5 +32,4 @@ class VillanosRepositorio {
     def static List<Villano> getVillanos() {
         return villanos
     }
-
 }

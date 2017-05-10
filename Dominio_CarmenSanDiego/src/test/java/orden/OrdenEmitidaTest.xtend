@@ -6,26 +6,28 @@ import org.junit.Test
 import ocupante.Villano
 
 import static org.mockito.Mockito.*
+import excepciones.NoEstaElVillanoException
 
 class DetectiveTest {
 
-    OrdenEmitida orden
+    OrdenEmitida ordenEmitida
+    OrdenNula ordenNula
     Villano villanoMock
 
     @Before
     def void setUp() {
         villanoMock = mock(Villano)
-        when(villanoMock.nombre).thenReturn("Carmen San Diego")
-        orden = new OrdenEmitida(villanoMock)
+        ordenEmitida = new OrdenEmitida(villanoMock)
+        ordenNula = new OrdenNula()
     }
 
     @Test
-    def void esElVillanoCorrecto() {
-        Assert.assertTrue(orden.esElVillano("Carmen San Diego"))
+    def void getVillanoTest() {
+        Assert.assertEquals(ordenEmitida.getVillano,villanoMock)
     }
 
-    @Test
-    def void noEsElVillanoCorrecto() {
-        Assert.assertFalse(orden.esElVillano("Al Capone"))
+    @Test(expected=NoEstaElVillanoException)
+    def void getVillanoTestSinVillano() {
+        ordenNula.getVillano
     }
 }

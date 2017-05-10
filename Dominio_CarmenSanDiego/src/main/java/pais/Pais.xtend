@@ -31,8 +31,6 @@ class Pais {
     	lugaresDeInteres = new ArrayList<Lugar>()
     }
 
-
-
     new(String unNombre){
         nombre = unNombre
         caracteristicas = new ArrayList<String>()
@@ -91,6 +89,12 @@ class Pais {
 
     def clonar(){
         var unasCaracteristicas = new ArrayList<String>() => [ addAll(caracteristicas) ]
+
+        var newConections = new ArrayList<Pais>();
+        for(Pais p: conexiones){
+
+        }
+
         var unasConexiones = new ArrayList<Pais> => [ addAll(conexiones) ]
         var unosLugares = new ArrayList<Lugar>() => [ addAll(lugaresDeInteres) ]
 
@@ -125,12 +129,6 @@ class Pais {
         todosLosLugaresEncontrados
     }
 
-    //BODY servicios
-    def estaCompleto() {
-        StringUtils.isNotBlank(nombre)
-    }
-
-
 	//Caracteristicas
     def eliminarCaracteristica(String caracteristica){
         caracteristicas.remove(caracteristica)
@@ -153,5 +151,10 @@ class Pais {
     }
     def agregarLugar(Lugar lugar){
         lugaresDeInteres.add(lugar)
+    }
+
+    //BODY servicios
+    def estaCompleto() {
+        StringUtils.isNotBlank(nombre)
     }
 }

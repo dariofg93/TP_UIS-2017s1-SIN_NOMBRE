@@ -42,6 +42,10 @@ class Detective{
         msj
     }
 
+    def emitirOrden(Villano villano) {
+        ordenEmitida = new OrdenEmitida(villano)
+    }
+
     def recorridoCriminal(){
         registroVillano.lugaresVisitados.stream.map(p | p.nombre).collect(Collectors.toList())
     }
@@ -49,8 +53,4 @@ class Detective{
     def destinosFallidos(){
         registroVillano.lugaresNoVisitados.stream.map(p | p.nombre).collect(Collectors.toList())
     }
-	
-	def setOrden(Villano villano) {
-		ordenEmitida = new OrdenEmitida(villano)
-	}
 }
