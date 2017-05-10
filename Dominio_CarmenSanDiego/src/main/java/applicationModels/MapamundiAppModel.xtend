@@ -40,7 +40,7 @@ class MapamundiAppModel {
 
 //////////////
 
-    def  getPais(int id) {
+    def getPais(int id) {
         paises.findFirst[ it.id == id ]
     }
 

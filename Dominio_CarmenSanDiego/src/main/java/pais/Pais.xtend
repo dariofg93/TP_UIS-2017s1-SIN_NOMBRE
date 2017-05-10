@@ -89,16 +89,11 @@ class Pais {
 
     def clonar(){
         var unasCaracteristicas = new ArrayList<String>() => [ addAll(caracteristicas) ]
-
-        var newConections = new ArrayList<Pais>();
-        for(Pais p: conexiones){
-
-        }
-
+        
         var unasConexiones = new ArrayList<Pais> => [ addAll(conexiones) ]
         var unosLugares = new ArrayList<Lugar>() => [ addAll(lugaresDeInteres) ]
 
-        return new Pais(nombre,unasCaracteristicas,unasConexiones,unosLugares)
+        return new Pais(id,nombre,unasCaracteristicas,unasConexiones,unosLugares)
     }
 
     def containsAny(List<Pais> mapamundi){
@@ -143,6 +138,9 @@ class Pais {
     }
     def agregarConexion(Pais conexion){
         conexiones.add(conexion)
+    }
+    def Pais buscarConexion(int idPais) {
+    	conexiones.findFirst[ it.id == id]
     }
     
     //Lugares

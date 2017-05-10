@@ -35,12 +35,13 @@ class BaseCentralAcme {
         mapamundi.add(nuevoPais)
     }
 
-    def Caso crearCaso(String reporte, String obj){
+    def Caso crearCaso(int id, String reporte, String obj){
         var paises = new ArrayList<Pais>() => [ addAll(mapamundi) ]
         var lugarDelHecho = getLugarDelHecho(paises)
         var detective = new Detective(this,lugarDelHecho)
 
         return creador.crearJuego(
+        	id,
             randomVillano,
             paises,
             reporte,

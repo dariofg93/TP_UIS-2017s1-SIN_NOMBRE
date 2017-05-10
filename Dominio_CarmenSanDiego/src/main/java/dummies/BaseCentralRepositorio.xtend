@@ -21,8 +21,8 @@ class BaseCentralRepositorio {
         return acme.mapamundi
     }
 
-    def static Caso crearCaso(String reporte, String obj){
-        acme.crearCaso(reporte,obj)
+    def static Caso crearCaso(int id, String reporte, String obj){
+        acme.crearCaso(id, reporte,obj)
     }
 
     def static List<String> sexosPosibles(){

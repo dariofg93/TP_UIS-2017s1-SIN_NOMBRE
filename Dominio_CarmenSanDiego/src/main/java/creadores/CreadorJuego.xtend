@@ -9,11 +9,11 @@ import detective.Detective
 
 class CreadorJuego {
 
-    def Caso crearJuego(Villano responsable, List<Pais> mapamundi, String reporte, String obj, Pais lugarDelHecho, Detective detective){
+    def Caso crearJuego(int id, Villano responsable, List<Pais> mapamundi, String reporte, String obj, Pais lugarDelHecho, Detective detective){
 
         var rutaEscape = crearRutaEscape(mapamundi,lugarDelHecho)
 
-        var newCase = new Caso()
+        var newCase = new Caso(id)
         newCase.setResponsable(responsable)
         newCase.setReporte(reporte)
         newCase.setObjeto(obj)

@@ -16,26 +16,34 @@ import viewModels.VillanoViewModel
 
 @Controller
 class VillanosRestAPI {
-	val List<Villano> villanosRepo = ExpedientesAppModel.getVillanos()
+	val expedientesModel = new ExpedientesAppModel()
 	extension JSONUtils = new JSONUtils
 	
-	@Get("/villanos")
+	 /*@Get("/villanos")
 	def getVillanos() {
 		response.contentType = ContentType.APPLICATION_JSON
 		val List<VillanoViewModel> villanosViewModel = new ArrayList<VillanoViewModel>()
 		
 		for(Villano villano : villanosRepo) {
+			//Por cada villano lleno el nuevo model reducido y lo agrego a la lista
 			val villanoViewModel = new VillanoViewModel(villano.nombre, villano.id)
 			villanosViewModel.add(villanoViewModel)
 		}
 		ok(villanosViewModel.toJson)
+	} */
+	
+	@Get("/villanos")
+	def getVillanos() {
+		response.contentType = ContentType.APPLICATION_JSON
+		
+		ok(expedientesModel.villanos.toJson)
 	}
 	
 	@Get("/villanos/:id")
 	def getVillano() {
 		response.contentType = ContentType.APPLICATION_JSON
 		try {
-			ok(villanosRepo.findFirst[ it.id == Integer.valueOf(id) ].toJson)
+			ok(expedientesModel.villanos.findFirst[ it.id == Integer.valueOf(id) ].toJson)
 		}
 		catch(Exception e) {
 			badRequest("El id debe ser un numero entero")
@@ -48,7 +56,7 @@ class VillanosRestAPI {
 		try {
 			val Villano villano = body.fromJson(Villano)
 			try {
-				ExpedientesAppModel.agregarVillano(villano)
+				expedientesModel.agregarVillano(villano)
 				ok("Se agrego el nuevo villano")
 			}
 			catch(Exception e) {
@@ -65,7 +73,7 @@ class VillanosRestAPI {
 		response.contentType = ContentType.APPLICATION_JSON
 		try {
 			val Villano villano = body.fromJson(Villano)
-			ExpedientesAppModel.updateVillano(villano)
+			expedientesModel.updateVillano(villano)
 			ok("Villano actualizado correctamente")
 		}
 		catch(Exception e) {
@@ -77,7 +85,7 @@ class VillanosRestAPI {
 	def deleteVillano() {
 		response.contentType = ContentType.APPLICATION_JSON
 		try {
-			ExpedientesAppModel.deleteVillano(Integer.valueOf(id))
+			expedientesModel.deleteVillano(Integer.valueOf(id))
 			ok("Villano eliminado")
 		}
 		catch(Exception e){

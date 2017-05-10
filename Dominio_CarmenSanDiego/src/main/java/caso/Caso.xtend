@@ -12,6 +12,7 @@ import detective.Detective
 @Accessors
 class Caso {
 
+	var int id
     var String objeto
     var Villano responsable
     var String reporte
@@ -28,10 +29,16 @@ class Caso {
         detective = unDetective
     }
 
-    new(){}
+    new(int id){
+    	this.id = id
+    }
 
     def Lugar BuscarLugar(String nombreLugar){
         this.todosLosLugares.findFirst[ it.nombre == nombreLugar ]
+    }
+    
+    def Pais buscarConexion(int idPais) {
+    	this.detective.lugarActual.buscarConexion(idPais)
     }
 
     def Set<Lugar> todosLosLugares(){

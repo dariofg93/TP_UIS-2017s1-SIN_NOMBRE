@@ -13,7 +13,7 @@ class CasosRespositorio {
     val static String FINAL_DE_DESCRIPCION = "El criminal fue muy prolijo y la escena del crimen no contaba con pista alguna," + SaltoDeLinea + " su mision como detective es desifrar el responsable de tal crimen y apresarlo."
 
     var static casos = new ArrayList<Caso>() => [
-        add(BaseCentralRepositorio.crearCaso(
+        add(BaseCentralRepositorio.crearCaso(1,
                     INTRO_A_DESCRIPCION + "A las 9 de la mañana en la ciudad del Cairo la comunidad científica fue conmovida" + SaltoDeLinea + " al darse cuenta del faltante de gran valor! El sarcófago del faraón" + SaltoDeLinea + " USERMAATRA-MERIAMON RAMSES-HEQAIUNU, el mejor conocido como Ramsés III. " + SaltoDeLinea + FINAL_DE_DESCRIPCION + SaltoDeLinea,
                     "Robo del Faraón")
         )
@@ -22,6 +22,10 @@ class CasosRespositorio {
     def static cantidadDeCasos(){ return casos.size }
 
     def static getCasos(){ casos }
+    
+    def static buscarCaso(int id) {
+    	casos.findFirst[ it.id == id]
+    }
 
     def static void main(String[] args){
         println(paisYocupantes(getCasos.get(0).getPaisDelRobo))
