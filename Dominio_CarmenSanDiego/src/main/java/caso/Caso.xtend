@@ -7,6 +7,7 @@ import pais.Pais
 import lugar.Lugar
 import java.util.Set
 import java.util.HashSet
+import detective.Detective
 
 @Accessors
 class Caso {
@@ -16,13 +17,15 @@ class Caso {
     var String reporte
     var List<Pais> planDeEscape
     var Pais paisDelRobo
+    var Detective detective
 
-    new(Villano unResponsable, String unReporte, String unObjeto, List<Pais> unPlan, Pais unPais){
+    new(Villano unResponsable, String unReporte, String unObjeto, List<Pais> unPlan, Pais unPais, Detective unDetective){
         responsable = unResponsable
         reporte = unReporte
         objeto = unObjeto
         planDeEscape = unPlan
         paisDelRobo = unPais
+        detective = unDetective
     }
 
     new(){}
@@ -39,5 +42,9 @@ class Caso {
             todosLosLugaresEncontrados.addAll(p.todosLosLugares)
 
         todosLosLugaresEncontrados
+    }
+
+    def detectiveEmiteOrdenContra(Villano unVillano){
+        detective.setOrden(unVillano)
     }
 }

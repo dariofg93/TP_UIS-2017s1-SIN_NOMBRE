@@ -5,10 +5,11 @@ import java.util.ArrayList
 import java.util.List
 import ocupante.Villano
 import pais.Pais
+import detective.Detective
 
 class CreadorJuego {
 
-    def Caso crearJuego(Villano responsable, List<Pais> mapamundi, String reporte, String obj, Pais lugarDelHecho){
+    def Caso crearJuego(Villano responsable, List<Pais> mapamundi, String reporte, String obj, Pais lugarDelHecho, Detective detective){
 
         var rutaEscape = crearRutaEscape(mapamundi,lugarDelHecho)
 
@@ -18,6 +19,7 @@ class CreadorJuego {
         newCase.setObjeto(obj)
         newCase.setPaisDelRobo(lugarDelHecho)
         newCase.setPlanDeEscape(rutaEscape)
+        newCase.setDetective(detective)
 
         repartirOcupantes(newCase)
         repartirPistas(newCase)

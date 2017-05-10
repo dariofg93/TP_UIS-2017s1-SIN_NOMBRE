@@ -42,10 +42,6 @@ class Detective{
         msj
     }
 
-    def emitirOrden(String... pistas){
-        ordenEmitida = baseDeDatos.validarOrden(pistas)
-    }
-
     def recorridoCriminal(){
         registroVillano.lugaresVisitados.stream.map(p | p.nombre).collect(Collectors.toList())
     }

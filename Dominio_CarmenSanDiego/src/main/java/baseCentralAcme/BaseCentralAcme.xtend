@@ -46,22 +46,19 @@ class BaseCentralAcme {
         return ordenEmitida
     }
 
-    def HashMap<Detective,Caso> crearCaso(String reporte, String obj){
+    def Caso crearCaso(String reporte, String obj){
         var paises = new ArrayList<Pais>() => [ addAll(mapamundi) ]
         var lugarDelHecho = getLugarDelHecho(paises)
         var detective = new Detective(this,lugarDelHecho)
 
-        var caso = creador.crearJuego(
-                randomVillano,
-                paises,
-                reporte,
-                obj,
-                lugarDelHecho
+        return creador.crearJuego(
+            randomVillano,
+            paises,
+            reporte,
+            obj,
+            lugarDelHecho,
+            detective
         )
-        var casoCreado = new HashMap<Detective,Caso>()
-        casoCreado.put(detective,caso)
-
-        return  casoCreado
     }
 
     private def Pais getLugarDelHecho(ArrayList<Pais> paises){

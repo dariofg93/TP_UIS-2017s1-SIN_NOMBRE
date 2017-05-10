@@ -2,23 +2,31 @@ package controllers
 
 import org.uqbar.xtrest.api.annotation.Controller
 import org.uqbar.xtrest.json.JSONUtils
-import org.uqbar.xtrest.api.annotation.Get
 import org.uqbar.xtrest.http.ContentType
-import orden.OrdenNula
-import dummies.CasosRespositorio
+import org.uqbar.xtrest.api.annotation.Post
+import org.uqbar.xtrest.api.annotation.Body
+import org.uqbar.commons.model.UserException
+import caso.Caso
+import ocupante.Villano
 
 @Controller
 class EmitirOrdenParaRestAPI {
     extension JSONUtils = new JSONUtils
 
-    //getPistas: Dado un lugar y un caso, devuelve la pista del lugar.
-    @Get("/casos")
-    def getPista(String caso,String lugar) {
-        //var unCaso = CasosRespositorio.casos.findFirst[ it.objeto == caso ]
-        //var unLugar = unCaso.BuscarLugar(lugar)
+    //emitirOrden: Espera un villano y un caso y devuelve ok o nok
+    @Post("/emitirOrden")
+    def emitirOrden(@Body String unVillano, @Body String unCaso) {
 
         response.contentType = ContentType.APPLICATION_JSON
-        ok(CasosRespositorio.casos.get(0).toJson)
-        //unLugar.mostrarPistas(new OrdenNula())
+        var Villano villano = unVillano.fromJson(Villano)
+        var Caso caso = unCaso.fromJson(Caso)
+
+        try {
+            caso.detectiveEmiteOrdenContra(villano)
+            ok()
+        }
+        catch (UserException exception) {
+            badRequest(exception.message)
+        }
     }
 }

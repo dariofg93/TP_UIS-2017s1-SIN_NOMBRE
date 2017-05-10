@@ -2,8 +2,6 @@ package dummies
 
 import baseCentralAcme.BaseCentralAcme
 import caso.Caso
-import detective.Detective
-import java.util.HashMap
 import java.util.List
 import ocupante.Villano
 import pais.Pais
@@ -23,7 +21,7 @@ class BaseCentralRepositorio {
         return acme.mapamundi
     }
 
-    def static HashMap<Detective,Caso> crearCaso(String reporte, String obj){
+    def static Caso crearCaso(String reporte, String obj){
         acme.crearCaso(reporte,obj)
     }
 
