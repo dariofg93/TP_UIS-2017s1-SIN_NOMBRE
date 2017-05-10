@@ -3,18 +3,20 @@ package applicationModels
 import java.util.List
 import pais.Pais
 import java.util.ArrayList
+import caso.Caso
+import org.eclipse.xtend.lib.annotations.Accessors
 
+@Accessors
 class CreadorDeJuegoAppModel {
     int id
-    List<Pais> paises
+    Pais pais
     List<Pais> paisesVisitados
     List<Pais> paisesFallidos
 
-    new(int unid,List<Pais> unosPaises){
-        id = unid
-        paises = unosPaises
+    new(Caso unCaso){
+        id = unCaso.id
+        pais = unCaso.detective.lugarActual
         paisesVisitados = new ArrayList<Pais>()
         paisesFallidos = new ArrayList<Pais>()
     }
-
 }
