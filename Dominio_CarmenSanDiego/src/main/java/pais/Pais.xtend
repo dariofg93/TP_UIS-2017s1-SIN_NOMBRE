@@ -13,11 +13,13 @@ import org.uqbar.commons.utils.Observable
 import java.util.Random
 import java.util.Set
 import java.util.HashSet
+import org.apache.commons.lang.StringUtils
 
 @Accessors
 @Observable
 class Pais {
 
+    var int id;
     var String nombre
     var List<String> caracteristicas
     var List<Pais> conexiones
@@ -29,6 +31,8 @@ class Pais {
     	lugaresDeInteres = new ArrayList<Lugar>()
     }
 
+
+
     new(String unNombre){
         nombre = unNombre
         caracteristicas = new ArrayList<String>()
@@ -37,6 +41,15 @@ class Pais {
     }
 
     new(String unNombre, List<String> unasCaracteristicas, List<Pais> unasConexiones, List<Lugar> unosLugares){
+        nombre = unNombre
+        caracteristicas = unasCaracteristicas
+        conexiones = unasConexiones
+        lugaresDeInteres = unosLugares
+    }
+
+    new(int unid, String unNombre, List<String> unasCaracteristicas, List<Pais> unasConexiones, List<Lugar> unosLugares){
+
+        id = unid;
         nombre = unNombre
         caracteristicas = unasCaracteristicas
         conexiones = unasConexiones
@@ -111,7 +124,13 @@ class Pais {
 
         todosLosLugaresEncontrados
     }
-	
+
+    //BODY servicios
+    def estaCompleto() {
+        StringUtils.isNotBlank(nombre)
+    }
+
+
 	//Caracteristicas
     def eliminarCaracteristica(String caracteristica){
         caracteristicas.remove(caracteristica)
