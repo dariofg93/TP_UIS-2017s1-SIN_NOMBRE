@@ -5,7 +5,9 @@ import java.util.ArrayList
 import java.util.stream.Collectors
 import pais.Pais
 import lugar.Lugar
+import org.eclipse.xtend.lib.annotations.Accessors
 
+@Accessors
 class CasosRespositorio {
 
     val static SaltoDeLinea = System.getProperty("line.separator")

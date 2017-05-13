@@ -6,7 +6,9 @@ import java.util.List
 import ocupante.Villano
 import pais.Pais
 import detective.Detective
+import org.eclipse.xtend.lib.annotations.Accessors
 
+@Accessors
 class CreadorJuego {
 
     def Caso crearJuego(int id, Villano responsable, List<Pais> mapamundi, String reporte, String obj, Pais lugarDelHecho, Detective detective){

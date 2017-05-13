@@ -11,6 +11,7 @@ import registroVillano.RegistroVillano
 import org.uqbar.commons.utils.Observable
 import orden.OrdenEmitida
 import ocupante.Villano
+import com.fasterxml.jackson.annotation.JsonIgnore
 
 @Observable
 @Accessors
@@ -18,6 +19,7 @@ class Detective{
 
     Orden ordenEmitida
     Pais lugarActual
+    @JsonIgnore
     BaseCentralAcme baseDeDatos
     RegistroVillano registroVillano
 

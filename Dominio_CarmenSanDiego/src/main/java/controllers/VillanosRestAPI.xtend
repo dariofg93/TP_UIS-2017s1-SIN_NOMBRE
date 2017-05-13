@@ -3,8 +3,6 @@ package controllers
 import org.uqbar.xtrest.api.annotation.Controller
 import org.uqbar.xtrest.api.annotation.Get
 import org.uqbar.xtrest.json.JSONUtils
-import java.util.List
-import java.util.ArrayList
 import ocupante.Villano
 import org.uqbar.xtrest.http.ContentType
 import org.uqbar.xtrest.api.annotation.Post
@@ -12,7 +10,6 @@ import org.uqbar.xtrest.api.annotation.Body
 import applicationModels.ExpedientesAppModel
 import org.uqbar.xtrest.api.annotation.Put
 import org.uqbar.xtrest.api.annotation.Delete
-import viewModels.VillanoViewModel
 
 @Controller
 class VillanosRestAPI {
@@ -91,6 +88,5 @@ class VillanosRestAPI {
 		catch(Exception e){
 			badRequest("El id debe ser un numero")
 		}
-	}	
-	
+	}
 }

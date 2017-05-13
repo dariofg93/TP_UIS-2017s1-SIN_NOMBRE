@@ -82,8 +82,8 @@ class PaisesRepositorio {
         conexiones = new ArrayList<Pais>(Arrays.asList(argentina,francia,españa)),
         lugares = new ArrayList<Lugar>(Arrays.asList(embajadaMexico,bbva)))
 
-        add(argentina)
         add(brasil)
+        add(argentina)
         add(italia)
         add(egipto)
         add(japon)

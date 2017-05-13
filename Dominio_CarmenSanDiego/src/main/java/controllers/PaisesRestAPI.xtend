@@ -1,6 +1,5 @@
 package controllers
 
-
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException
 import org.uqbar.commons.model.UserException
 import org.uqbar.xtrest.api.annotation.Body
@@ -15,6 +14,8 @@ import java.util.List
 import dummies.BaseCentralRepositorio
 import applicationModels.MapamundiAppModel
 import org.uqbar.xtrest.api.annotation.Put
+import dtos.PaisSimpleDTO
+import java.util.stream.Collectors
 
 @Controller
 class PaisesRestAPI{
@@ -29,7 +30,8 @@ class PaisesRestAPI{
     @Get("/pais")
     def getPaises() {
         response.contentType = ContentType.APPLICATION_JSON
-        ok(mapamundi.paises.toJson)
+        var List<PaisSimpleDTO> paisesSimples = mapamundi.paises.stream.map(p | new PaisDTO(p)).collect(Collectors.toList)
+        ok(paisesSimples.toJson)
     }
 
     @Get("/pais/:id")
