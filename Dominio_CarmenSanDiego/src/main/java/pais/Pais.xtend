@@ -1,16 +1,10 @@
 package pais
 
 import java.util.ArrayList
-import java.util.Arrays
 import java.util.List
 import lugar.Lugar
-import ocupante.Cuidador
-import ocupante.Informante
-import ocupante.Ocupante
-import ocupante.Villano
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
-import java.util.Random
 import java.util.Set
 import java.util.HashSet
 import org.apache.commons.lang.StringUtils
@@ -31,69 +25,20 @@ class Pais {
     	lugaresDeInteres = new ArrayList<Lugar>()
     }
 
-    new(String unNombre){
+    new(int unid,String unNombre){
+        id = unid
         nombre = unNombre
         caracteristicas = new ArrayList<String>()
         conexiones = new ArrayList<Pais>()
         lugaresDeInteres = new ArrayList<Lugar>()
     }
 
-    new(String unNombre, List<String> unasCaracteristicas, List<Pais> unasConexiones, List<Lugar> unosLugares){
-        nombre = unNombre
-        caracteristicas = unasCaracteristicas
-        conexiones = unasConexiones
-        lugaresDeInteres = unosLugares
-    }
-
     new(int unid, String unNombre, List<String> unasCaracteristicas, List<Pais> unasConexiones, List<Lugar> unosLugares){
-
-        id = unid;
+        id = unid
         nombre = unNombre
         caracteristicas = unasCaracteristicas
         conexiones = unasConexiones
         lugaresDeInteres = unosLugares
-    }
-
-    def asignarPistasALugares(Villano responsable, Pais paisActual){
-        for(lugar: lugaresDeInteres) {
-            lugar.pedirPistas(responsable,paisActual)
-        }
-    }
-
-    def asignarOcupantesALugares(Pais paisAnterior){
-        setearOcupantes(new Informante())
-        for(pais: conexiones) {
-            if(!pais.equals(paisAnterior)) {
-                pais.setearOcupantes(new Cuidador())
-            }
-        }
-    }
-
-    def setearOcupantes(Ocupante ocupanteType){
-        for(Lugar lugar: lugaresDeInteres) {
-            if(lugar.getOcupante == null || lugar.getOcupante.getClass.simpleName.equals("Cuidador")){
-                lugar.setOcupante(ocupanteType)
-            }
-        }
-    }
-
-    def asignarUltimasPistas(){
-        for(lugar: lugaresDeInteres) {
-            lugar.setPistas(Arrays.asList("CUIDADO DETECTIVE!! ha estado a punto de caer en una trampa.."))
-        }
-    }
-
-    def asignarVillano(Ocupante responsable){
-        this.lugaresDeInteres.get(new Random().nextInt(lugaresDeInteres.size)).setOcupante(responsable)
-    }
-
-    def clonar(){
-        var unasCaracteristicas = new ArrayList<String>() => [ addAll(caracteristicas) ]
-        
-        var unasConexiones = new ArrayList<Pais> => [ addAll(conexiones) ]
-        var unosLugares = new ArrayList<Lugar>() => [ addAll(lugaresDeInteres) ]
-
-        return new Pais(id,nombre,unasCaracteristicas,unasConexiones,unosLugares)
     }
 
     def containsAny(List<Pais> mapamundi){
@@ -108,11 +53,12 @@ class Pais {
     def findConexion(List<Pais> mapamundi){
         var Pais found
         for(Pais pais: conexiones) {
-            if(mapamundi.contains(pais)) { found = pais }
+            if(mapamundi.contains(pais))
+                { found = pais }
         }
         found
     }
-
+    ///////////
     def Set<Lugar> todosLosLugares(){
         var todosLosLugaresEncontrados = new HashSet<Lugar>()
         todosLosLugaresEncontrados.addAll(lugaresDeInteres)
@@ -123,6 +69,7 @@ class Pais {
 
         todosLosLugaresEncontrados
     }
+    ///////////////
 
 	//Caracteristicas
     def eliminarCaracteristica(String caracteristica){
@@ -150,7 +97,6 @@ class Pais {
     def agregarLugar(Lugar lugar){
         lugaresDeInteres.add(lugar)
     }
-    
     def Lugar buscarLugar(String nombreLugar){
     	lugaresDeInteres.findFirst [ it.nombre == nombreLugar]
     }

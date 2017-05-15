@@ -10,17 +10,14 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @Accessors
 class BaseCentralRepositorio {
 
-    var static acme = new BaseCentralAcme() => [
-        setVillanos(VillanosRepositorio.getVillanos)
-        setMapamundi(PaisesRepositorio.getMapamundi)
-    ]
+    var static acme = new BaseCentralAcme(VillanosRepositorio.getVillanos,PaisesRepositorio.getMapamundi)
 
     def static List<Villano> getVillanos() {
-        return acme.villanos
+        return acme.getVillanos
     }
 
     def static List<Pais> getMapamundi() {
-        return acme.mapamundi
+        return acme.getMapamundi
     }
 
     def static Caso crearCaso(int id, String reporte, String obj){
@@ -28,7 +25,7 @@ class BaseCentralRepositorio {
     }
 
     def static buscarVillano(int idVillano){
-        acme.villanos.findFirst[ it.id == id]
+        acme.getVillanos.findFirst[ it.id == id]
     }
 
     def static List<String> sexosPosibles(){

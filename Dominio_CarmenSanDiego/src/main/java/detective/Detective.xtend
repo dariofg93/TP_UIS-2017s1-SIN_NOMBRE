@@ -1,6 +1,5 @@
 package detective
 
-import baseCentralAcme.BaseCentralAcme
 import java.util.stream.Collectors
 import lugar.Lugar
 import orden.Orden
@@ -11,7 +10,7 @@ import registroVillano.RegistroVillano
 import org.uqbar.commons.utils.Observable
 import orden.OrdenEmitida
 import ocupante.Villano
-import com.fasterxml.jackson.annotation.JsonIgnore
+import caso.Caso
 
 @Observable
 @Accessors
@@ -19,12 +18,10 @@ class Detective{
 
     Orden ordenEmitida
     Pais lugarActual
-    @JsonIgnore
-    BaseCentralAcme baseDeDatos
     RegistroVillano registroVillano
+    Caso caso
 
-    new(BaseCentralAcme unaBase, Pais lugarDeLosHechos){
-        baseDeDatos = unaBase
+    new(Pais lugarDeLosHechos){
         lugarActual = lugarDeLosHechos
         ordenEmitida = new OrdenNula()
         registroVillano = new RegistroVillano()
@@ -35,8 +32,10 @@ class Detective{
     }
 
     def String visitar(Lugar unLugar){
-        var msj = unLugar.mostrarPistas(ordenEmitida)
-        if(unLugar.villanoEstuvo)
+        var ocupante = caso.obtenerOcupante(unLugar)
+
+        var msj = unLugar.mostrarPistas(ordenEmitida,ocupante)
+        if(ocupante.estuvoVillano)
             registroVillano.agregarVisitado(lugarActual)
         else
             registroVillano.agregarNoVisitado(lugarActual)

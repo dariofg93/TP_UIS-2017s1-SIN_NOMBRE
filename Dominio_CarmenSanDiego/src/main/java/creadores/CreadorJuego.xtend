@@ -7,58 +7,70 @@ import ocupante.Villano
 import pais.Pais
 import detective.Detective
 import org.eclipse.xtend.lib.annotations.Accessors
+import java.util.Random
+import java.util.Collections
 
 @Accessors
 class CreadorJuego {
 
-    def Caso crearJuego(int id, Villano responsable, List<Pais> mapamundi, String reporte, String obj, Pais lugarDelHecho, Detective detective){
+    var List<Villano> villanos
+    var List<Pais> mapamundi
 
-        var rutaEscape = crearRutaEscape(mapamundi,lugarDelHecho)
+    new(){
+        villanos = new ArrayList<Villano>()
+        mapamundi = new ArrayList<Pais>()
+    }
+
+    new(List<Villano> villanos, List<Pais> mapamundi){
+        this.villanos = villanos
+        this.mapamundi = mapamundi
+    }
+
+    def agregarVillano(Villano nuevoVillano){
+        villanos.add(nuevoVillano)
+    }
+
+    def agregarPais(Pais nuevoPais){
+        mapamundi.add(nuevoPais)
+    }
+
+    def Caso crearJuego(int id, String reporte, String obj){
+
+        var paises = new ArrayList<Pais>() => [ addAll(mapamundi) ]
+        var lugarDelHecho = getLugarDelHecho(paises)
+        var detective = new Detective(lugarDelHecho)
+        var rutaEscape = crearRutaEscape(paises,lugarDelHecho)
 
         var newCase = new Caso(id)
-        newCase.setResponsable(responsable)
+        newCase.setResponsable(randomVillano)
         newCase.setReporte(reporte)
         newCase.setObjeto(obj)
         newCase.setPaisDelRobo(lugarDelHecho)
         newCase.setPlanDeEscape(rutaEscape)
         newCase.setDetective(detective)
 
-        repartirOcupantes(newCase)
-        repartirPistas(newCase)
+        repartirPistasYocupantes(newCase)
 
         newCase
     }
 
-    def repartirPistas(Caso newCase){
-        var recorrido = new ArrayList<Pais>()
-        recorrido.addAll(newCase.planDeEscape)
-
-        newCase.paisDelRobo.asignarPistasALugares(newCase.responsable.clonar,recorrido.get(0).clonar)
-        recorrido.remove(0)
-
-        for(pais: newCase.planDeEscape.subList(0,newCase.planDeEscape.size-1)) {
-            pais.asignarPistasALugares(newCase.responsable.clonar,recorrido.get(0).clonar)
-            recorrido.remove(0)
-        }
-
-        newCase.planDeEscape.last.asignarUltimasPistas()
-    }
-
-    def repartirOcupantes(Caso newCase){
+    def repartirPistasYocupantes(Caso newCase){
         var Pais paisAnterior = null
+        var iteracion = 0
 
-        newCase.paisDelRobo.asignarOcupantesALugares(paisAnterior)
+        newCase.registrarPais(newCase.paisDelRobo,paisAnterior,newCase.planDeEscape.get(0))
         paisAnterior = newCase.paisDelRobo
 
-        for(pais: newCase.planDeEscape) {
-            pais.asignarOcupantesALugares(paisAnterior)
-            paisAnterior = pais
+        for(pais: newCase.planDeEscape.subList(iteracion,newCase.planDeEscape.size-1)) {
+            newCase.registrarPais(pais,paisAnterior,newCase.planDeEscape.get(iteracion))
+            paisAnterior = newCase.planDeEscape.get(iteracion)
+            iteracion++
         }
 
-        newCase.planDeEscape.last.asignarVillano(newCase.responsable)
+        newCase.registrarUltimoPais
     }
 
-    def List<Pais> crearRutaEscape(List<Pais> mapamundi, Pais lugarDelHecho){
+    private def List<Pais> crearRutaEscape(List<Pais> mapamundi, Pais lugarDelHecho){
         var rutaDeEscape = new ArrayList<Pais>()
             var nuevoDestino = lugarDelHecho.findConexion(mapamundi)
             rutaDeEscape.add(nuevoDestino)
@@ -73,5 +85,18 @@ class CreadorJuego {
             cantPaises++
         }
         rutaDeEscape
+    }
+
+    private def Pais getLugarDelHecho(List<Pais> paises){
+        var lugarDelHecho = paises.get(new Random().nextInt(paises.size))
+        paises.remove(lugarDelHecho)
+
+        lugarDelHecho
+    }
+
+    private def Villano randomVillano() {
+        var newList = new ArrayList<Villano>() => [ addAll(villanos) ]
+        Collections.shuffle(newList)
+        return newList.get(0)
     }
 }

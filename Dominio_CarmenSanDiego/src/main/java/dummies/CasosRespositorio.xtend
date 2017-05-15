@@ -30,7 +30,8 @@ class CasosRespositorio {
     }
 
     def static void main(String[] args){
-        println(paisYocupantes(getCasos.get(0).getPaisDelRobo))
+
+        println(paisNombre(getCasos.get(0).getPaisDelRobo))
         println(getCasos.get(0).getPaisDelRobo.getConexiones.stream.map(p | conexionesOcupantes(p)).collect(Collectors.toList))
 
         println(" ")
@@ -39,14 +40,15 @@ class CasosRespositorio {
 
         println(" ")
 
-        println(getCasos.get(0).getPlanDeEscape.stream.map(p | paisYocupantes(p)).collect(Collectors.toList))
+        println(getCasos.get(0).getPlanDeEscape.stream.map(p | paisNombre(p)).collect(Collectors.toList))
+
     }
 
-    def static String paisYocupantes(Pais pais){
+    def static String paisNombre(Pais pais){
         var r = pais.nombre
 
         for(Lugar l: pais.getLugaresDeInteres){
-            r = r + " |||" + l.getOcupante().getClass.simpleName
+            r = r + " |||" + getCasos.get(0).obtenerOcupante(l).getClass.simpleName//.actuar(new OrdenNula())
         }
         r+">>><<<"
     }
@@ -55,7 +57,7 @@ class CasosRespositorio {
         var r = "CONEXION: "+ pais.nombre
 
         for(Lugar l: pais.getLugaresDeInteres){
-            r = r + " |||" + l.getOcupante().getClass.simpleName
+            r = r + " |||" + getCasos.get(0).obtenerOcupante(l).getClass.simpleName
         }
         r+">>><<<"
     }

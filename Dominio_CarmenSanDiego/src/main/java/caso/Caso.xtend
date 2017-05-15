@@ -8,6 +8,11 @@ import lugar.Lugar
 import java.util.Set
 import java.util.HashSet
 import detective.Detective
+import registroLugar.RegistroLugar
+import ocupante.*
+import java.util.Random
+import java.util.Arrays
+import java.util.ArrayList
 
 @Accessors
 class Caso {
@@ -19,18 +24,31 @@ class Caso {
     var List<Pais> planDeEscape
     var Pais paisDelRobo
     var Detective detective
+    var List<RegistroLugar> registrosDeLugares
 
-    new(Villano unResponsable, String unReporte, String unObjeto, List<Pais> unPlan, Pais unPais, Detective unDetective){
+    new(int id, Villano unResponsable, String unReporte, String unObjeto, List<Pais> unPlan, Pais unPais, Detective unDetective){
+        this.id = id
         responsable = unResponsable
         reporte = unReporte
         objeto = unObjeto
         planDeEscape = unPlan
         paisDelRobo = unPais
         detective = unDetective
+        registrosDeLugares = new ArrayList<RegistroLugar>()
     }
 
     new(int id){
-    	this.id = id
+        this.id = id
+        registrosDeLugares = new ArrayList<RegistroLugar>()
+    }
+
+    def obtenerOcupante(Lugar unLugar){
+        registrosDeLugares.findFirst[ it.lugar == unLugar].ocupante
+    }
+
+    def setDetective(Detective unDetective){
+        detective = unDetective
+        unDetective.setCaso(this)
     }
 
     def Lugar BuscarLugar(String nombreLugar){
@@ -54,4 +72,59 @@ class Caso {
     def detectiveEmiteOrdenContra(Villano unVillano){
         detective.emitirOrden(unVillano)
     }
+
+    /////////////////////////////////////////////////////////////////////////
+
+    def registrarPais(Pais paisActual, Pais paisAnterior, Pais paisPosterior){
+        registrarInformantesALugares(paisActual,paisPosterior)
+        registrarConexiones(paisActual,paisAnterior)
+    }
+
+    private def registrarInformantesALugares(Pais paisActual, Pais paisPosterior){
+        for(Lugar lugar: paisActual.lugaresDeInteres)
+            registrosDeLugares.add(new RegistroLugar(lugar,crearInformante(paisPosterior,lugar)))
+    }
+
+    private def crearInformante(Pais paisPosterior,Lugar lugar){
+        new Informante(lugar.pedirPistas(responsable,paisPosterior))
+    }
+
+    private def registrarConexiones(Pais paisActual, Pais paisAnterior){
+
+        for(Pais p: paisActual.conexiones){
+            if(p != paisAnterior && (!planDeEscape.contains(p) && p != paisActual))
+            { registrarCuidadoresALugares(p) }
+        }
+    }
+
+    private def registrarCuidadoresALugares(Pais conexionActual){
+        for(Lugar lugar: conexionActual.lugaresDeInteres)
+            registrosDeLugares.add(new RegistroLugar(lugar,new Cuidador()))
+    }
+
+    /////////////////////////////////////////////////////////////////////////
+
+    def registrarUltimoPais(){
+        val ultimoPais = planDeEscape.last
+        registrarOcupantesALugares(ultimoPais)
+
+        for(Pais p: ultimoPais.conexiones){
+            if(!planDeEscape.contains(p) && p != ultimoPais)
+            { registrarCuidadoresALugares(p) }
+        }
+    }
+
+    private def registrarOcupantesALugares(Pais ultimoPais){
+        var lugarVillano = ultimoPais.lugaresDeInteres.get(new Random().nextInt(ultimoPais.lugaresDeInteres.size))
+        registrosDeLugares.add(new RegistroLugar(lugarVillano,responsable))
+
+        for(Lugar lugar: ultimoPais.lugaresDeInteres) {
+            if(lugar != lugarVillano) {
+                var List<String> pistaInf = Arrays.asList("CUIDADO DETECTIVE!! ha estado a punto de caer en una trampa..")
+                registrosDeLugares.add(new RegistroLugar(lugar, new Informante(pistaInf)))
+            }
+        }
+    }
+
+    /////////////////////////////////////////////////////////////////////////
 }

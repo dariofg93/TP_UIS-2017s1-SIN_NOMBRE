@@ -7,6 +7,7 @@ import java.util.Arrays
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
+import orden.Orden
 
 @Observable
 @Accessors
@@ -31,20 +32,20 @@ class Villano extends Ocupante{
         hobbies = new ArrayList<String>()
     }
 
-    override actuar() {
-        throw new VillanoEscapaException()
+    override estuvoVillano() {
+        true
+    }
+
+    override actuar(Orden orden){
+        switch(orden.fueEmitida()){
+            case 1: return "ALTO!!! Detengase: " + orden.nombre
+            case 0: return "El villano ha escapado"
+        }
     }
 
     def sexos() {
         var SexosPosibles[] sexosP = SexosPosibles.values;
         return Arrays.asList(sexosP);
-    }
-
-    def clonar(){
-        var unasSenias = new ArrayList<String>() => [ addAll(seniasParticulares) ]
-        var unosHobbies = new ArrayList<String>() => [ addAll(hobbies) ]
-
-        return new Villano (nombre,id,sexo,unasSenias,unosHobbies)
     }
 
     def agregarSenia(String senia) {
