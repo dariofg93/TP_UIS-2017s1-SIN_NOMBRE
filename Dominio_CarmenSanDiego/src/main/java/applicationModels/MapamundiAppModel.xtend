@@ -4,7 +4,7 @@ import dummies.PaisesRepositorio
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
-import pais.Pais
+import model.pais.Pais
 import org.apache.commons.lang.StringUtils
 import org.uqbar.commons.model.UserException
 

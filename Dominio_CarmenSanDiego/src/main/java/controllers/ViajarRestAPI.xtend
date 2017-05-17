@@ -3,9 +3,8 @@ package controllers
 import org.uqbar.xtrest.api.annotation.Controller
 import org.uqbar.xtrest.json.JSONUtils
 import org.uqbar.xtrest.api.annotation.Post
-import org.uqbar.xtrest.api.annotation.Body
-import caso.Caso
-import pais.Pais
+import model.caso.Caso
+import model.pais.Pais
 import dummies.CasosRespositorio
 import org.uqbar.xtrest.http.ContentType
 

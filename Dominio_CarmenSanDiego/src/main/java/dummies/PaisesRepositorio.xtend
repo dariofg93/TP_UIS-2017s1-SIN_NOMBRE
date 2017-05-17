@@ -3,12 +3,8 @@ package dummies
 import java.util.ArrayList
 import java.util.Arrays
 import java.util.List
-import lugar.Banco
-import lugar.Biblioteca
-import lugar.Club
-import pais.Pais
-import lugar.Lugar
-import lugar.Embajada
+import model.lugar.*
+import model.pais.Pais
 
 class PaisesRepositorio {
 

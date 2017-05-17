@@ -1,6 +1,6 @@
 package applicationModels
 
-import detective.Detective
+import model.detective.Detective
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 

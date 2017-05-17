@@ -1,13 +1,13 @@
 package controllers
 
-import caso.Caso
+import model.caso.Caso
 import dummies.CasosRespositorio
-import lugar.Lugar
+import model.lugar.Lugar
 import org.uqbar.xtrest.api.annotation.Controller
 import org.uqbar.xtrest.api.annotation.Get
 import org.uqbar.xtrest.http.ContentType
 import org.uqbar.xtrest.json.JSONUtils
-import pais.Pais
+import model.pais.Pais
 import org.uqbar.commons.model.UserException
 
 @Controller

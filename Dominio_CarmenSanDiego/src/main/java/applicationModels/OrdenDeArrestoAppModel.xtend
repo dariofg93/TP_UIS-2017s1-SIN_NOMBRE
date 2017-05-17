@@ -1,8 +1,8 @@
 package applicationModels
 
-import detective.Detective
+import model.detective.Detective
 import java.util.List
-import ocupante.Villano
+import model.ocupante.Villano
 import dummies.VillanosRepositorio
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable

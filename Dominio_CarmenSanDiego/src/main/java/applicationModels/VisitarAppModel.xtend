@@ -2,10 +2,10 @@ package applicationModels
 
 import org.uqbar.commons.utils.Observable
 import org.eclipse.xtend.lib.annotations.Accessors
-import detective.Detective
-import lugar.Lugar
-import excepciones.NoEstaElVillanoException
-import ocupante.Villano
+import model.detective.Detective
+import model.lugar.Lugar
+import model.excepciones.NoEstaElVillanoException
+import model.ocupante.Villano
 
 @Observable
 @Accessors

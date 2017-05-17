@@ -4,7 +4,7 @@ import applicationModels.SexosPosibles
 import java.util.ArrayList
 import java.util.Arrays
 import java.util.List
-import ocupante.Villano
+import model.ocupante.Villano
 
 class VillanosRepositorio {
 

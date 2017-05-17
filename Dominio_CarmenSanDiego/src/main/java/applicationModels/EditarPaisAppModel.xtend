@@ -1,7 +1,7 @@
 package applicationModels
 
-import pais.Pais
-import lugar.Lugar
+import model.pais.Pais
+import model.lugar.Lugar
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 import java.util.List

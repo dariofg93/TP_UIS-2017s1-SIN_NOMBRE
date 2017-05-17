@@ -5,8 +5,8 @@ import org.uqbar.xtrest.json.JSONUtils
 import org.uqbar.xtrest.http.ContentType
 import org.uqbar.xtrest.api.annotation.Post
 import org.uqbar.commons.model.UserException
-import caso.Caso
-import ocupante.Villano
+import model.caso.Caso
+import model.ocupante.Villano
 import dummies.CasosRespositorio
 import dummies.BaseCentralRepositorio
 import dtos.OrdenEmitidaDTO

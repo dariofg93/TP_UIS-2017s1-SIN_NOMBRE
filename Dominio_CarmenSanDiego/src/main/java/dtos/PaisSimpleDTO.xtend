@@ -1,6 +1,6 @@
 package dtos
 
-import pais.Pais
+import model.pais.Pais
 import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors

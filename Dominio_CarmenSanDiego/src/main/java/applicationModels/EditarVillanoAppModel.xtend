@@ -1,6 +1,6 @@
 package applicationModels
 
-import ocupante.Villano
+import model.ocupante.Villano
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 

@@ -1,10 +1,10 @@
 package dummies
 
-import caso.Caso
+import model.caso.Caso
 import java.util.ArrayList
 import java.util.stream.Collectors
-import pais.Pais
-import lugar.Lugar
+import model.pais.Pais
+import model.lugar.Lugar
 import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
@@ -42,6 +42,9 @@ class CasosRespositorio {
 
         println(getCasos.get(0).getPlanDeEscape.stream.map(p | paisNombre(p)).collect(Collectors.toList))
 
+        println(" ")
+
+        println(PaisesRepositorio.getMapamundi().get(0).caracteristicas)
     }
 
     def static String paisNombre(Pais pais){

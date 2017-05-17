@@ -2,7 +2,7 @@ package applicationModels
 
 import java.util.Arrays
 import java.util.List
-import ocupante.Villano
+import model.ocupante.Villano
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 import dummies.VillanosRepositorio

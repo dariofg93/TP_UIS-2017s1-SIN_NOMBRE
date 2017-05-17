@@ -9,7 +9,7 @@ import org.uqbar.xtrest.api.annotation.Get
 import org.uqbar.xtrest.api.annotation.Post
 import org.uqbar.xtrest.http.ContentType
 import org.uqbar.xtrest.json.JSONUtils
-import pais.Pais
+import model.pais.Pais
 import java.util.List
 import dummies.BaseCentralRepositorio
 import applicationModels.MapamundiAppModel

@@ -1,10 +1,10 @@
 package dummies
 
-import baseCentralAcme.BaseCentralAcme
-import caso.Caso
+import model.baseCentralAcme.BaseCentralAcme
+import model.caso.Caso
 import java.util.List
-import ocupante.Villano
-import pais.Pais
+import model.ocupante.Villano
+import model.pais.Pais
 import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors

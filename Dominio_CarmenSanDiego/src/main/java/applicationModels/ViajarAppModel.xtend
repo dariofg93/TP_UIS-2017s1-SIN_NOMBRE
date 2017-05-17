@@ -1,7 +1,7 @@
 package applicationModels
 
-import detective.Detective
-import pais.Pais
+import model.detective.Detective
+import model.pais.Pais
 import org.uqbar.commons.utils.Observable
 import org.eclipse.xtend.lib.annotations.Accessors
 

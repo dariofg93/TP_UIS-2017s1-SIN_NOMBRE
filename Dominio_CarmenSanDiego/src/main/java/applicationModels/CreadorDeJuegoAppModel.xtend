@@ -1,9 +1,9 @@
 package applicationModels
 
 import java.util.List
-import pais.Pais
+import model.pais.Pais
 import java.util.ArrayList
-import caso.Caso
+import model.caso.Caso
 import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors

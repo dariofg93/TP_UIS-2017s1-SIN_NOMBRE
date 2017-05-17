@@ -3,7 +3,7 @@ package controllers
 import org.uqbar.xtrest.api.annotation.Controller
 import org.uqbar.xtrest.api.annotation.Get
 import org.uqbar.xtrest.json.JSONUtils
-import ocupante.Villano
+import model.ocupante.Villano
 import org.uqbar.xtrest.http.ContentType
 import org.uqbar.xtrest.api.annotation.Post
 import org.uqbar.xtrest.api.annotation.Body
@@ -15,20 +15,7 @@ import org.uqbar.xtrest.api.annotation.Delete
 class VillanosRestAPI {
 	val expedientesModel = new ExpedientesAppModel()
 	extension JSONUtils = new JSONUtils
-	
-	 /* @Get("/villanos")
-	def getVillanos() {
-		response.contentType = ContentType.APPLICATION_JSON
-		val List<VillanoViewModel> villanosViewModel = new ArrayList<VillanoViewModel>()
-		
-		for(Villano villano : villanosRepo) {
-			//Por cada villano lleno el nuevo model reducido y lo agrego a la lista
-			val villanoViewModel = new VillanoViewModel(villano.nombre, villano.id)
-			villanosViewModel.add(villanoViewModel)
-		}
-		ok(villanosViewModel.toJson)
-	} */
-	
+
 	@Get("/villanos")
 	def getVillanos() {
 		response.contentType = ContentType.APPLICATION_JSON
