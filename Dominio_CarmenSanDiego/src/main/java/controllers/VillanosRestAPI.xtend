@@ -10,6 +10,9 @@ import org.uqbar.xtrest.api.annotation.Body
 import applicationModels.ExpedientesAppModel
 import org.uqbar.xtrest.api.annotation.Put
 import org.uqbar.xtrest.api.annotation.Delete
+import dtos.VillanoDTO
+import java.util.stream.Collectors
+import java.util.List
 
 @Controller
 class VillanosRestAPI {
@@ -19,8 +22,9 @@ class VillanosRestAPI {
 	@Get("/villanos")
 	def getVillanos() {
 		response.contentType = ContentType.APPLICATION_JSON
-		
-		ok(expedientesModel.villanos.toJson)
+
+		var List<VillanoDTO> villanosSimple = expedientesModel.villanos.stream.map(v | new VillanoDTO(v)).collect(Collectors.toList)
+		ok(villanosSimple.toJson)
 	}
 	
 	@Get("/villanos/:id")

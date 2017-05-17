@@ -51,22 +51,12 @@ class Caso {
         unDetective.setCaso(this)
     }
 
-    def Lugar BuscarLugar(String nombreLugar){
-        this.todosLosLugares.findFirst[ it.nombre == nombreLugar ]
+    def BuscarRegistroLugar(String nombreLugarBuscado){
+        this.registrosDeLugares.findFirst[ it.nombreLugar == nombreLugarBuscado ]
     }
     
     def Pais buscarConexion(int idPais) {
     	this.detective.lugarActual.buscarConexion(idPais)
-    }
-
-    def Set<Lugar> todosLosLugares(){
-        var todosLosLugaresEncontrados = new HashSet<Lugar>()
-        todosLosLugaresEncontrados.addAll(paisDelRobo.todosLosLugares)
-
-        for(Pais p: planDeEscape)
-            todosLosLugaresEncontrados.addAll(p.todosLosLugares)
-
-        todosLosLugaresEncontrados
     }
 
     def detectiveEmiteOrdenContra(Villano unVillano){

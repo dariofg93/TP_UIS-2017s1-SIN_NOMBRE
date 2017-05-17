@@ -14,4 +14,8 @@ class RegistroLugar {
         lugar = unLugar
         ocupante = unOcupante
     }
+
+    def nombreLugar(){
+        lugar.nombre
+    }
 }

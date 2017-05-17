@@ -9,6 +9,7 @@ import org.uqbar.xtrest.http.ContentType
 import org.uqbar.xtrest.json.JSONUtils
 import model.pais.Pais
 import org.uqbar.commons.model.UserException
+import model.registroLugar.RegistroLugar
 
 @Controller
 class PistaDelLugarRestAPI {
@@ -32,16 +33,15 @@ class PistaDelLugarRestAPI {
 		}
 	}
 	
-	@Get("/pistaDelLugar")
-	def getPistaDelLugar(String idCaso, String nombreLugar){
+	@Get("/pistaDelLugar/:idCaso/:nombreLugar")
+	def getPistaDelLugar(){
 		response.contentType = ContentType.APPLICATION_JSON
 		
 		try {
 			val Caso caso = CasosRespositorio.buscarCaso(Integer.valueOf(idCaso))
-			val Pais pais = caso.detective.lugarActual
-			val Lugar lugar = pais.buscarLugar(nombreLugar)
-		
-			ok (lugar.pistas.toJson)
+			val RegistroLugar registroLugar = caso.BuscarRegistroLugar(nombreLugar)
+
+			ok(registroLugar.ocupante.toJson)
 		}
 		catch(Exception e){
 			badRequest("El nombre del lugar no es valido o el id del caso es incorrecto")

@@ -14,8 +14,8 @@ import java.util.List
 import dummies.BaseCentralRepositorio
 import applicationModels.MapamundiAppModel
 import org.uqbar.xtrest.api.annotation.Put
-import dtos.PaisSimpleDTO
 import java.util.stream.Collectors
+import dtos.PaisSimpleDTO
 
 @Controller
 class PaisesRestAPI{
@@ -27,10 +27,10 @@ class PaisesRestAPI{
 
 
     //Devuelve todos los paises registrados.
-    @Get("/pais")
+    @Get("/paises")
     def getPaises() {
         response.contentType = ContentType.APPLICATION_JSON
-        var List<PaisSimpleDTO> paisesSimples = mapamundi.paises.stream.map(p | new PaisDTO(p)).collect(Collectors.toList)
+        var List<PaisSimpleDTO> paisesSimples = mapamundi.paises.stream.map(p | new PaisSimpleDTO(p)).collect(Collectors.toList)
         ok(paisesSimples.toJson)
     }
 

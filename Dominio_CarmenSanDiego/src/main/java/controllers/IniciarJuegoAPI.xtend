@@ -4,7 +4,7 @@ import org.uqbar.xtrest.api.annotation.Controller
 import org.uqbar.xtrest.api.annotation.Post
 import org.uqbar.xtrest.json.JSONUtils
 import dummies.CasosRespositorio
-import applicationModels.CreadorDeJuegoAppModel
+import dtos.CasoDTO
 
 @Controller
 class IniciarJuegoAPI {
@@ -12,7 +12,7 @@ class IniciarJuegoAPI {
 
     @Post("/iniciarJuego")
     def iniciarJuego() {
-        var CreadorDeJuegoAppModel caso = new CreadorDeJuegoAppModel(CasosRespositorio.casos.get(0))
+        var CasoDTO caso = new CasoDTO(CasosRespositorio.casos.get(0))
         ok(caso.toJson)
     }
 }
