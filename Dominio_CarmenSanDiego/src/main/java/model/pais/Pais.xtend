@@ -5,9 +5,9 @@ import java.util.List
 import model.lugar.Lugar
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
-import java.util.Set
-import java.util.HashSet
 import org.apache.commons.lang.StringUtils
+import java.util.stream.Collectors
+import java.util.Comparator
 
 @Accessors
 @Observable
@@ -50,8 +50,19 @@ class Pais {
         found
     }
 
+    def cantDeConexiones(){
+        conexiones.size
+    }
+
     def findConexion(List<Pais> mapamundi){
         var Pais found
+
+        conexiones.stream.filter(p | mapamundi.contains(p))
+        .max(Comparator.comparingDouble(Pais::cantDeConexiones));
+                         //.sorted(Pais p1 p2 | p1.cantDeConexiones > p2.cantDeConexiones)
+                         //.reversed())
+                         //.collect(Collectors.toList)
+
         for(Pais pais: conexiones) {
             if(mapamundi.contains(pais))
                 { found = pais }
@@ -68,18 +79,13 @@ class Pais {
         cloneCaracterist
     }
 
-    ///////////
-    def Set<Lugar> todosLosLugares(){
-        var todosLosLugaresEncontrados = new HashSet<Lugar>()
-        todosLosLugaresEncontrados.addAll(lugaresDeInteres)
-
-        for(Pais p: conexiones){
-            todosLosLugaresEncontrados.addAll(p.lugaresDeInteres)
-        }
-
-        todosLosLugaresEncontrados
+    def Pais buscarConexion(int idPais) {
+        conexiones.findFirst[ it.id == idPais]
     }
-    ///////////////
+
+    def Lugar buscarLugar(String nombreLugar){
+        lugaresDeInteres.findFirst [ it.nombre == nombreLugar]
+    }
 
 	//Caracteristicas
     def eliminarCaracteristica(String caracteristica){
@@ -96,19 +102,14 @@ class Pais {
     def agregarConexion(Pais conexion){
         conexiones.add(conexion)
     }
-    def Pais buscarConexion(int idPais) {
-    	conexiones.findFirst[ it.id == idPais]
-    }
-    
+
+
     //Lugares
     def eliminarLugar(Lugar lugar){
         lugaresDeInteres.remove(lugar)
     }
     def agregarLugar(Lugar lugar){
         lugaresDeInteres.add(lugar)
-    }
-    def Lugar buscarLugar(String nombreLugar){
-    	lugaresDeInteres.findFirst [ it.nombre == nombreLugar]
     }
 
     //BODY servicios

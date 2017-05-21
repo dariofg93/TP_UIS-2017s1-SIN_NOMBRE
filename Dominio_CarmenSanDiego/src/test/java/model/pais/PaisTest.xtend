@@ -10,6 +10,8 @@ import org.junit.Test
 
 import static org.mockito.Mockito.*
 import org.junit.Assert
+import java.util.List
+import java.util.ArrayList
 
 class PaisTest {
 
@@ -29,46 +31,29 @@ class PaisTest {
     }
 /*
     @Test
-    def void asignarPistasALugares() {
-        var paisActual = mock(Pais)
-        var alCapone = mock(Villano)
-        argentina.asignarPistasALugares(alCapone,paisActual)
-
-        verify(bancoGalicia).pedirPistas(alCapone,paisActual)
-        verify(bibliotecaNacional).pedirPistas(alCapone,paisActual)
-        verify(riverPlate).pedirPistas(alCapone,paisActual)
-    }
-
-    @Test
-    def void asignarOcupantesALugares() {
-        var paisAnterior = brasil
-        argentina.asignarOcupantesALugares(paisAnterior)
-    }
-
-    @Test
-    def void asignarUltimasPistas() {
-        argentina.asignarUltimasPistas()
-
-        verify(riverPlate).setPistas(Arrays.asList("CUIDADO DETECTIVE!! ha estado a punto de caer en una trampa.."))
-        verify(bancoGalicia).setPistas(Arrays.asList("CUIDADO DETECTIVE!! ha estado a punto de caer en una trampa.."))
-        verify(bibliotecaNacional).setPistas(Arrays.asList("CUIDADO DETECTIVE!! ha estado a punto de caer en una trampa.."))
-    }
-
-    @Test
-    def void asignarVillano() {
-        var alCapone = mock(Villano)
-        argentina.setLugaresDeInteres(Arrays.asList(riverPlate))
-
-        argentina.asignarVillano(alCapone)
-
-        verify(riverPlate).setOcupante(alCapone)
-    }
-
-    @Test
     def void clonarTest() {
         var Pais unPais = argentina.clonar
 
+        //verify(riverPlate).setOcupante(alCapone)
         //Assert.assertTrue(unPais.instanceof(Pais))
     }
     */
+
+    @Test
+    def void containsAnyTest() {
+        var List<Pais> mapamundi = new ArrayList<Pais>()
+        Assert.assertFalse(argentina.containsAny(mapamundi))
+
+        mapamundi.add(brasil)
+        Assert.assertTrue(argentina.containsAny(mapamundi))
+    }
+/*
+    @Test
+    def void findConexionTest() {
+        var List<Pais> mapamundi = new ArrayList<Pais>()
+        mapamundi.add(brasil)
+        Assert.assertFalse(argentina.containsAny(mapamundi))
+
+        Assert.assertTrue(argentina.containsAny(mapamundi))
+    }*/
 }
