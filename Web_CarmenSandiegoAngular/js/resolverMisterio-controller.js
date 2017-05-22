@@ -15,7 +15,7 @@ angular.module("CarmenSandiego")
             ],
             "conexiones": [
                 {
-                    "nombre": "Egipto",
+                    "nombre": "Arabia Saudita",
                     "id": 7
                 },
                 {
@@ -25,10 +25,14 @@ angular.module("CarmenSandiego")
                 {
                     "nombre": "Japón",
                     "id": 9
+                },
+                {
+                    "nombre": "Rusia",
+                    "id": 2
                 }
             ]
         },
-        "paisesVisitados": ["Egipto"],
-        "paisesFallidos": []
+        "paisesVisitados": ["Egipto", "Argentina"],
+        "paisesFallidos": ["Uruguay", "Peru"]
     }
 });

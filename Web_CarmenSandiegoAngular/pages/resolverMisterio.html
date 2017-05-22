@@ -1,5 +1,59 @@
 <div>
     <h2>{{ resolverMisterioCtrl.title }}</h2>
 
-    <h5 style="font-style: italic">Estas en: {{ resolverMisterioCtrl.caso.pais.nombre }} </h5>
+    <h5 style="font-style: italic">Estas en: {{ resolverMisterioCtrl.caso.pais.nombre }} </h5><br>
+
+    <span> Viajar a: {{ resolverMisterioCtrl.paisSeleccionado }} </span>
+
+    <div class="row"> 
+        <div class="col s6"> 
+            <table class="bordered highlight">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Posibilidades</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="conexion in resolverMisterioCtrl.caso.pais.conexiones">
+                    <td><input type="radio" id="conexion.id"/> <label for="conexion.id"></label></td>
+                    <td> {{ conexion.nombre }} </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col s3"> 
+            <table class="bordered highlight">
+                <thead>
+                <tr>
+                    <th>Paises Visitados</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="paisVisitado in resolverMisterioCtrl.caso.paisesVisitados">
+                    <td> {{ paisVisitado }} </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col s3">
+            <table class="bordered highlight">
+                <thead>
+                <tr>
+                    <th>Paises Fallidos</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="paisFallido in resolverMisterioCtrl.caso.paisesFallidos">
+                    <td> {{ paisFallido }} </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </div>
