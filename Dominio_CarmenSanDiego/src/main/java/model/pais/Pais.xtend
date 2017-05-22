@@ -7,7 +7,6 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 import org.apache.commons.lang.StringUtils
 import java.util.stream.Collectors
-import java.util.Comparator
 
 @Accessors
 @Observable
@@ -50,23 +49,21 @@ class Pais {
         found
     }
 
-    def cantDeConexiones(){
-        conexiones.size
-    }
-
     def findConexion(List<Pais> mapamundi){
         var Pais found
 
-        conexiones.stream.filter(p | mapamundi.contains(p))
-        .max(Comparator.comparingDouble(Pais::cantDeConexiones));
-                         //.sorted(Pais p1 p2 | p1.cantDeConexiones > p2.cantDeConexiones)
-                         //.reversed())
-                         //.collect(Collectors.toList)
+        var encontrados = conexiones.stream.filter(p | mapamundi.contains(p))
+                            .collect(Collectors.toList);
 
-        for(Pais pais: conexiones) {
-            if(mapamundi.contains(pais))
+        if(encontrados.size > 0){
+            found = encontrados.get(0)
+
+            for(Pais pais: encontrados) {
+                if(pais.cantDeConexiones > found.cantDeConexiones)
                 { found = pais }
+            }
         }
+
         found
     }
 
@@ -80,11 +77,15 @@ class Pais {
     }
 
     def Pais buscarConexion(int idPais) {
-        conexiones.findFirst[ it.id == idPais]
+        conexiones.findFirst[ it.getId == idPais]
     }
 
     def Lugar buscarLugar(String nombreLugar){
         lugaresDeInteres.findFirst [ it.nombre == nombreLugar]
+    }
+
+    def cantDeConexiones(){
+        conexiones.size
     }
 
 	//Caracteristicas
@@ -102,7 +103,6 @@ class Pais {
     def agregarConexion(Pais conexion){
         conexiones.add(conexion)
     }
-
 
     //Lugares
     def eliminarLugar(Lugar lugar){

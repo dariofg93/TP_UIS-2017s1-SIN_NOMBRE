@@ -4,7 +4,6 @@ import java.util.Arrays
 import model.lugar.Banco
 import model.lugar.Biblioteca
 import model.lugar.Club
-import model.ocupante.Villano
 import org.junit.Before
 import org.junit.Test
 
@@ -29,15 +28,6 @@ class PaisTest {
         Arrays.asList(brasil,uruguay,paraguay),
         Arrays.asList(bancoGalicia,bibliotecaNacional,riverPlate))
     }
-/*
-    @Test
-    def void clonarTest() {
-        var Pais unPais = argentina.clonar
-
-        //verify(riverPlate).setOcupante(alCapone)
-        //Assert.assertTrue(unPais.instanceof(Pais))
-    }
-    */
 
     @Test
     def void containsAnyTest() {
@@ -47,13 +37,40 @@ class PaisTest {
         mapamundi.add(brasil)
         Assert.assertTrue(argentina.containsAny(mapamundi))
     }
-/*
+
     @Test
     def void findConexionTest() {
-        var List<Pais> mapamundi = new ArrayList<Pais>()
-        mapamundi.add(brasil)
-        Assert.assertFalse(argentina.containsAny(mapamundi))
+        when(brasil.cantDeConexiones).thenReturn(1)
+        when(uruguay.cantDeConexiones).thenReturn(2)
 
-        Assert.assertTrue(argentina.containsAny(mapamundi))
-    }*/
+        var List<Pais> mapamundi = new ArrayList<Pais>()
+        Assert.assertEquals(argentina.findConexion(mapamundi),null)
+
+        mapamundi.add(brasil)
+        mapamundi.add(uruguay)
+        Assert.assertEquals(argentina.findConexion(mapamundi),uruguay)
+    }
+
+    @Test
+    def void pistasTest() {
+        Assert.assertEquals(argentina.pistas().size,3)
+    }
+
+    @Test
+    def void buscarConexionTest() {
+        when(brasil.getId).thenReturn(1)
+        when(uruguay.getId).thenReturn(2)
+        when(paraguay.getId).thenReturn(3)
+
+        Assert.assertEquals(argentina.buscarConexion(2),uruguay)
+    }
+
+    @Test
+    def void buscarLugarTest() {
+        when(bancoGalicia.nombre).thenReturn("Banco Galicia")
+        when(bibliotecaNacional.nombre).thenReturn("Biblioteca Nacional")
+        when(riverPlate.nombre).thenReturn("River Plate")
+
+        Assert.assertEquals(argentina.buscarLugar("River Plate"),riverPlate)
+    }
 }
