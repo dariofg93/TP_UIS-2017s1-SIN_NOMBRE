@@ -1,30 +1,64 @@
 <div>
     <h2>{{ resolverMisterioCtrl.title }}</h2>
 
-    <h5 style="font-style: italic">Estas en: {{ resolverMisterioCtrl.caso.pais.nombre }} </h5><br>
+    <h5 style="font-style: italic">Estas en: {{ resolverMisterioCtrl.caso.pais.nombre }} </h5></br>
 
-    <span> Viajar a: {{ resolverMisterioCtrl.paisSeleccionado }} </span>
+    <div class="row">
+        <!-- Card de viajar -->
+        <div class="col s6">
+        <div class="card horizontal hoverable">
+            <div class="card-stacked">
+                <div class="card-content">
+                    <h5>Viajar a: {{resolverMisterioCtrl.paisSeleccionado.nombre}}</h5>
+                </div>
+                <div class="card-action">
+                    <a class="waves-effect waves-light btn">Viajar</a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
 
     <div class="row"> 
-        <div class="col s6"> 
+        <div class="col s6">
+            <!--Tabla de paises posibles para viajar--> 
             <table class="bordered highlight">
                 <thead>
                 <tr>
-                    <th></th>
                     <th>Posibilidades</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="conexion in resolverMisterioCtrl.caso.pais.conexiones">
-                    <td><input type="radio" id="conexion.id"/> <label for="conexion.id"></label></td>
-                    <td> {{ conexion.nombre }} </td>
+                    <td>
+                        <input name="checkboxPais" class="with-gap" type="radio" ng-model="resolverMisterioCtrl.paisSeleccionado" ng-value="conexion" id="{{conexion.id}}"/> 
+                        <label for="{{conexion.id}}">{{conexion.nombre}}</label>
+                    </td>
                 </tr>
                 </tbody>
             </table>
         </div>
+
+        <!-- Lista de lugares -->
+        <div class="col s6">
+        <div class="card horizontal hoverable">
+            <div class="card-stacked">
+                <div class="card-content">
+                    <h4 class="center">Investigar</h4>
+                    <ul class="center">
+                        <li ng-repeat="lugar in resolverMisterioCtrl.caso.pais.lugares">
+                            <a ng-click="resolverMisterioCtrl.getPista(lugar)" class="waves-effect btn-flat"> {{ lugar }}</a>
+                            <div class="divider"></div><br>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
     </div>
     
     <div class="row">
+        <!--Paises visitados y fallidos-->
         <div class="col s3"> 
             <table class="bordered highlight">
                 <thead>
@@ -53,6 +87,36 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
+
+        <!-- Card de viajar -->
+        <div class="col s6">
+        <div class="card horizontal hoverable">
+            <div class="card-stacked">
+                <div class="card-content">                    
+                    <span class="card-title">Pedir Orden contra:</span><br>
+                    <div class="input-field">
+                        <select ng-model="resolverMisterioCtrl.villanoSeleccionado" ng-options="villano.id as villano.nombre for villano in resolverMisterioCtrl.villanos"></select>
+                        <label>Seleccionar villano</label>
+                    </div>
+                    {{resolverMisterioCtrl.villanoSeleccionado}}
+                </div>
+                <div class="card-action">
+                    <a ng-click="resolverMisterioCtrl.emitirOrdenArresto()" class="waves-effect waves-light btn">Pedir Orden</a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="modalLugar" class="modal">
+        <div class="modal-content">
+        <h4>Visitando: {{ resolverMisterioCtrl.lugarSeleccionado }}</h4>
+        <p>{{ resolverMisterioCtrl.pista }}</p>
+        </div>
+        <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect btn-flat">Aceptar</a>
         </div>
     </div>
 
