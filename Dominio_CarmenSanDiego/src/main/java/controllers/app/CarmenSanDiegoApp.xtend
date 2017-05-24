@@ -7,10 +7,11 @@ import controllers.ViajarRestAPI
 import controllers.IniciarJuegoAPI
 import controllers.EmitirOrdenParaRestAPI
 import controllers.PistaDelLugarRestAPI
+import controllers.CarmenSanDiegoRestAPI
 
 class CarmenSanDiegoApp{
 
     def static void main(String[] args) {
-        XTRest.startInstance(new IniciarJuegoAPI(), 9000)
+        XTRest.startInstance(new CarmenSanDiegoRestAPI(), 9000)
     }
 }
