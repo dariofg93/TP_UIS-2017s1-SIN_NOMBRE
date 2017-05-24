@@ -1,0 +1,30 @@
+<div>
+    <h2>{{ mapamundiCtrl.title }}</h2><br>
+
+    <div class="row">
+        <div class="input-field col-md-5"> 
+            <input type="text" class="form-control" ng-model="buscador" placeholder="Buscar">
+        </div>
+    </div><br>
+        
+    <div class="row">
+        <div class="col-md-10">
+            <table class="table table-bordered table-hover text-center">
+                <thead>
+                <tr>
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center">Editar País</th>
+                    <th class="text-center">Eliminar País</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="pais in mapamundiCtrl.paises | filter: buscador">
+                    <td>{{ pais.nombre }}</td>
+                    <td><span ng-click="mapamundiCtrl.editarPais(pais.id)" class="clickeable"><i class="material-icons">edit</i></span></td>
+                    <td><span ng-click="mapamundiCtrl.borrarPais($index)" class="clickeable"><i class="material-icons">clear</i></span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

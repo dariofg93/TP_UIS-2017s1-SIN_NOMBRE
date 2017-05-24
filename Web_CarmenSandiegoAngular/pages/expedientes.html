@@ -1,0 +1,30 @@
+<div>
+    <h2>{{ expedientesCtrl.title }}</h2><br>
+
+    <div class="row">
+        <div class="input-field col-md-5"> 
+            <input type="text" class="form-control" ng-model="buscador" placeholder="Buscar">
+        </div>
+    </div><br>
+
+    <div class="row">
+        <div class="col-md-10">
+            <table class="table table-bordered table-hover text-center">
+                <thead>
+                <tr>
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center">Editar Villano</th>
+                    <th class="text-center">Eliminar Villano</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="villano in expedientesCtrl.villanos | filter: buscador">
+                    <td>{{ villano.nombre }}</td>
+                    <td><span ng-click="expedientesCtrl.editarVillano(villano.id)" class="clickeable"><i class="material-icons">edit</i></span></td>
+                    <td><span ng-click="expedientesCtrl.borrarVillano($index)" class="clickeable"><i class="material-icons">clear</i></span></td>
+                </tr>
+                </tbody> 
+            </table>
+        </div>
+    </div>
+</div>
