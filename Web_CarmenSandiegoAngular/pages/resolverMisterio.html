@@ -1,15 +1,15 @@
 <div>
-    <h1>{{ resolverMisterioCtrl.title }}</h1><br>
+    <h1>{{ title }}</h1><br>
 
     <div class="row">
         <div class="col-md-6">
             <!-- Panel de viajar -->
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4>Viajar a: {{resolverMisterioCtrl.paisSeleccionado.nombre}}</h4>
+                    <h4>Viajar a: {{ viewData.paisSeleccionado.nombre }}</h4>
                 </div>
                 <div class="panel-body">
-                    <a ng-click="resolverMisterioCtrl.viajar()" class="btn btn-default">Viajar</a>
+                    <a ng-click="viajar()" class="btn btn-default">Viajar</a>
                 </div>
             </div>
         </div>
@@ -17,7 +17,7 @@
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h2 style="font-style: italic">Estas en: {{ resolverMisterioCtrl.caso.pais.nombre }} </h2>
+                    <h2 style="font-style: italic">Estas en: {{ caso.pais.nombre }} </h2>
                 </div>
             </div>
         </div>
@@ -34,9 +34,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="conexion in resolverMisterioCtrl.caso.pais.conexiones">
+                <tr ng-repeat="conexion in caso.pais.conexiones">
                     <td class="text-center">
-                        <input name="checkboxPais" class="with-gap" type="radio" ng-model="resolverMisterioCtrl.paisSeleccionado" ng-value="conexion" id="{{conexion.id}}"/> 
+                        <input name="checkboxPais" type="radio" ng-model="viewData.paisSeleccionado" ng-value="conexion" id="{{conexion.id}}"/> 
                     </td>
                     <td> <label for="{{conexion.id}}">{{conexion.nombre}}</label> </td>
                 </tr>
@@ -51,8 +51,8 @@
                     <h4>Investigar</h4>
                 </div>
                 <div class="panel-body">
-                    <div ng-repeat="lugar in resolverMisterioCtrl.caso.pais.lugares">
-                        <a ng-click="resolverMisterioCtrl.getPista(lugar)" class="btn btn-default btn-block"> {{ lugar }}</a><br>
+                    <div ng-repeat="lugar in caso.pais.lugares">
+                        <a ng-click="getPista(lugar)" class="btn btn-default btn-block"> {{ lugar }}</a><br>
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@
     
     <div class="row">
         <!--Paises visitados y fallidos-->
-        <div class="col-md-3"> 
+        <div ng-if="caso.paisesVisitados.length > 0" class="col-md-3"> 
             <table class="table table-bordered table-hover">
                 <thead>
                 <tr>
@@ -69,7 +69,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="paisVisitado in resolverMisterioCtrl.caso.paisesVisitados">
+                <tr ng-repeat="paisVisitado in caso.paisesVisitados">
                     <td> {{ paisVisitado }} </td>
                 </tr>
                 </tbody>
@@ -77,32 +77,34 @@
         </div>
 
         <div class="col-md-3">
-            <table class="table table-bordered table-hover">
+            <table ng-if="caso.paisesFallidos.length > 0" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                     <th class="text-center">Paises Fallidos</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="paisFallido in resolverMisterioCtrl.caso.paisesFallidos">
+                <tr ng-repeat="paisFallido in caso.paisesFallidos">
                     <td> {{ paisFallido }} </td>
                 </tr>
                 </tbody>
             </table>
         </div>
-        
+    </div>
+
+    <div class="row">
         <div class="col-md-6">
-            <!-- Panel de Orden de arresto -->
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4>Pedir Orden contra: </h4>
-                </div>
-                <div class="panel-body">
-                    <select ng-model="resolverMisterioCtrl.villanoSeleccionado" ng-options="villano.id as villano.nombre for villano in resolverMisterioCtrl.villanos" value="resolverMisterioCtrl.villanoSeleccionado"></select><hr>
-                    <a ng-click="resolverMisterioCtrl.emitirOrdenArresto()" class="btn btn-default">Pedir Orden</a>
-                    {{resolverMisterioCtrl.villanoSeleccionado}}
-                </div>
+        <!-- Panel de Orden de arresto -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Pedir Orden contra: </h4>
             </div>
+            <div class="panel-body">
+                <select ng-model="villanoSeleccionado" ng-options="villano.id as villano.nombre for villano in villanos" value="villanoSeleccionado"></select><hr>
+                <a ng-click="emitirOrdenArresto()" class="btn btn-default">Pedir Orden</a>
+                {{villanoSeleccionado}}
+            </div>
+        </div>
         </div>
     </div>
 
@@ -113,10 +115,10 @@
         <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Visitando: {{ resolverMisterioCtrl.lugarSeleccionado }}</h4>
+            <h4 class="modal-title">Visitando: {{ lugarSeleccionado }}</h4>
         </div>
         <div class="modal-body">
-            <p>{{ resolverMisterioCtrl.pista }}</p>
+            <p>{{ pista }}</p>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

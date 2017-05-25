@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
+  <link href="css/spinner.css" rel="stylesheet">
 </head>
 <body ng-controller="MainController as mainCtrl">
   
@@ -26,7 +27,13 @@
 
 	<div class="container" ng-view>
 		<!-- Aca se muestra el html segun la vista elegida, por default resolver misterio -->
-	</div>
+	</div><br>
+  <div class="spinner oculto">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+</div>
+
 	
 	<!-- Referencia a js -->
 	<script src="node_modules/angular/angular.js"></script>

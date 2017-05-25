@@ -31,7 +31,7 @@ class VisitarAppModel {
     }
 
     def Villano villanoDelLugar(){
-        lugar.ocupante as Villano
+        //lugar.ocupante as Villano
     }
 
     def villanoDeOrden(){

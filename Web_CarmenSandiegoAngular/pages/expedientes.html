@@ -1,5 +1,5 @@
 <div>
-    <h2>{{ expedientesCtrl.title }}</h2><br>
+    <h2>{{ title }}</h2><br>
 
     <div class="row">
         <div class="input-field col-md-5"> 
@@ -18,10 +18,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="villano in expedientesCtrl.villanos | filter: buscador">
+                <tr ng-repeat="villano in villanos | filter: buscador">
                     <td>{{ villano.nombre }}</td>
-                    <td><span ng-click="expedientesCtrl.editarVillano(villano.id)" class="clickeable"><i class="material-icons">edit</i></span></td>
-                    <td><span ng-click="expedientesCtrl.borrarVillano($index)" class="clickeable"><i class="material-icons">clear</i></span></td>
+                    <td><span ng-click="editarVillano(villano.id)" class="clickeable"><i class="material-icons">edit</i></span></td>
+                    <td><span ng-click="borrarVillano($index)" class="clickeable"><i class="material-icons">clear</i></span></td>
                 </tr>
                 </tbody> 
             </table>

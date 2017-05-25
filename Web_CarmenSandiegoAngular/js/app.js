@@ -7,18 +7,15 @@ angular.module("CarmenSandiego", ["ngRoute"])
     })
     .when("/resolverMisterio", {
         templateUrl: "pages/resolverMisterio.html",
-        controller: "ResolverMisterioController",
-        controllerAs: "resolverMisterioCtrl"
+        controller: "ResolverMisterioController"
     })
     .when("/mapamundi", {
         templateUrl: "pages/mapamundi.html",
-        controller: "MapamundiController",
-        controllerAs: "mapamundiCtrl"
+        controller: "MapamundiController"
     })
     .when("/expedientes", {
         templateUrl: "pages/expedientes.html",
-        controller: "ExpedientesController",
-        controllerAs: "expedientesCtrl"
+        controller: "ExpedientesController"
     })
     .otherwise({
 		redirectTo: '/'

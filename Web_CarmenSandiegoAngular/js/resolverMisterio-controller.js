@@ -1,86 +1,44 @@
 angular.module("CarmenSandiego")
 
-.controller("ResolverMisterioController", function() {
-    this.title = "Resolver Misterio";
-    this.paisSeleccionado = "";
-    this.lugarSeleccionado;
-    this.pista; 
-    this.villanos = [
-        {
-            "nombre": "Carmen San Diego",
-            "id": 1
-        },
-        {
-            "nombre": "Higor Hiorovich",
-            "id": 2
-        },
-        {
-            "nombre": "Elvis Presley",
-            "id": 3
-        },
-        {
-            "nombre": "Al Capone",
-            "id": 4
-        },
-        {
-            "nombre": "Lucei Lou",
-            "id": 5
-        },
-        {
-            "nombre": "Betty Chiars",
-            "id": 6
-        }
-    ];
+.controller("ResolverMisterioController", function($scope, $http) {
+    //spinner y ocultar container
+    $(".container").hide();
+    $(".spinner").show();
 
-    this.villanoSeleccionado = this.villanos[0].id;
+    $scope.title = "Resolver Misterio";
+    $scope.viewData = {};
+    $scope.lugarSeleccionado;
+    $scope.pista; 
+    $scope.villanos;
+    $scope.villanoSeleccionado;
 
-    this.caso = {
-        "id": 1,
-        "pais": {
-            "id": 2,
-            "nombre": "Cuba",
-            "lugares": [
-                "Embajada",
-                "Banco",
-                "Club"
-            ],
-            "conexiones": [
-                {
-                    "nombre": "Arabia Saudita",
-                    "id": 7
-                },
-                {
-                    "nombre": "Israel",
-                    "id": 3
-                },
-                {
-                    "nombre": "Japón",
-                    "id": 9
-                },
-                {
-                    "nombre": "Rusia",
-                    "id": 2
-                }
-            ]
-        },
-        "paisesVisitados": ["Egipto", "Argentina"],
-        "paisesFallidos": ["Uruguay", "Peru", "China"]
-    }
+    //Post iniciar juego
+    $http.post("http://localhost:9000/iniciarJuego").then(function(response, status) {
+        $scope.caso = response.data;
+    });
 
-    this.getPista = function(lugar) {
+    //Get villanos
+    $http.get("http://localhost:9000/villanos").then(function(response, status) {
+        $scope.villanos = response;
+    });
+
+    $(".container").show();
+    $(".spinner").hide();
+
+    $scope.getPista = function(lugar) {
         //getPista
-        this.pista = "Pista de: " + lugar;
-        this.lugarSeleccionado = lugar;
+        $scope.pista = "Pista de: " + lugar;
+        $scope.lugarSeleccionado = lugar;
         $('#modalLugar').modal('show');
     }
 
-    this.emitirOrdenArresto = function() {
+    $scope.emitirOrdenArresto = function() {
         //post villano.id
-        alert("id: "+ this.villanoSeleccionado);
+        alert("id: "+ $scope.villanoSeleccionado);
     }
 
-    this.viajar = function() {
+    $scope.viajar = function() {
         //post pais.id
-        alert("Pais: "+ this.paisSeleccionado.nombre);
+        alert("Pais: "+ $scope.paisSeleccionado.nombre);
     }
 });
