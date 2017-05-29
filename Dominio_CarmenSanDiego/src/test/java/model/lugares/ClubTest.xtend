@@ -3,63 +3,50 @@ package model.lugares
 import java.util.ArrayList
 import java.util.Random
 import model.lugar.Club
-import model.ocupante.Cuidador
-import model.ocupante.Villano
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import model.pais.Pais
 
 import static org.mockito.Mockito.*
+import model.ocupante.SeniasYHobbies
+import java.util.Arrays
 
 class ClubTest {
 
-    Club unClub
-    Villano unVillano
-    Cuidador ocupante
-    ArrayList<String> seniasD
-    ArrayList<String> hobbieVillanos
-    Pais argentina
     Random rnd
+    Club unClub
+    ArrayList<String> paisActual
+    SeniasYHobbies responsable
 
     @Before
     def void setUp() {
+        paisActual = new ArrayList(Arrays.asList("Bandera Azul y Blanca","Moneda Peso"))
+        responsable = new SeniasYHobbies(
+                new ArrayList(Arrays.asList("Sobretodo amarillo","Usa guantes")),
+                new ArrayList(Arrays.asList("Juega Golf","Estudia programacion"))
+        )
 
-        seniasD = new ArrayList<String>()
-        seniasD.add("Pelo rojo")
-        seniasD.add("maneja un convertible")
-
-        hobbieVillanos = new ArrayList<String>()
-        hobbieVillanos.add("Leer un Libro")
-
-        unVillano = mock(Villano)
-        when(unVillano.seniasParticulares).thenReturn(seniasD)
-        when(unVillano.hobbies).thenReturn(hobbieVillanos)
-
+        unClub = new Club("River Plate")
         rnd = mock(Random)
-        ocupante = new Cuidador
-        unClub = new Club("Provincia", ocupante)
         unClub.setRnd(rnd)
     }
 
     @Test
     def void pistasDeBibliotecaSincHobbie() {
         when(rnd.nextInt(100)).thenReturn(75)
-        unClub.pedirPistas(unVillano, argentina)
-
-        Assert.assertTrue(unClub.getPistas.contains("Pelo rojo"))
-        Assert.assertTrue(unClub.getPistas.contains("maneja un convertible"))
-        Assert.assertFalse(unClub.getPistas.contains("Leer un Libro"))
+        var pistas = unClub.pedirPistas(responsable,paisActual)
+        Assert.assertTrue(pistas.contains("Sobretodo amarillo"))
+        Assert.assertTrue(pistas.contains("Usa guantes"))
     }
 
     @Test
     def void pistasDeBibliotecaConcHobbie() {
         when(rnd.nextInt(100)).thenReturn(25)
-        unClub.pedirPistas(unVillano, argentina)
-
-        Assert.assertTrue(unClub.getPistas.contains("Pelo rojo"))
-        Assert.assertTrue(unClub.getPistas.contains("maneja un convertible"))
-        Assert.assertTrue(unClub.getPistas.contains("Leer un Libro"))
+        var pistas = unClub.pedirPistas(responsable,paisActual)
+        Assert.assertTrue(pistas.contains("Sobretodo amarillo"))
+        Assert.assertTrue(pistas.contains("Usa guantes"))
+        Assert.assertEquals(pistas.size,3)
+        //La tercera es "Juega Golf" o "Estudia programacion"
     }
 }
 

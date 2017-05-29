@@ -2,46 +2,34 @@ package model.lugares
 
 import java.util.ArrayList
 import model.lugar.Banco
-import model.ocupante.Cuidador
-import model.ocupante.Villano
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import model.pais.Pais
 
-import static org.mockito.Mockito.*
+import java.util.Arrays
+import model.ocupante.SeniasYHobbies
 
 class BancoTest {
 
     Banco unBanco
-    Villano unVillano
-    Cuidador ocupante
-    ArrayList<String> seniasD
-    ArrayList<String> caracteristicasArg
-    Pais argentina
+    ArrayList<String> paisActual
+    SeniasYHobbies responsable
 
     @Before
     def void setUp() {
+        paisActual = new ArrayList(Arrays.asList("Bandera Azul y Blanca","Moneda Peso"))
+        responsable = new SeniasYHobbies(
+                new ArrayList(Arrays.asList("Sobretodo amarillo","Usa guantes")),
+                new ArrayList(Arrays.asList("Juega Golf","Estudia programacion"))
+        )
 
-        seniasD = new ArrayList<String>()
-        seniasD.add("Pelo rojo")
-        caracteristicasArg = new ArrayList<String>()
-        caracteristicasArg.add("Bandera Azul y Blanca")
-
-        unVillano = mock(Villano)
-        when(unVillano.seniasParticulares).thenReturn(seniasD)
-        argentina = mock(Pais)
-        when(argentina.caracteristicas).thenReturn(caracteristicasArg)
-
-        ocupante = new Cuidador
-        unBanco = new Banco("Provincia", ocupante)
+        unBanco = new Banco("Provincia")
     }
 
     @Test
     def void pistasDeBanco() {
-
-        unBanco.pedirPistas(unVillano, argentina)
-        Assert.assertTrue(unBanco.getPistas.contains("Pelo rojo"))
-        Assert.assertTrue(unBanco.getPistas.contains("Bandera Azul y Blanca"))
+        var pistas = unBanco.pedirPistas(responsable,paisActual)
+        Assert.assertTrue(pistas.contains("Bandera Azul y Blanca") || pistas.contains("Moneda Peso"))
+        Assert.assertTrue(pistas.contains("Sobretodo amarillo") || pistas.contains("Usa guantes"))
     }
 }

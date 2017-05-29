@@ -3,67 +3,49 @@ package model.lugares
 import java.util.ArrayList
 import java.util.Random
 import model.lugar.Biblioteca
-import model.ocupante.Cuidador
-import model.ocupante.Villano
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import model.pais.Pais
 
 import static org.mockito.Mockito.*
+import model.ocupante.SeniasYHobbies
+import java.util.Arrays
 
 class BibliotecaTest {
 
-    Biblioteca unaBiblioteca
-    Villano unVillano
-    Cuidador ocupante
-    ArrayList<String> seniasD
-    ArrayList<String> caracteristicasArg
-    ArrayList<String> hobbieVillanos
-    Pais argentina
     Random rnd
+    Biblioteca unaBiblioteca
+    ArrayList<String> paisActual
+    SeniasYHobbies responsable
 
     @Before
     def void setUp() {
+        paisActual = new ArrayList(Arrays.asList("Bandera Azul y Blanca","Moneda Peso"))
+        responsable = new SeniasYHobbies(
+                new ArrayList(Arrays.asList("Sobretodo amarillo","Usa guantes")),
+                new ArrayList(Arrays.asList("Juega Golf","Estudia programacion"))
+        )
 
-        seniasD = new ArrayList<String>()
-        seniasD.add("Pelo rojo")
-        caracteristicasArg = new ArrayList<String>()
-        caracteristicasArg.add("Bandera Azul y Blanca")
-        hobbieVillanos = new ArrayList<String>()
-        hobbieVillanos.add("Leer un Libro")
-
-        unVillano = mock(Villano)
-        when(unVillano.seniasParticulares).thenReturn(seniasD)
-        when(unVillano.hobbies).thenReturn(hobbieVillanos)
-
-        argentina = mock(Pais)
-        when(argentina.caracteristicas).thenReturn(caracteristicasArg)
-
+        unaBiblioteca = new Biblioteca("Nacional")
         rnd = mock(Random)
-        ocupante = new Cuidador
-        unaBiblioteca = new Biblioteca("Provincia", ocupante)
         unaBiblioteca.setRnd(rnd)
     }
 
     @Test
     def void pistasDeBibliotecaSinHobbie() {
         when(rnd.nextInt(100)).thenReturn(75)
-        unaBiblioteca.pedirPistas(unVillano, argentina)
-
-        Assert.assertTrue(unaBiblioteca.getPistas.contains("Pelo rojo"))
-        Assert.assertTrue(unaBiblioteca.getPistas.contains("Bandera Azul y Blanca"))
-        Assert.assertFalse(unaBiblioteca.getPistas.contains("Leer un Libro"))
+        var pistas = unaBiblioteca.pedirPistas(responsable,paisActual)
+        Assert.assertTrue(pistas.contains("Bandera Azul y Blanca") || pistas.contains("Moneda Peso"))
+        Assert.assertTrue(pistas.contains("Sobretodo amarillo") || pistas.contains("Usa guantes"))
     }
 
     @Test
     def void pistasDeBibliotecaConHobbie() {
         when(rnd.nextInt(100)).thenReturn(25)
-        unaBiblioteca.pedirPistas(unVillano, argentina)
-
-        Assert.assertTrue(unaBiblioteca.getPistas.contains("Pelo rojo"))
-        Assert.assertTrue(unaBiblioteca.getPistas.contains("Bandera Azul y Blanca"))
-        Assert.assertTrue(unaBiblioteca.getPistas.contains("Leer un Libro"))
+        var pistas = unaBiblioteca.pedirPistas(responsable,paisActual)
+        Assert.assertTrue(pistas.contains("Bandera Azul y Blanca") || pistas.contains("Moneda Peso"))
+        Assert.assertTrue(pistas.contains("Sobretodo amarillo") || pistas.contains("Usa guantes"))
+        Assert.assertTrue(pistas.contains("Juega Golf") || pistas.contains("Estudia programacion"))
     }
 }
 

@@ -19,6 +19,7 @@ class Club extends Lugar{
         responsable.senias.remove(senia1)
 
         var String senia2 = responsable.senias.get(rnd.nextInt(responsable.senias.size()))
+        pistas.add(senia2)
         responsable.senias.remove(senia2)
 
         if(rnd.nextInt(100) <= 70) {
