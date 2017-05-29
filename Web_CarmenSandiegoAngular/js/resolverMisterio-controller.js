@@ -20,9 +20,19 @@ angular.module("CarmenSandiego")
 
     //Post viajar
     $scope.viajar = function() {
-        $http.post(url + "/viajar", {}).then(function(response, status) {
+        $http({
+            method: 'POST',
+            url: url + "/viajar",
+            data: {"destinoId": $scope.viewData.paisSeleccionado.id, "casoId": $scope.idCaso},
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
+        .then(function(response, status) {
             $scope.caso = response.data;
             $scope.idCaso = response.data.id;
+            alert(response.data);
+        },
+        function(error) {
+            alert("error: " + error.data);
         });
     }
 
@@ -34,26 +44,20 @@ angular.module("CarmenSandiego")
         $('#modalLugar').modal('show');
     }
 
+    //Post emitir orden de arresto
     $scope.emitirOrdenArresto = function() {
         $http({
             method: 'POST',
             url: url + "/emitirOrden",
             data: {"villanoId": $scope.villanoSeleccionado, "casoId": $scope.idCaso},
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        }).then(function(response, status) {
+        })
+        .then(function(response, status) {
             $scope.ordenEmitida = response.data;
             alert(response.data);
         },
         function(error) {
             alert("error: " + error.data);
         });
-
-
-        /*$http.post(url + "/emitirOrden", {villanoId: $scope.villanoSeleccionado, casoId: $scope.idCaso}).then(function(response, status) {
-            $scope.ordenEmitida = response.data;
-        },
-        function(error) {
-            alert("error: " + error.data);
-        });*/
     }
 });

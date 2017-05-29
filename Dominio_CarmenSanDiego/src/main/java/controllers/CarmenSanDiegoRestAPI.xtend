@@ -24,6 +24,7 @@ import java.util.stream.Collectors
 import model.registroLugar.RegistroLugar
 import dtos.VillanoDTO
 import applicationModels.ExpedientesAppModel
+import dtos.ViajarDTO
 
 @Controller
 
@@ -103,13 +104,15 @@ class CarmenSanDiegoRestAPI {
 
 
     //VIAJAR
-    @Post("/viajar/:idPais/:idCaso")
-    def viajar() {
+    @Post("/viajar")
+    def viajar(@Body String body) {
         response.contentType = ContentType.APPLICATION_JSON
+        val req = body.fromJson(ViajarDTO)
+        System.out.print("Destino id: " + req.destinoId + " Caso id: " + req.casoId)
 
         try {
-            val Caso caso = CasosRespositorio.buscarCaso(Integer.valueOf(idCaso))
-            val Pais paisAViajar = caso.buscarConexion(Integer.valueOf(idPais))
+            val Caso caso = CasosRespositorio.buscarCaso(Integer.valueOf(req.casoId))
+            val Pais paisAViajar = caso.buscarConexion(Integer.valueOf(req.destinoId))
 
             caso.detective.viajar(paisAViajar)
             ok(caso.toJson)
@@ -228,6 +231,7 @@ class CarmenSanDiegoRestAPI {
     //INICIAR JUEGO
     @Post("/iniciarJuego")
     def iniciarJuego() {
+    	response.contentType = ContentType.APPLICATION_JSON
         var CasoDTO caso = new CasoDTO(CasosRespositorio.casos.get(0))
         ok(caso.toJson)
     }
@@ -239,7 +243,6 @@ class CarmenSanDiegoRestAPI {
         response.contentType = ContentType.APPLICATION_JSON
         
         val req = body.fromJson(OrdenEmitidaDTO)
-        System.out.println("Emitir orden")
 
         try {
             val Caso caso = CasosRespositorio.buscarCaso(Integer.valueOf(req.casoId))
