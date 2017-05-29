@@ -12,4 +12,6 @@ class OrdenEmitidaDTO {
         this.villanoId = villanoId
         this.casoId = casoId
     }
+    
+    new(){}
 }

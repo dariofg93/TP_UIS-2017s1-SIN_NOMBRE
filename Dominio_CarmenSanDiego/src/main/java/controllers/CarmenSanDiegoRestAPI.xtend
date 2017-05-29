@@ -234,16 +234,19 @@ class CarmenSanDiegoRestAPI {
 
     //EMITIR ORDEN
     //emitirOrden: Espera un villano y un caso y devuelve ok o nok
-    @Post("/emitirOrden/:idVillano/:idCaso")
-    def emitirOrden() {
+    @Post("/emitirOrden")
+    def emitirOrden(@Body String body) {
         response.contentType = ContentType.APPLICATION_JSON
+        
+        val req = body.fromJson(OrdenEmitidaDTO)
+        System.out.println("Emitir orden")
 
         try {
-            val Caso caso = CasosRespositorio.buscarCaso(Integer.valueOf(idCaso))
-            val Villano villano = BaseCentralRepositorio.buscarVillano(Integer.valueOf(idVillano))
+            val Caso caso = CasosRespositorio.buscarCaso(Integer.valueOf(req.casoId))
+            val Villano villano = BaseCentralRepositorio.buscarVillano(Integer.valueOf(req.villanoId))
 
             caso.detectiveEmiteOrdenContra(villano)
-            ok(new OrdenEmitidaDTO(caso.id,villano.id).toJson)
+            ok("Orden emitida correctamente".toJson)
         }
         catch (UserException exception) {
             badRequest("Se deben pasar por parametros un villano y un caso")

@@ -4,7 +4,7 @@ angular.module("CarmenSandiego")
     $scope.title = "Expedientes";
 
     //Get villanos
-    $http.get("http://localhost:9000/villanos").then(function(response, status) {
+    $http.get("http://localhost:9000/villanos").then(function(response) {
         $scope.villanos = response.data;
     });
 });

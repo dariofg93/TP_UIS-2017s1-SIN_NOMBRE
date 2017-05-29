@@ -20,8 +20,4 @@ angular.module("CarmenSandiego", ["ngRoute"])
     .otherwise({
 		redirectTo: '/'
 	})
-})
-
-.controller("MainController", function(){
-    
 });
