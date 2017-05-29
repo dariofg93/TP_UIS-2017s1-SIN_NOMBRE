@@ -1,20 +1,26 @@
 package model.ocupante
 
-import model.excepciones.NoEstaElVillanoException
 import org.junit.Before
 import org.junit.Test
+import model.orden.OrdenEmitida
+import org.junit.Assert
+
+import static org.mockito.Mockito.*
 
 class CuidadorTest {
 
-    Cuidador informante
+    Cuidador cuidador
+    OrdenEmitida ordenMock
 
     @Before
     def void setUp() {
-        informante = new Cuidador()
+        ordenMock = mock(OrdenEmitida)
+        cuidador = new Cuidador()
     }
 
-    @Test(expected=NoEstaElVillanoException)
+    @Test
     def void actuar() {
-        informante.actuar
+        Assert.assertEquals(cuidador.actuar(ordenMock),
+        "Lo siento creo que se ha equivocado de Ciudad, no hay nadie con esas caracteristicas")
     }
 }

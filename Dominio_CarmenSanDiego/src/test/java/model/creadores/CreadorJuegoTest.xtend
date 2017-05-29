@@ -2,12 +2,9 @@ package model.creadores
 
 import model.ocupante.Villano
 import org.junit.Before
-import org.junit.Test
 import model.pais.Pais
 
 import static org.mockito.Mockito.*
-import model.caso.Caso
-import model.lugar.Club
 
 class CreadorJuegoTest {
 
