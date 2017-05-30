@@ -5,8 +5,6 @@ import model.ocupante.Villano
 import org.eclipse.xtend.lib.annotations.Accessors
 import model.pais.Pais
 import model.lugar.Lugar
-import java.util.Set
-import java.util.HashSet
 import model.detective.Detective
 import model.registroLugar.RegistroLugar
 import model.ocupante.*
@@ -61,6 +59,10 @@ class Caso {
 
     def detectiveEmiteOrdenContra(Villano unVillano){
         detective.emitirOrden(unVillano)
+    }
+
+    def detectiveVisitaLugar(Lugar unLugar){
+        detective.visitar(unLugar)
     }
 
     /////////////////////////////////////////////////////////////////////////

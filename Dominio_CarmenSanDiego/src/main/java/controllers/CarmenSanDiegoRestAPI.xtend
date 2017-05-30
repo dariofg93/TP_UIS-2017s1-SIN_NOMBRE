@@ -25,20 +25,19 @@ import model.registroLugar.RegistroLugar
 import dtos.VillanoDTO
 import applicationModels.ExpedientesAppModel
 import dtos.ViajarDTO
+import dtos.PaisComplejoDTO
+import dtos.PistasDTO
 
 @Controller
-
 class CarmenSanDiegoRestAPI {
-
     extension JSONUtils = new JSONUtils
 
     val List<Pais> paises = BaseCentralRepositorio.getMapamundi()
-
     val MapamundiAppModel mapamundi = new MapamundiAppModel(paises)
-
     val expedientesModel = new ExpedientesAppModel()
 
-    //VILLANOS
+    //***************************VILLANOS*****************************
+
     @Get("/villanos")
     def getVillanos() {
         response.contentType = ContentType.APPLICATION_JSON
@@ -101,63 +100,45 @@ class CarmenSanDiegoRestAPI {
         }
     }
 
+    //***************************VIAJAR********************************
 
-
-    //VIAJAR
     @Post("/viajar")
     def viajar(@Body String body) {
         response.contentType = ContentType.APPLICATION_JSON
-        val req = body.fromJson(ViajarDTO)
-        System.out.print("Destino id: " + req.destinoId + " Caso id: " + req.casoId)
+        var req = body.fromJson(ViajarDTO)
 
         try {
-            val Caso caso = CasosRespositorio.buscarCaso(Integer.valueOf(req.casoId))
-            val Pais paisAViajar = caso.buscarConexion(Integer.valueOf(req.destinoId))
+            var Caso caso = CasosRespositorio.buscarCaso(Integer.valueOf(req.casoId))
+            var Pais paisAViajar = caso.buscarConexion(Integer.valueOf(req.destinoId))
 
             caso.detective.viajar(paisAViajar)
-            ok(caso.toJson)
+            ok(req.toJson)
         }
-        catch(Exception e) {
-            badRequest("El body debe ser un caso")
-        }
-    }
-
-    //PISTAS DE LUGAR
-    @Get("/paisActual/:idCaso")
-    def getPaisActual(){
-        response.contentType = ContentType.APPLICATION_JSON
-
-        try{
-            val Caso caso = CasosRespositorio.buscarCaso(Integer.valueOf(idCaso))
-
-            val de = caso.detective
-            val la = de.lugarActual
-
-            ok(la.toJson)
-        }
-        catch(UserException e){
-            println(e)
-            badRequest("El caso no existe")
+        catch(UserException e) {
+            badRequest("El body debe contener un destinoId y un casoId")
         }
     }
+
+    //************************PISTAS DEL LUGAR***************************
 
     @Get("/pistaDelLugar/:casoId/:nombreLugar")
-    def getPistaDelLugar(){
+    def pistaDelLugar(){
         response.contentType = ContentType.APPLICATION_JSON
         System.out.print("Caso id: " + casoId + " Lugar: " + nombreLugar)
 
         try {
             val Caso caso = CasosRespositorio.buscarCaso(Integer.valueOf(casoId))
-            val RegistroLugar registroLugar = caso.BuscarRegistroLugar(nombreLugar)
+            val RegistroLugar registro = caso.BuscarRegistroLugar(String.valueOf(nombreLugar))
 
-            ok(registroLugar.ocupante.toJson)
+            ok(new PistasDTO(caso.detectiveVisitaLugar(registro.lugar)).toJson)
         }
-        catch(Exception e) {
+        catch(UserException e) {
             badRequest("El nombre del lugar no es valido o el id del caso es incorrecto")
         }
     }
 
-    //PAISES
+    //***************************PAISES*********************************
+
     @Get("/paises")
     def getPaises() {
         response.contentType = ContentType.APPLICATION_JSON
@@ -165,7 +146,7 @@ class CarmenSanDiegoRestAPI {
         ok(paisesSimples.toJson)
     }
 
-    @Get("/pais/:id")
+    @Get("/paises/:id")
     def getPaisById() {
         response.contentType = ContentType.APPLICATION_JSON
         
@@ -175,7 +156,7 @@ class CarmenSanDiegoRestAPI {
                 notFound(getErrorJson("No existe pais con ese id"))
             }
             else {
-            	ok(pais.toJson)
+            	ok(new PaisComplejoDTO(pais).toJson)
             }
         }
         catch(NumberFormatException ex) {
@@ -183,7 +164,7 @@ class CarmenSanDiegoRestAPI {
         }
     }
 
-    @Post("/pais")
+    @Post("/paises")
     def createPais(@Body String body) {
         response.contentType = ContentType.APPLICATION_JSON
         try {
@@ -201,9 +182,8 @@ class CarmenSanDiegoRestAPI {
         }
     }
 
-    @Put("/pais")
+    @Put("/paises")
     def upPais(@Body String body) {
-        response.contentType = ContentType.APPLICATION_JSON
         try {
             val Pais pais = body.fromJson(Pais)
             mapamundi.updatePais(pais)
@@ -214,7 +194,7 @@ class CarmenSanDiegoRestAPI {
         }
     }
 
-    @Delete("/pais/:id")
+    @Delete("/paises/:id")
     def deletePais() {
         response.contentType = ContentType.APPLICATION_JSON
         try {
@@ -230,10 +210,8 @@ class CarmenSanDiegoRestAPI {
         '{ "error": "' + message + '" }'
     }
 
+    //***************************INICIAR JUEGO*****************************
 
-
-
-    //INICIAR JUEGO
     @Post("/iniciarJuego")
     def iniciarJuego() {
     	response.contentType = ContentType.APPLICATION_JSON
@@ -241,8 +219,8 @@ class CarmenSanDiegoRestAPI {
         ok(caso.toJson)
     }
 
-    //EMITIR ORDEN
-    //emitirOrden: Espera un villano y un caso y devuelve ok o nok
+    //***************************EMITIR ORDEN******************************
+
     @Post("/emitirOrden")
     def emitirOrden(@Body String body) {
         response.contentType = ContentType.APPLICATION_JSON
@@ -254,7 +232,7 @@ class CarmenSanDiegoRestAPI {
             val Villano villano = BaseCentralRepositorio.buscarVillano(Integer.valueOf(req.villanoId))
 
             caso.detectiveEmiteOrdenContra(villano)
-            ok("Orden emitida correctamente".toJson)
+            ok(req.toJson)
         }
         catch (UserException exception) {
             badRequest("Se deben pasar por parametros un villano y un caso")
