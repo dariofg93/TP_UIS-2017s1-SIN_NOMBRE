@@ -2,7 +2,6 @@ angular.module("CarmenSandiego")
 
 .controller("ResolverMisterioController", function($scope, $http) {
     var url = "http://localhost:9000";
-    var header = {'Content-Type': 'application/x-www-form-urlencoded'};
     $scope.title = "Resolver Misterio";
     $scope.viewData = {};
 
@@ -27,7 +26,7 @@ angular.module("CarmenSandiego")
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         })
         .then(function(response, status) {
-            $scope.caso = response.data;
+            $scope.caso = response.data; //Explota en el try de viajar, revisar por que no viaja y me devuelve un nuevo caso.
             $scope.idCaso = response.data.id;
             alert(response.data);
         },
@@ -38,8 +37,9 @@ angular.module("CarmenSandiego")
 
     //Get pista
     $scope.getPista = function(lugar) {
+        $scope.lugarSeleccionado = lugar;
         $http.get(url + "/pistaDelLugar/"+$scope.idCaso+"/"+lugar).then(function(response, status) {
-            $scope.lugarSeleccionado = response.data;
+            $scope.pistas = response.data.pistas; //Obtiene las pistas si el lugar no tiene espacios, sino explota. Averiguar sobre "%20"
         });
         $('#modalLugar').modal('show');
     }
@@ -53,7 +53,7 @@ angular.module("CarmenSandiego")
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         })
         .then(function(response, status) {
-            $scope.ordenEmitida = response.data;
+            $scope.ordenEmitida = response.data; //La data llega bien, responde con ok(que la orden fue emitida), pero no se notan cambios en la vista
             alert(response.data);
         },
         function(error) {

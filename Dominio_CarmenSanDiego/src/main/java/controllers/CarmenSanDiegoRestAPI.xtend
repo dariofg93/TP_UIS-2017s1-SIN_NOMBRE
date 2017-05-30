@@ -141,12 +141,13 @@ class CarmenSanDiegoRestAPI {
         }
     }
 
-    @Get("/pistaDelLugar/:idCaso/:nombreLugar")
+    @Get("/pistaDelLugar/:casoId/:nombreLugar")
     def getPistaDelLugar(){
         response.contentType = ContentType.APPLICATION_JSON
+        System.out.print("Caso id: " + casoId + " Lugar: " + nombreLugar)
 
         try {
-            val Caso caso = CasosRespositorio.buscarCaso(Integer.valueOf(idCaso))
+            val Caso caso = CasosRespositorio.buscarCaso(Integer.valueOf(casoId))
             val RegistroLugar registroLugar = caso.BuscarRegistroLugar(nombreLugar)
 
             ok(registroLugar.ocupante.toJson)
@@ -167,10 +168,14 @@ class CarmenSanDiegoRestAPI {
     @Get("/pais/:id")
     def getPaisById() {
         response.contentType = ContentType.APPLICATION_JSON
+        
         try {
             var pais = this.mapamundi.getPais(Integer.valueOf(id))
             if(pais == null) {
                 notFound(getErrorJson("No existe pais con ese id"))
+            }
+            else {
+            	ok(pais.toJson)
             }
         }
         catch(NumberFormatException ex) {

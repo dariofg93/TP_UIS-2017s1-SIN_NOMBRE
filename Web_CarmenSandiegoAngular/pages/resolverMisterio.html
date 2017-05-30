@@ -115,10 +115,13 @@
         <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Visitando: {{ lugarSeleccionado }}</h4>
+            <h2 class="modal-title">Visitando: {{ lugarSeleccionado }}</h2>
         </div>
         <div class="modal-body">
-            <p>{{ pista }}</p>
+            <ul>
+                <h3>Pistas obtenidas del lugar: </h3><br>
+                <li ng-repeat="pista in pistas"> <h4>{{ pista }}</h4> </li>
+            </ul>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
