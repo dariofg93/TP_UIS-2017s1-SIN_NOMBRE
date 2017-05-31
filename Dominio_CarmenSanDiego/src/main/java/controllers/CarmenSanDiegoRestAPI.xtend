@@ -145,6 +145,12 @@ class CarmenSanDiegoRestAPI {
         ok(paisesSimples.toJson)
     }
 
+    @Get("/paisesCompletos")
+    def getPaisesCompletos() {
+        response.contentType = ContentType.APPLICATION_JSON
+        ok(paises.toJson)
+    }
+
     @Get("/paises/:id")
     def getPaisById() {
         response.contentType = ContentType.APPLICATION_JSON
