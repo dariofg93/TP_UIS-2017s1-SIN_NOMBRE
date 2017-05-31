@@ -156,7 +156,7 @@ class CarmenSanDiegoRestAPI {
                 notFound(getErrorJson("No existe pais con ese id"))
             }
             else {
-            	ok(new PaisComplejoDTO(pais).toJson)
+            	ok(pais.toJson)
             }
         }
         catch(NumberFormatException ex) {

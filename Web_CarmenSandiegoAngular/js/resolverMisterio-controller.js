@@ -39,9 +39,12 @@ angular.module("CarmenSandiego")
     $scope.getPista = function(lugar) {
         $scope.lugarSeleccionado = lugar;
         $http.get(url + "/pistaDelLugar/"+$scope.idCaso+"/"+lugar).then(function(response, status) {
-            $scope.pistas = response.data.pistas; //Obtiene las pistas si el lugar no tiene espacios, sino explota. Averiguar sobre "%20"
+            $scope.pistas = (response.data.pista).split(','); //Obtiene las pistas si el lugar no tiene espacios, sino explota. Averiguar sobre "%20"
+            $('#modalLugar').modal('show');
+        },
+        function(error) {
+            alert("error: " + error.data);
         });
-        $('#modalLugar').modal('show');
     }
 
     //Post emitir orden de arresto

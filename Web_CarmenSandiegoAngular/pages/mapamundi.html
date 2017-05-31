@@ -58,7 +58,7 @@
                             <tbody>
                                 <tr ng-repeat="caract in paisSeleccionado.caracteristicas track by $index">
                                     <td>{{ caract }}</td>
-                                    <td><button type="button" class="btn btn-danger" ng-click="borrarCaract(caract)">
+                                    <td><button type="button" class="btn btn-danger" ng-click="borrarCaracteristica(caract)">
                                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>								
                                         </button>
                                     </td>
@@ -98,7 +98,9 @@
                         </table>
                         <div class="row">
                             <div class="col-md-9">
-                                <select ng-options="pais.nombre for pais in paises track by pais.id" class="form-control"></select>
+                                <select ng-model="viewData.conexion" ng-options="paisCompleto.nombre for paisCompleto in paisesCompletos track by paisCompleto.id" class="form-control">
+                                    <option value="">Seleccione una conexion</option>
+                                </select>
                             </div>
                             <div class="col-md-3">
                                 <button type="button" class="btn btn-success" ng-click="addCaract()">
