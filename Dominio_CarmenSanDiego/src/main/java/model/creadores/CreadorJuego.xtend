@@ -26,6 +26,7 @@ class CreadorJuego {
     new(List<Villano> villanos, List<Pais> mapamundi){
         this.villanos = villanos
         this.mapamundi = mapamundi
+        rnd = new Random()
     }
 
     def agregarVillano(Villano nuevoVillano){
