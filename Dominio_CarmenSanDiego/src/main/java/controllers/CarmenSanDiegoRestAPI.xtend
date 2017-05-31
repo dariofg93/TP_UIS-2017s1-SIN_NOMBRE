@@ -111,7 +111,12 @@ class CarmenSanDiegoRestAPI {
             var Caso caso = CasosRespositorio.buscarCaso(Integer.valueOf(req.casoId))
             var Pais paisAViajar = caso.buscarConexion(Integer.valueOf(req.destinoId))
 
+            var paisAnterior = caso.detective.lugarActual
             caso.detective.viajar(paisAViajar)
+
+            var casoDto = new CasoDTO(caso)
+            casoDto.setPaisAnterior(new PaisSimpleDTO(paisAnterior))
+
             ok(new CasoDTO(caso).toJson)
         }
         catch(UserException e) {
