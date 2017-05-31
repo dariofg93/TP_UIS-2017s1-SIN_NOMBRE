@@ -23,4 +23,9 @@ class InformanteTest {
     def void actuar() {
         Assert.assertEquals(informante.actuar(ordenMock),"Le gusta las joyas, Mentia mucho")
     }
+
+    @Test
+    def void conoceVillanoTest() {
+        Assert.assertTrue(informante.conoceVillano)
+    }
 }

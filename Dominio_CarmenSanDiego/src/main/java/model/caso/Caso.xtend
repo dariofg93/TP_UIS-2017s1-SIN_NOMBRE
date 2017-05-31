@@ -40,13 +40,13 @@ class Caso {
         registrosDeLugares = new ArrayList<RegistroLugar>()
     }
 
-    def obtenerOcupante(Lugar unLugar){
-        registrosDeLugares.findFirst[ it.lugar == unLugar].ocupante
-    }
-
     def setDetective(Detective unDetective){
         detective = unDetective
         unDetective.setCaso(this)
+    }
+
+    def obtenerOcupante(Lugar unLugar){
+        registrosDeLugares.findFirst[ it.lugar == unLugar].ocupante
     }
 
     def BuscarRegistroLugar(String nombreLugarBuscado){

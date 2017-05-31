@@ -23,4 +23,9 @@ class CuidadorTest {
         Assert.assertEquals(cuidador.actuar(ordenMock),
         "Lo siento creo que se ha equivocado de Ciudad, no hay nadie con esas caracteristicas")
     }
+
+    @Test
+    def void conoceVillanoTest() {
+        Assert.assertFalse(cuidador.conoceVillano)
+    }
 }

@@ -5,40 +5,83 @@ import org.junit.Before
 import model.pais.Pais
 
 import static org.mockito.Mockito.*
+import org.junit.Test
+import org.junit.Assert
+import java.util.Random
+import java.util.ArrayList
+import model.caso.Caso
 
 class CreadorJuegoTest {
 
     CreadorJuego creador
-    Pais bolibiaRobada
+    Pais bolibia
     Pais argentina
     Pais brasil
     Villano cesar
+    Villano lucho
+    Random rnd
 
     @Before
     def void setUp() {
+        rnd = mock(Random)
+
         cesar = mock(Villano)
-        bolibiaRobada = mock(Pais)
+        lucho = mock(Villano)
+
+        bolibia = mock(Pais)
         argentina = mock(Pais)
         brasil = mock(Pais)
 
-        creador = new CreadorJuego()
+        creador = new CreadorJuego() => [
+            agregarVillano(cesar)
+            agregarVillano(lucho)
+
+            agregarPais(argentina)
+            agregarPais(bolibia)
+            agregarPais(brasil)
+            setRnd(rnd)
+        ]
     }
-/*
+
     @Test
-    def void crearJuegoTest() {
-        var rutaDeEscape = new ArrayList<Pais>()
-        rutaDeEscape.add(argentina);rutaDeEscape.add(brasil)
-
-        var caso = creador.crearJuego(cesar,rutaDeEscape,"Otra vez le robaron a la Yenii","Las joyas de la Yenii",bolibiaRobada)
-
-        Assert.assertEquals(caso.responsable,cesar)
-        Assert.assertEquals(caso.reporte,"Otra vez le robaron a la Yenii")
-        Assert.assertEquals(caso.objeto,"Las joyas de la Yenii")
-        Assert.assertEquals(caso.paisDelRobo,bolibiaRobada)
-
-        //verify(brasil).asignarVillano(cesar)
-        //Las instancias no son las mismas, ya que cada pais es clonado al momento del creado del juego
-        //Entonces no se puede hacer verify sobre ninguna "instancia"
+    def void randomVillanoTest() {
+        var villano = creador.randomVillano
+        Assert.assertTrue(villano.equals(cesar) || villano.equals(lucho))
     }
-*/
+
+    @Test
+    def void getLugarDelHechoTest() {
+        var paises = creador.mapamundi
+        when(rnd.nextInt(paises.size)).thenReturn(2)
+
+        Assert.assertEquals(creador.getLugarDelHecho(paises),brasil)
+    }
+
+    @Test
+    def void crearRutaEscapeTest() {
+        var mapamundi = new ArrayList =>[ add(argentina); add(bolibia) ]
+
+        when(brasil.findConexion(mapamundi)).thenReturn(argentina)
+        when(argentina.containsAny(mapamundi)).thenReturn(true)
+        when(argentina.findConexion(mapamundi)).thenReturn(bolibia)
+
+        var rutaDeEscape = creador.crearRutaEscape(mapamundi,brasil)
+
+        Assert.assertEquals(rutaDeEscape.get(0),argentina)
+        Assert.assertEquals(rutaDeEscape.get(1),bolibia)
+        Assert.assertEquals(rutaDeEscape.size,2)
+    }
+
+    @Test
+    def void repartirPistasYocupantesTest() {
+        var planDeEscape = new ArrayList =>[ add(argentina); add(bolibia) ]
+        var caso = mock(Caso)
+        when(caso.paisDelRobo).thenReturn(brasil)
+        when(caso.planDeEscape).thenReturn(planDeEscape)
+
+        creador.repartirPistasYocupantes(caso)
+        verify(caso).registrarUltimoPais
+        verify(caso).registrarPais(brasil,null,argentina)
+        //verify(caso).registrarPais(argentina,brasil,argentina)
+    }
 }

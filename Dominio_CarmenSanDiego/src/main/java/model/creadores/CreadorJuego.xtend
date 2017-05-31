@@ -15,10 +15,12 @@ class CreadorJuego {
 
     var List<Villano> villanos
     var List<Pais> mapamundi
+    var Random rnd
 
     new(){
         villanos = new ArrayList<Villano>()
         mapamundi = new ArrayList<Pais>()
+        rnd = new Random()
     }
 
     new(List<Villano> villanos, List<Pais> mapamundi){
@@ -33,6 +35,8 @@ class CreadorJuego {
     def agregarPais(Pais nuevoPais){
         mapamundi.add(nuevoPais)
     }
+
+    ///////////////////////////////////////////////////////////////////////
 
     def Caso crearJuego(int id, String reporte, String obj){
 
@@ -70,7 +74,7 @@ class CreadorJuego {
         newCase.registrarUltimoPais
     }
 
-    private def List<Pais> crearRutaEscape(List<Pais> mapamundi, Pais lugarDelHecho){
+    def List<Pais> crearRutaEscape(List<Pais> mapamundi, Pais lugarDelHecho){
         var rutaDeEscape = new ArrayList<Pais>()
             var nuevoDestino = lugarDelHecho.findConexion(mapamundi)
             rutaDeEscape.add(nuevoDestino)
@@ -87,14 +91,14 @@ class CreadorJuego {
         rutaDeEscape
     }
 
-    private def Pais getLugarDelHecho(List<Pais> paises){
-        var lugarDelHecho = paises.get(new Random().nextInt(paises.size))
+    def Pais getLugarDelHecho(List<Pais> paises){
+        var lugarDelHecho = paises.get(rnd.nextInt(paises.size))
         paises.remove(lugarDelHecho)
 
         lugarDelHecho
     }
 
-    private def Villano randomVillano() {
+    def Villano randomVillano() {
         var newList = new ArrayList<Villano>() => [ addAll(villanos) ]
         Collections.shuffle(newList)
         return newList.get(0)

@@ -13,7 +13,7 @@ class Informante extends Ocupante{
         this.pistas = pistas
     }
 
-    override estuvoVillano() {
+    override conoceVillano() {
         true
     }
 

@@ -34,4 +34,21 @@ class VillanoTest {
         expected = villano.actuar(ordenMock)
         Assert.assertEquals(expected,"El villano ha escapado")
     }
+
+    @Test
+    def void conoceVillanoTest() {
+        Assert.assertTrue(villano.conoceVillano)
+    }
+
+    @Test
+    def void pistasTest() {
+        var seniasYhobbies = villano.pistas
+
+        Assert.assertTrue(seniasYhobbies.senias.contains("Pelo Rubio"))
+        Assert.assertTrue(seniasYhobbies.senias.contains("Capa Roja"))
+
+        Assert.assertTrue(seniasYhobbies.hobbies.contains("Coleciona gemas"))
+        Assert.assertTrue(seniasYhobbies.hobbies.contains("Estudia geologia"))
+        Assert.assertTrue(seniasYhobbies.hobbies.contains("Anda en moto"))
+    }
 }

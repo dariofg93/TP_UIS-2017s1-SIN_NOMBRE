@@ -7,5 +7,5 @@ import model.orden.Orden
 abstract class Ocupante{
 
     def String actuar(Orden orden)
-    def Boolean estuvoVillano()
+    def Boolean conoceVillano()
 }

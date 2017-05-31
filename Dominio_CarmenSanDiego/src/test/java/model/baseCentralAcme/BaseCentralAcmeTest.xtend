@@ -1,6 +1,5 @@
 package model.baseCentralAcme
 
-import java.util.Arrays
 import model.ocupante.Villano
 import org.junit.Assert
 import org.junit.Before
@@ -8,53 +7,41 @@ import org.junit.Test
 import model.pais.Pais
 
 import static org.mockito.Mockito.*
+import model.creadores.CreadorJuego
 
 class BaseCentralAcmeTest {
 
-    BaseCentralAcme unaBaseCentralAcme
     Villano unVillanoMock
-    Villano unVillanoMock2
-    Pais argentina
     Pais unPaisMock
     BaseCentralAcme acme
 
     @Before
     def void setUp() {
-        unPaisMock = mock(Pais)
-        acme = mock(BaseCentralAcme)
-
-        argentina = mock(Pais)
-        when(argentina.nombre).thenReturn("Argentina")
-        when(argentina.conexiones).thenReturn(Arrays.asList(unPaisMock,unPaisMock,unPaisMock))
-
-        unaBaseCentralAcme = new BaseCentralAcme()
-
         unVillanoMock = mock(Villano)
-
-        unVillanoMock2 = mock(Villano)
-        when(unVillanoMock2.nombre).thenReturn("Carmen San Diego")
+        unPaisMock = mock(Pais)
+        acme = new BaseCentralAcme
     }
 
     @Test
     def void registrarVillanoTest() {
-        unaBaseCentralAcme.registrarVillano(unVillanoMock)
+        acme.registrarVillano(unVillanoMock)
 
-        Assert.assertTrue(unaBaseCentralAcme.villanos.contains(unVillanoMock))
+        Assert.assertTrue(acme.villanos.contains(unVillanoMock))
     }
 
     @Test
     def void registrarPaisTest() {
-        unaBaseCentralAcme.registrarPais(argentina)
+        acme.registrarPais(unPaisMock)
 
-        Assert.assertTrue(unaBaseCentralAcme.mapamundi.contains(argentina))
+        Assert.assertTrue(acme.mapamundi.contains(unPaisMock))
     }
-/*
+
     @Test
     def void crearCasoTest() {
-        unaBaseCentralAcme.registrarVillano(unVillanoMock)
-        for(var i = 0;i<8;i++) { unaBaseCentralAcme.registrarPais(argentina) }
+        var creador = mock(CreadorJuego)
+        acme.setCreador(creador)
 
-        Assert.assertEquals(unaBaseCentralAcme.crearCaso("Los turros se robaron algo","Cadena de la Yeni").size,1)
+        acme.crearCaso(1,"Los turros se robaron algo","Cadena de la Yeni")
+        verify(creador).crearJuego(1,"Los turros se robaron algo","Cadena de la Yeni")
     }
-    */
 }

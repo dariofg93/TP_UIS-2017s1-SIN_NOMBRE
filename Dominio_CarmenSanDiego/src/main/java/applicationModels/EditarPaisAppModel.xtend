@@ -20,7 +20,7 @@ class EditarPaisAppModel {
     List<Pais> listaDeConexionesOriginal = PaisesRepositorio.getMapamundi()
     Lugar lugarSeleccionado
     Lugar lugarParaAgregar 
-    List<Lugar> listaDeLugares = PaisesRepositorio.getLugares()
+    List<Lugar> listaDeLugares = PaisesRepositorio.getLugaresDePaises()
 
     new(Pais pais){
         paisSeleccionado = pais

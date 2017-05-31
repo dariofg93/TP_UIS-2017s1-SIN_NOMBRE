@@ -31,7 +31,7 @@ class Villano extends Ocupante{
         hobbies = new ArrayList<String>()
     }
 
-    override estuvoVillano() {
+    override conoceVillano() {
         true
     }
 

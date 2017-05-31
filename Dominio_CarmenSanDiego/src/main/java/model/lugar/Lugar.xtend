@@ -26,9 +26,5 @@ abstract class Lugar{
         return ocupante.actuar(orden)
     }
 
-    def Boolean estaElVillano(){
-        true//MAAAAAAAAAAALocupante.class.simpleName == "Villano"
-    }
-
     def List<String> pedirPistas(SeniasYHobbies responsable, List<String> paisActual)
 }

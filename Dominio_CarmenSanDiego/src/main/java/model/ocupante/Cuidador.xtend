@@ -12,7 +12,7 @@ class Cuidador extends Ocupante{
         pista = "Lo siento creo que se ha equivocado de Ciudad, no hay nadie con esas caracteristicas"
     }
 
-    override estuvoVillano() {
+    override conoceVillano() {
         false
     }
 

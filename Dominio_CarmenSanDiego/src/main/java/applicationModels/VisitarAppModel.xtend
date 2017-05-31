@@ -23,7 +23,7 @@ class VisitarAppModel {
     }
 
     def estaElVillano(){
-        lugar.estaElVillano
+        //lugar.estaElVillano
     }
 
     def nombreDelLugar(){

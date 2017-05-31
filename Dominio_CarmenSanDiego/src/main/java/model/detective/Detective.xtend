@@ -39,7 +39,7 @@ class Detective{
         var ocupante = caso.obtenerOcupante(unLugar)
 
         var msj = unLugar.mostrarPistas(ordenEmitida,ocupante)
-        if(ocupante.estuvoVillano)
+        if(ocupante.conoceVillano)
             registroVillano.agregarVisitado(lugarActual)
         else
             registroVillano.agregarNoVisitado(lugarActual)

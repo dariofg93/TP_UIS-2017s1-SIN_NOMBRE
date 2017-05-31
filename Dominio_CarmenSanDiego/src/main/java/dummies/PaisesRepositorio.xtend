@@ -14,7 +14,7 @@ class PaisesRepositorio {
     static List<Pais> conexiones
     static List<Lugar> lugares
 
-    val static mapamundi = new ArrayList() => [
+    var static mapamundi = new ArrayList() => [
         var brasil = new Pais(1,"Brasil",
         caracteristicas = new ArrayList<String>(Arrays.asList("Hablan portuges", "Bandera verde y amarilla y azul","pentacampeones del mundo")),
         conexiones = new ArrayList<Pais>(Arrays.asList()),
