@@ -41,17 +41,19 @@ angular.module("CarmenSandiego")
     };
     //Borrar Caracteristica
     $scope.borrarCaracteristica = function(caract) {
-        $scope.paisSeleccionado.caracteristicas.splice(caract, 1);
+        var index = $scope.paisSeleccionado.caracteristicas.indexOf(caract);
+        $scope.paisSeleccionado.caracteristicas.splice(index, 1);
     };
-
+``
     //Conexiones
     //Add Caracteristica
     $scope.addConexion = function() {
         $scope.paisSeleccionado.conexiones.push($scope.viewData.conexion);
     };
     //Borrar Caracteristica
-    $scope.borrarCaracteristica = function(conexion) {
-        $scope.paisSeleccionado.conexiones.splice(conexion, 1);
+    $scope.borrarConexion = function(conexion) {
+        var index = $scope.paisSeleccionado.conexiones.indexOf(conexion);
+        $scope.paisSeleccionado.conexiones.splice(index, 1);
     };
 
 });
