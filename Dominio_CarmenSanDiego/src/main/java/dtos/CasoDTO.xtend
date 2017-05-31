@@ -15,7 +15,7 @@ class CasoDTO {
 
     new(Caso unCaso){
         id = unCaso.id
-        pais = new PaisComplejoDTO(unCaso.paisDelRobo)
+        pais = new PaisComplejoDTO(unCaso.detective.lugarActual)
         paisesVisitados = unCaso.detective.recorridoCriminal
         paisesFallidos = unCaso.detective.destinosFallidos
     }

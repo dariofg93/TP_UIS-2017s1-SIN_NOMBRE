@@ -112,7 +112,7 @@ class CarmenSanDiegoRestAPI {
             var Pais paisAViajar = caso.buscarConexion(Integer.valueOf(req.destinoId))
 
             caso.detective.viajar(paisAViajar)
-            ok(req.toJson)
+            ok(new CasoDTO(caso).toJson)
         }
         catch(UserException e) {
             badRequest("El body debe contener un destinoId y un casoId")
@@ -124,7 +124,6 @@ class CarmenSanDiegoRestAPI {
     @Get("/pistaDelLugar/:casoId/:nombreLugar")
     def pistaDelLugar(){
         response.contentType = ContentType.APPLICATION_JSON
-        System.out.print("Caso id: " + casoId + " Lugar: " + nombreLugar)
 
         try {
             val Caso caso = CasosRespositorio.buscarCaso(Integer.valueOf(casoId))
@@ -144,6 +143,12 @@ class CarmenSanDiegoRestAPI {
         response.contentType = ContentType.APPLICATION_JSON
         var List<PaisSimpleDTO> paisesSimples = mapamundi.paises.stream.map(p | new PaisSimpleDTO(p)).collect(Collectors.toList)
         ok(paisesSimples.toJson)
+    }
+
+    @Get("/paisesCompletos")
+    def getPaisesCompletos() {
+        response.contentType = ContentType.APPLICATION_JSON
+        ok(paises.toJson)
     }
 
     @Get("/paises/:id")
@@ -223,7 +228,6 @@ class CarmenSanDiegoRestAPI {
 
     @Post("/emitirOrden")
     def emitirOrden(@Body String body) {
-        response.contentType = ContentType.APPLICATION_JSON
         
         val req = body.fromJson(OrdenEmitidaDTO)
 
@@ -232,7 +236,7 @@ class CarmenSanDiegoRestAPI {
             val Villano villano = BaseCentralRepositorio.buscarVillano(Integer.valueOf(req.villanoId))
 
             caso.detectiveEmiteOrdenContra(villano)
-            ok(req.toJson)
+            ok("Orden Emitida Exitosamente")
         }
         catch (UserException exception) {
             badRequest("Se deben pasar por parametros un villano y un caso")
