@@ -35,7 +35,7 @@ class LugarTest {
     @Test
     def void mostrarPistasCuidador() {
         var cuidador = new Cuidador()
-        var pistasEsperadas = "Lo siento creo que se ha equivocado de Ciudad, no hay nadie con esas caracteristicas"
+        var pistasEsperadas = "Lo siento creo que se ha equivocado de Ciudad. No hay nadie con esas caracteristicas"
 
         Assert.assertEquals(riverPlate.mostrarPistas(orden,cuidador),pistasEsperadas)
     }

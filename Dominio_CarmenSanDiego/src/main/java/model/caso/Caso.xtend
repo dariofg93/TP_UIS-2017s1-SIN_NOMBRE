@@ -11,6 +11,7 @@ import model.ocupante.*
 import java.util.Random
 import java.util.Arrays
 import java.util.ArrayList
+import com.fasterxml.jackson.annotation.JsonIgnore
 
 @Accessors
 class Caso {
@@ -23,6 +24,8 @@ class Caso {
     var Pais paisDelRobo
     var Detective detective
     var List<RegistroLugar> registrosDeLugares
+    @JsonIgnore
+    var Random rnd
 
     new(int id, Villano unResponsable, String unReporte, String unObjeto, List<Pais> unPlan, Pais unPais, Detective unDetective){
         this.id = id
@@ -33,11 +36,13 @@ class Caso {
         paisDelRobo = unPais
         detective = unDetective
         registrosDeLugares = new ArrayList<RegistroLugar>()
+        rnd = new Random
     }
 
     new(int id){
         this.id = id
         registrosDeLugares = new ArrayList<RegistroLugar>()
+        rnd = new Random
     }
 
     def setDetective(Detective unDetective){
@@ -107,7 +112,7 @@ class Caso {
     }
 
     private def registrarOcupantesALugares(Pais ultimoPais){
-        var lugarVillano = ultimoPais.lugaresDeInteres.get(new Random().nextInt(ultimoPais.lugaresDeInteres.size))
+        var lugarVillano = ultimoPais.lugaresDeInteres.get(rnd.nextInt(ultimoPais.lugaresDeInteres.size))
         registrosDeLugares.add(new RegistroLugar(lugarVillano,responsable))
 
         for(Lugar lugar: ultimoPais.lugaresDeInteres) {
