@@ -17,8 +17,8 @@ class Banco extends Lugar{
         var String senia = responsable.senias.get(rnd.nextInt(responsable.senias.size()))
         var String pPais = paisActual.get(rnd.nextInt(paisActual.size()))
 
-        pistas.add(senia)
-        pistas.add(pPais)
+        pistas.add("Pista de villano: " + senia)
+        pistas.add("Pista de pais: " + pPais)
 
         responsable.senias.remove(senia)
         paisActual.remove(pPais)

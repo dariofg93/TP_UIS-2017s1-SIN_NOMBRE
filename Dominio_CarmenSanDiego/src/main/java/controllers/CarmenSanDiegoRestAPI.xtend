@@ -27,6 +27,7 @@ import applicationModels.ExpedientesAppModel
 import dtos.ViajarDTO
 import dtos.PaisComplejoDTO
 import dtos.PistasDTO
+import java.util.Random
 
 @Controller
 class CarmenSanDiegoRestAPI {
@@ -225,7 +226,8 @@ class CarmenSanDiegoRestAPI {
     @Post("/iniciarJuego")
     def iniciarJuego() {
     	response.contentType = ContentType.APPLICATION_JSON
-        var CasoDTO caso = new CasoDTO(CasosRespositorio.casos.get(0))
+        var casos = CasosRespositorio.casos
+        var CasoDTO caso = new CasoDTO(casos.get(new Random().nextInt(casos.size)))
         ok(caso.toJson)
     }
 

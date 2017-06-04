@@ -15,11 +15,11 @@ class Embajada extends Lugar{
         var pistas = new ArrayList<String>()
 
         var String pPais1 = paisActual.get(rnd.nextInt(paisActual.size()))
-        pistas.add(pPais1)
+        pistas.add("Pista de pais: " + pPais1)
         paisActual.remove(pPais1)
 
         var String pPais2 = paisActual.get(rnd.nextInt(paisActual.size()))
-        pistas.add(pPais2)
+        pistas.add("Pista de pais: " + pPais2)
         paisActual.remove(pPais2)
 
         pistas
