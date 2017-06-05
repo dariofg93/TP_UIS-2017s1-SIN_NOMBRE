@@ -27,6 +27,7 @@ import applicationModels.ExpedientesAppModel
 import dtos.ViajarDTO
 import dtos.PaisComplejoDTO
 import dtos.PistasDTO
+import java.util.Random
 
 @Controller
 class CarmenSanDiegoRestAPI {
@@ -111,7 +112,12 @@ class CarmenSanDiegoRestAPI {
             var Caso caso = CasosRespositorio.buscarCaso(Integer.valueOf(req.casoId))
             var Pais paisAViajar = caso.buscarConexion(Integer.valueOf(req.destinoId))
 
+            var paisAnterior = caso.detective.lugarActual
             caso.detective.viajar(paisAViajar)
+
+            var casoDto = new CasoDTO(caso)
+            casoDto.setPaisAnterior(new PaisSimpleDTO(paisAnterior))
+
             ok(new CasoDTO(caso).toJson)
         }
         catch(UserException e) {
@@ -224,7 +230,8 @@ class CarmenSanDiegoRestAPI {
     @Post("/iniciarJuego")
     def iniciarJuego() {
     	response.contentType = ContentType.APPLICATION_JSON
-        var CasoDTO caso = new CasoDTO(CasosRespositorio.casos.get(0))
+        var casos = CasosRespositorio.casos
+        var CasoDTO caso = new CasoDTO(casos.get(new Random().nextInt(casos.size)))
         ok(caso.toJson)
     }
 

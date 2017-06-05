@@ -13,7 +13,7 @@ class LugaresRepositorio {
 
         var aaaj                = new Club("Argentinos_Juniors")
         var provincia           = new Banco("Banco_Provincia")
-        var bibliotecaArg       = new Biblioteca("Biblioteca_La Posada")
+        var bibliotecaArg       = new Biblioteca("Biblioteca_La_Posada")
 
         var embajadaMexico      = new Embajada("Embajada_Mexico")
         var bibliotecaItalia    = new Biblioteca("Biblioteca_La_Tana")

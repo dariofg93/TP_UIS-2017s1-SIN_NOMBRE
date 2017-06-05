@@ -67,7 +67,7 @@ class CreadorJuego {
         paisAnterior = newCase.paisDelRobo
 
         for(pais: newCase.planDeEscape.subList(iteracion,newCase.planDeEscape.size-1)) {
-            newCase.registrarPais(pais,paisAnterior,newCase.planDeEscape.get(iteracion))
+            newCase.registrarPais(pais,paisAnterior,newCase.planDeEscape.get(iteracion+1))
             paisAnterior = newCase.planDeEscape.get(iteracion)
             iteracion++
         }

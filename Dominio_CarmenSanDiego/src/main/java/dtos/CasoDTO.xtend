@@ -10,6 +10,7 @@ class CasoDTO {
 
     var Integer id
     var PaisComplejoDTO pais
+    var PaisSimpleDTO paisAnterior
     var List<String> paisesVisitados
     var List<String> paisesFallidos
 
@@ -18,5 +19,6 @@ class CasoDTO {
         pais = new PaisComplejoDTO(unCaso.detective.lugarActual)
         paisesVisitados = unCaso.detective.recorridoCriminal
         paisesFallidos = unCaso.detective.destinosFallidos
+        paisAnterior = null
     }
 }

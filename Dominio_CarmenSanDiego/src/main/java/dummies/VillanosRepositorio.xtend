@@ -14,18 +14,18 @@ class VillanosRepositorio {
     var static villanos = new ArrayList() => [
 
         var carmenSanDiego = new Villano("Carmen SanDiego", 1,SexosPosibles.Femenino,
-        seniasParticulares = new ArrayList<String>(Arrays.asList("tenia pelo Rubio","usaba un sobretodo rojo","llevaba unos guantes amarillos puestos","tenia admiracion por las joyas en el lugar","se la escuchaba con conocimiento en vinos")),
-        hobbies = new ArrayList<String>(Arrays.asList("le gusta andar en moto","parecia tener una coleccion de joyas")))
+        seniasParticulares = new ArrayList<String>(Arrays.asList("Pelirroja","Sobretodo rojo","Guantes amarillos","Admiracion por las joyas","Conocimiento en vinos")),
+        hobbies = new ArrayList<String>(Arrays.asList("Le gusta andar en moto","Tiene una coleccion de joyas")))
         add(carmenSanDiego)
 
         var ihorIhorovich = new Villano("Ihor Ihorovich", 2, SexosPosibles.Masculino,
-        seniasParticulares = new ArrayList<String>(Arrays.asList("tenia pelo Rubio","lo vi manejando una limosina","tenia un tatuaje en su brazo", "lo escuche hablar ucraniano","tenia admiracion por la joyas en el lugar")),
-        hobbies = new ArrayList<String>(Arrays.asList("meciono que le gustaba jugar al croquet","le gusta cocinar")))
+        seniasParticulares = new ArrayList<String>(Arrays.asList("Pelo rubio","Maneja una limusina","Tatuaje en su brazo derecho", "Habla ucraniano","Admiracion por las joyas")),
+        hobbies = new ArrayList<String>(Arrays.asList("Le jugar al croquet","Le gusta cocinar")))
         add(ihorIhorovich)
 
         var alCapone = new Villano("Al Capone", 3, SexosPosibles.Masculino,
-        seniasParticulares = new ArrayList<String>(Arrays.asList("tenia pelo Castanio","usaba un traje", "lo escuche hablar italiano","llevaba unos guantes puestos","lo vi manejando una limosina")),
-        hobbies = new ArrayList<String>(Arrays.asList("se ocupa en la mafia con los muchachos","tenia pinta de robar bancos")))
+        seniasParticulares = new ArrayList<String>(Arrays.asList("Pelo rubio","Usa un traje", "Habla italiano","Usa guantes","Maneja una limosina")),
+        hobbies = new ArrayList<String>(Arrays.asList("Se ocupa en la mafia con los muchachos","Antecedentes en robo de bancos")))
         add(alCapone)
     ]
 

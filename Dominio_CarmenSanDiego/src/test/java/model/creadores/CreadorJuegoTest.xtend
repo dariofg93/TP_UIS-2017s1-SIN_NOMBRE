@@ -82,6 +82,6 @@ class CreadorJuegoTest {
         creador.repartirPistasYocupantes(caso)
         verify(caso).registrarUltimoPais
         verify(caso).registrarPais(brasil,null,argentina)
-        //verify(caso).registrarPais(argentina,brasil,argentina)
+        verify(caso).registrarPais(argentina,brasil,bolibia)
     }
 }
