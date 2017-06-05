@@ -25,7 +25,6 @@ import model.registroLugar.RegistroLugar
 import dtos.VillanoDTO
 import applicationModels.ExpedientesAppModel
 import dtos.ViajarDTO
-import dtos.PaisComplejoDTO
 import dtos.PistasDTO
 import java.util.Random
 
@@ -45,6 +44,13 @@ class CarmenSanDiegoRestAPI {
 
         var List<VillanoDTO> villanosSimple = expedientesModel.villanos.stream.map(v | new VillanoDTO(v)).collect(Collectors.toList)
         ok(villanosSimple.toJson)
+    }
+
+    @Get("/villanosCompletos")
+    def getVillanosCompletos() {
+        response.contentType = ContentType.APPLICATION_JSON
+
+        ok(expedientesModel.villanos.toJson)
     }
 
     @Get("/villanos/:id")
@@ -76,7 +82,7 @@ class CarmenSanDiegoRestAPI {
         }
     }
 
-    @Put("/villanos")
+    @Post("/updateVillano")
     def upVillano(@Body String body) {
         response.contentType = ContentType.APPLICATION_JSON
         try {
@@ -89,7 +95,7 @@ class CarmenSanDiegoRestAPI {
         }
     }
 
-    @Delete("/villanos/:id")
+    @Get("/deleteVillano/:id")
     def deleteVillano() {
         response.contentType = ContentType.APPLICATION_JSON
         try {
