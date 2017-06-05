@@ -96,6 +96,8 @@ angular.module("CarmenSandiego")
 
 
 //Confirmar borrar pais
+
+//NO ANDA
     //$scope.confirmarBorrarPais = function() {
         // $http({
         //     method: 'DELETE',
@@ -107,6 +109,7 @@ angular.module("CarmenSandiego")
         //     $scope.actualizarDatos();
         // });
 
+//NO ANDA  
         //  $http.delete(url + "/paises", {"id": $scope.paisABorrar.id}).then(function(response) { //No andaba el 'DELETE'
         //     $scope.actualizarDatos();
         // });
