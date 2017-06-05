@@ -3,10 +3,15 @@ package model.lugar
 import java.util.ArrayList
 import java.util.List
 import model.ocupante.SeniasYHobbies
+import com.fasterxml.jackson.annotation.JsonTypeName
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
 
+@JsonTypeName("club")
 class Club extends Lugar{
 
-    new(String unNombre){
+    @JsonCreator
+    new(@JsonProperty("nombre") String unNombre){
         super(unNombre)
     }
 
