@@ -28,7 +28,6 @@ angular.module("CarmenSandiego")
         .then(function(response, status) {
             $scope.caso = response.data; //Explota en el try de viajar, revisar por que no viaja y me devuelve un nuevo caso.
             $scope.idCaso = response.data.id;
-            alert(response.data);
         },
         function(error) {
             alert("error: " + error.data);
@@ -56,11 +55,7 @@ angular.module("CarmenSandiego")
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         })
         .then(function(response, status) {
-            $scope.ordenEmitida = response.data; //La data llega bien, responde con ok(que la orden fue emitida), pero no se notan cambios en la vista
-            alert(response.data);
-        },
-        function(error) {
-            alert("error: " + error.data);
+            $scope.ordenEmitida = response.data; 
         });
     }
 });

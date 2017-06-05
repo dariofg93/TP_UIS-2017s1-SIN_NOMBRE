@@ -169,7 +169,7 @@ class CarmenSanDiegoRestAPI {
         }
     }
 
-    @Post("/paises")
+    @Post("/crearPais")
     def createPais(@Body String body) {
         response.contentType = ContentType.APPLICATION_JSON
         try {
@@ -187,21 +187,25 @@ class CarmenSanDiegoRestAPI {
         }
     }
 
-    @Put("/paises")
+    @Post("/updatePais")
     def upPais(@Body String body) {
+    	System.out.println("Editar pais");
+    	System.out.println(body);
         try {
             val Pais pais = body.fromJson(Pais)
             mapamundi.updatePais(pais)
             ok("Pais actualizado correctamente")
         }
         catch(Exception e) {
+        	System.out.println(e)
             badRequest("El body debe ser un pais")
         }
     }
 
-    @Delete("/paises/:id")
+    @Get("/deletePais/:id")
     def deletePais() {
         response.contentType = ContentType.APPLICATION_JSON
+        System.out.println(id);
         try {
             this.mapamundi.eliminarPais(Integer.valueOf(id))
             ok()

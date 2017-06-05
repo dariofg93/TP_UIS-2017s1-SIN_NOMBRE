@@ -26,7 +26,7 @@
                         </button>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-danger" ng-click="borrarPais($index)">
+                        <button type="button" class="btn btn-danger" ng-click="borrarPais(pais)">
                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>								
                         </button>
                     </td>
@@ -36,16 +36,16 @@
         </div>
 
         <div class="col-md-6">
-            <div class="panel panel-warning">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Editar Pais: </h3>
                 </div>
                 <div class="panel-body">
-                    <form ng-submit="editarPais()">
+                    <form ng-submit="actualizarPais()">
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
                             <input ng-model="paisSeleccionado.nombre" type="text" class="form-control" id="nombre" required>
-                        </div>
+                        </div><hr>
                         <!--Caracteristicas-->
                         <div class="form-group">
                         <table class="table table-hover">
@@ -75,7 +75,7 @@
                                 </button>
                             </div><br>
                         </div>
-                        </div>
+                        </div><hr>
 
                         <!--Conexiones-->
                         <div class="form-group">
@@ -108,7 +108,39 @@
                                 </button>
                             </div><br>
                         </div>
+                        </div><hr>
+
+                        <div class="form-group">
+                            <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Lugares de interes</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="lugar in paisSeleccionado.lugaresDeInteres">
+                                    <td>{{ lugar.nombre }}</td>
+                                    <td><button type="button" class="btn btn-danger" ng-click="borrarLugar(lugar)">
+                                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>								
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <select ng-model="viewData.lugar" ng-options="paisCompleto.nombre for paisCompleto in paisesCompletos track by paisCompleto.id" class="form-control">
+                                    <option value="">Seleccione un lugar</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-success" ng-click="addLugar()">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>								
+                                </button>
+                            </div><br>
                         </div>
+                        </div><hr>
 
                         <button type="submit" class="btn btn-success">Guardar</button>
                     </form>
@@ -116,6 +148,27 @@
             </div>
         </div>
 
+    </div>
+
+    <!-- Modal Borrar pais -->
+    <div id="modalBorrarPais" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h2 class="modal-title">Eliminar {{paisABorrar.nombre}}?</h2>
+        </div>
+        <div class="modal-body">
+            <h4> Esta seguro que desea eliminar este pais?
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button ng-click="confirmarBorrarPais()" type="button" class="btn btn-danger" data-dismiss="modal">Confirmar</button>
+        </div>
+        </div>
+
+    </div>
     </div>
 
 </div>

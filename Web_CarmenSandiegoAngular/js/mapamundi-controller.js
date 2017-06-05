@@ -29,9 +29,34 @@ angular.module("CarmenSandiego")
         });
     };
 
-    //Borrar Pais
-    $scope.borrarPais = function(pais) {
-        this.paises.splice(pais, 1);
+    //Actualizar Pais
+    $scope.actualizarPais = function() {
+        $http({
+            method: 'POST',
+            url: url + "/updatePais",
+            data: $scope.paisSeleccionado ,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
+        .then(function(response, status) {
+            $scope.actualizarDatos();
+            alert(response.data); 
+        },
+        function(error) {
+            alert("error: " + error.data);
+        });
+    };
+
+    //Modal borrar Pais
+    $scope.borrarPais = function(paisABorrar) {
+         $scope.paisABorrar = paisABorrar;
+         $('#modalBorrarPais').modal('show');
+    };
+
+    //Confirmar borrar pais
+    $scope.confirmarBorrarPais = function() {
+         $http.get(url + "/deletePais/" + $scope.paisABorrar.id).then(function(response) { //No andaba el 'DELETE'
+            $scope.actualizarDatos();
+        });
     };
 
     //Caracteristicas
@@ -44,7 +69,7 @@ angular.module("CarmenSandiego")
         var index = $scope.paisSeleccionado.caracteristicas.indexOf(caract);
         $scope.paisSeleccionado.caracteristicas.splice(index, 1);
     };
-``
+
     //Conexiones
     //Add Caracteristica
     $scope.addConexion = function() {
@@ -56,4 +81,33 @@ angular.module("CarmenSandiego")
         $scope.paisSeleccionado.conexiones.splice(index, 1);
     };
 
+    //Lugares de interes
+    //Add Lugar de interes
+    $scope.addLugar = function() {
+        $scope.paisSeleccionado.lugaresDeInteres.push($scope.viewData.lugar);
+    };
+    //Borrar Lugar de interes
+    $scope.borrarLugar = function(lugar) {
+        var index = $scope.paisSeleccionado.lugaresDeInteres.indexOf(lugar);
+        $scope.paisSeleccionado.lugaresDeInteres.splice(index, 1);
+    };
+
 });
+
+
+//Confirmar borrar pais
+    //$scope.confirmarBorrarPais = function() {
+        // $http({
+        //     method: 'DELETE',
+        //     url: url + "/paises",
+        //     data: {"id": $scope.paisABorrar.id},
+        //     headers: {'Content-Type': 'application/json'}
+        // })
+        // .then(function(response) {
+        //     $scope.actualizarDatos();
+        // });
+
+        //  $http.delete(url + "/paises", {"id": $scope.paisABorrar.id}).then(function(response) { //No andaba el 'DELETE'
+        //     $scope.actualizarDatos();
+        // });
+    //};

@@ -17,7 +17,7 @@ class Pais {
     var List<String> caracteristicas
     var List<Pais> conexiones
     var List<Lugar> lugaresDeInteres
-
+	
     new(){
     	caracteristicas = new ArrayList<String>()
     	conexiones = new ArrayList<Pais>()
