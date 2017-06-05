@@ -60,7 +60,7 @@ class CarmenSanDiegoRestAPI {
             ok(expedientesModel.villanos.findFirst[ it.id == Integer.valueOf(id) ].toJson)
         }
         catch(Exception e) {
-            badRequest("El id debe ser un numero entero")
+            badRequest(getErrorJson("El id debe ser un numero entero"))
         }
     }
 
@@ -74,7 +74,7 @@ class CarmenSanDiegoRestAPI {
                 ok("Se agrego el nuevo villano")
             }
             catch(Exception e) {
-                badRequest(e.message)
+                badRequest(getErrorJson("Introdusca un Villano bien formado"))
             }
         }
         catch(Exception e) {
@@ -88,10 +88,10 @@ class CarmenSanDiegoRestAPI {
         try {
             val Villano villano = body.fromJson(Villano)
             expedientesModel.updateVillano(villano)
-            ok("Villano actualizado correctamente")
+            ok()
         }
         catch(Exception e) {
-            badRequest("El body debe ser un villano")
+            badRequest(getErrorJson("El body debe ser un villano"))
         }
     }
 
@@ -100,10 +100,10 @@ class CarmenSanDiegoRestAPI {
         response.contentType = ContentType.APPLICATION_JSON
         try {
             expedientesModel.deleteVillano(Integer.valueOf(id))
-            ok("Villano eliminado")
+            ok()
         }
         catch(Exception e){
-            badRequest("El id debe ser un numero")
+            badRequest(getErrorJson("El id debe ser un numero"))
         }
     }
 
@@ -127,7 +127,7 @@ class CarmenSanDiegoRestAPI {
             ok(new CasoDTO(caso).toJson)
         }
         catch(UserException e) {
-            badRequest("El body debe contener un destinoId y un casoId")
+            badRequest(getErrorJson("El body debe contener un destinoId y un casoId"))
         }
     }
 
@@ -144,7 +144,7 @@ class CarmenSanDiegoRestAPI {
             ok(new PistasDTO(caso.detectiveVisitaLugar(registro.lugar)).toJson)
         }
         catch(UserException e) {
-            badRequest("El nombre del lugar no es valido o el id del caso es incorrecto")
+            badRequest(getErrorJson("El nombre del lugar no es valido o el id del caso es incorrecto"))
         }
     }
 
@@ -201,15 +201,12 @@ class CarmenSanDiegoRestAPI {
 
     @Post("/updatePais")
     def upPais(@Body String body) {
-    	System.out.println("Editar pais");
-    	System.out.println(body);
         try {
             val Pais pais = body.fromJson(Pais)
             mapamundi.updatePais(pais)
             ok("Pais actualizado correctamente")
         }
         catch(Exception e) {
-        	System.out.println(e)
             badRequest("El body debe ser un pais")
         }
     }
@@ -217,7 +214,6 @@ class CarmenSanDiegoRestAPI {
     @Get("/deletePais/:id")
     def deletePais() {
         response.contentType = ContentType.APPLICATION_JSON
-        System.out.println(id);
         try {
             this.mapamundi.eliminarPais(Integer.valueOf(id))
             ok()

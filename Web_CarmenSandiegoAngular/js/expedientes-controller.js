@@ -42,7 +42,7 @@ angular.module("CarmenSandiego")
             alert(response.data); 
         },
         function(error) {
-            alert("error: " + error.data);
+            //alert("error: " + error.data);
         });
     };
     
