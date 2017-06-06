@@ -94,11 +94,11 @@ angular.module("CarmenSandiego")
     };
 
     //Conexiones
-    //Add Caracteristica
+    //Add Conexion
     $scope.addConexion = function() {
         $scope.paisSeleccionado.conexiones.push($scope.viewData.conexion);
     };
-    //Borrar Caracteristica
+    //Borrar Conexion
     $scope.borrarConexion = function(conexion) {
         var index = $scope.paisSeleccionado.conexiones.indexOf(conexion);
         $scope.paisSeleccionado.conexiones.splice(index, 1);

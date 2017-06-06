@@ -26,7 +26,7 @@
                         </button>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-danger" ng-click="borrarVillano($index)">
+                        <button type="button" class="btn btn-danger" ng-click="borrarVillano(villano)">
                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                         </button>
                     </td>
@@ -36,8 +36,111 @@
         </div>
 
         <div class="col-md-6">
-            dadsada
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Editar Villano: </h3>
+                </div>
+                <div class="panel-body">
+                    <form ng-submit="actualizarVillano()">
+                        <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input ng-model="villanoSeleccionado.nombre" type="text" class="form-control" id="nombre" required>
+                        </div><hr>
+                        
+                        <div class="form-group">
+                            <label>Sexo:</label><br>
+                            <input type="radio" ng-model="viewData.villanoSeleccionado" ng-checked="sexoOptions('Femenino')" ng-click="setSexo('Femenino')" value="Femenino"> Femenino
+                            <input type="radio" ng-model="viewData.villanoSeleccionado" ng-checked="sexoOptions('Masculino')" ng-click="setSexo('Masculino')" value="Masculino"> Masculino  
+                        </div><hr>
+                   
+                        <!--Señas-->
+                        <div class="form-group">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Señas</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="senia in villanoSeleccionado.seniasParticulares track by $index">
+                                    <td>{{ senia }}</td>
+                                    <td><button type="button" class="btn btn-danger" ng-click="borrarSenia(senia)">
+                                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>								
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <input ng-model="viewData.senia" type="text" class="form-control" placeholder="Seña nueva">
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-success" ng-click="addSenia()">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>								
+                                </button>
+                            </div><br>
+                        </div>
+                        </div><hr>
+
+                        <!--Hobbies-->
+                        <div class="form-group">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Hobbies</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="hobbie in villanoSeleccionado.hobbies track by $index">
+                                    <td>{{ hobbie }}</td>
+                                    <td><button type="button" class="btn btn-danger" ng-click="borrarHobbie(hobbie)">
+                                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>								
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <input ng-model="viewData.hobbie" type="text" class="form-control" placeholder="Nuevo Hobbie">
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-success" ng-click="addHobbie()">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>								
+                                </button>
+                            </div><br>
+                        </div>
+                        </div><hr>
+
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </form>
+                </div>
+            </div>
         </div>
 
+    </div>
+
+    <!-- Modal Borrar pais -->
+    <div id="modalBorrarVillano" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h2 class="modal-title">Eliminar {{villanoABorrar.nombre}}?</h2>
+        </div>
+        <div class="modal-body">
+            <h4> Esta seguro que desea eliminar este Villano?
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button ng-click="confirmarBorrarVillano()" type="button" class="btn btn-danger" data-dismiss="modal">Confirmar</button>
+        </div>
+        </div>
+
+    </div>
     </div>
 </div>
