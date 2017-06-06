@@ -59,6 +59,19 @@ angular.module("CarmenSandiego")
         });
     };
     
+    //Sexo
+    $scope.setSexoFemenino = function(){
+        $scope.villanoSeleccionado.sexo = "Femenino" 
+    };
+    
+    $scope.setSexoMasculino = function(){
+        $scope.villanoSeleccionado.sexo = "Masculino" 
+    };
+    
+    $scope.tipoDeSexo = function(){
+        $scope.sexo = "Masculino"
+    };
+    
     //Señas Particulares
     //Add Señas
     $scope.addSenia = function() {

@@ -71,14 +71,14 @@ class CarmenSanDiegoRestAPI {
             val Villano villano = body.fromJson(Villano)
             try {
                 expedientesModel.agregarVillano(villano)
-                ok("Se agrego el nuevo villano")
+                ok("Se agrego el nuevo villano".toJson)
             }
             catch(Exception e) {
                 badRequest(getErrorJson("Introdusca un Villano bien formado"))
             }
         }
         catch(Exception e) {
-            badRequest("El body debe ser un villano")
+            badRequest(getErrorJson("El body debe ser un villano"))
         }
     }
 
@@ -88,7 +88,7 @@ class CarmenSanDiegoRestAPI {
         try {
             val Villano villano = body.fromJson(Villano)
             expedientesModel.updateVillano(villano)
-            ok()
+            ok("Se ha modificado el villano".toJson)
         }
         catch(Exception e) {
             badRequest(getErrorJson("El body debe ser un villano"))
