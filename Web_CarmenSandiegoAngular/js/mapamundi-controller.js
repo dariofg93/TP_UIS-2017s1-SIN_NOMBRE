@@ -4,10 +4,12 @@ angular.module("CarmenSandiego")
     $scope.title = "Mapamundi";
     var url = "http://localhost:9000";
     $scope.viewData = {};
+    $scope.paisSeleccionado = {"id":$scope.paisesLength, "nombre":"", "caracteristicas": [], "conexiones": [], "lugaresDeInteres": []};
 
     //Get paises tabla
     $http.get(url + "/paises").then(function(response) {
         $scope.paises = response.data;
+        $scope.paisesLength = response.data.length+1;
     });
 
     //Get paises completos(para select conexiones)
@@ -15,10 +17,14 @@ angular.module("CarmenSandiego")
         $scope.paisesCompletos = response.data;
     });
 
-    //Llamo a esta funcion para que una vez editado algun pais, los actualice
+    //Llamo a esta funcion para que una vez editado/borrado/creado algun pais, los actualice
     $scope.actualizarDatos = function() {
         $http.get(url + "/paises").then(function(response) {
             $scope.paises = response.data;
+            $scope.paisesLength = response.data.length+1;
+        });
+        $http.get(url + "/paisesCompletos").then(function(response) {
+            $scope.paisesCompletos = response.data;
         });
     };
 
@@ -45,6 +51,23 @@ angular.module("CarmenSandiego")
             alert("error: " + error.data);
         });
     };
+
+    $scope.crearPais = function() {
+        $http({
+            method: 'POST',
+            url: url + "/crearPais",
+            data: $scope.paisSeleccionado ,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
+        .then(function(response, status) {
+            $scope.vaciarPais();
+            $('#modalNuevoPais').modal('hide');  
+            $scope.actualizarDatos();
+        },
+        function(error) {
+            alert("error: " + error.data);
+        });
+    }
 
     //Modal borrar Pais
     $scope.borrarPais = function(paisABorrar) {
@@ -91,6 +114,10 @@ angular.module("CarmenSandiego")
         var index = $scope.paisSeleccionado.lugaresDeInteres.indexOf(lugar);
         $scope.paisSeleccionado.lugaresDeInteres.splice(index, 1);
     };
+
+    $scope.vaciarPais = function() {
+        $scope.paisSeleccionado = {"id":$scope.paisesLength, "nombre":"", "caracteristicas": [], "conexiones": [], "lugaresDeInteres": []};
+    }
 
 });
 

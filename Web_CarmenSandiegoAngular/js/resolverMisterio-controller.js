@@ -56,6 +56,7 @@ angular.module("CarmenSandiego")
         })
         .then(function(response, status) {
             $scope.ordenEmitida = response.data; 
+            alert(response.data);
         });
     }
 });

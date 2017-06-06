@@ -28,6 +28,7 @@ import dtos.ViajarDTO
 import dtos.PaisComplejoDTO
 import dtos.PistasDTO
 import java.util.Random
+import dummies.PaisesRepositorio
 
 @Controller
 class CarmenSanDiegoRestAPI {
@@ -178,17 +179,21 @@ class CarmenSanDiegoRestAPI {
     @Post("/crearPais")
     def createPais(@Body String body) {
         response.contentType = ContentType.APPLICATION_JSON
+        System.out.println("Crear pais");
+    	System.out.println(body);
         try {
             val Pais pais = body.fromJson(Pais)
             try {
-                this.mapamundi.setPais(pais)
-                ok()
+                PaisesRepositorio.agregarPais(pais)
+                ok("Pais creado exitosamente".toJson)
             }
             catch (UserException exception) {
+            	System.out.println(exception)
                 badRequest(getErrorJson(exception.message))
             }
         }
         catch (UnrecognizedPropertyException exception) {
+        	System.out.println(exception)
             badRequest(getErrorJson("El body debe ser un Pais"))
         }
     }
@@ -200,7 +205,7 @@ class CarmenSanDiegoRestAPI {
         try {
             val Pais pais = body.fromJson(Pais)
             mapamundi.updatePais(pais)
-            ok("Pais actualizado correctamente")
+            ok("Pais actualizado correctamente".toJson)
         }
         catch(Exception e) {
         	System.out.println(e)

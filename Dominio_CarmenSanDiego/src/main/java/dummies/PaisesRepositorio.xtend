@@ -7,6 +7,7 @@ import model.lugar.*
 import model.pais.Pais
 
 import static dummies.LugaresRepositorio.*
+import org.uqbar.commons.model.UserException
 
 class PaisesRepositorio {
 
@@ -85,4 +86,12 @@ class PaisesRepositorio {
     def static List<Lugar> getLugaresDePaises() {
         return getLugares
     }
+    
+    def static agregarPais(Pais paisNuevo) {
+        if (!paisNuevo.estaCompleto()) {
+            throw new UserException("El pais debe estar completo");
+        }
+        mapamundi.add(paisNuevo)
+    }
+    
 }
