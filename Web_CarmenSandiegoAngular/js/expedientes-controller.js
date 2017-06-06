@@ -60,16 +60,12 @@ angular.module("CarmenSandiego")
     };
     
     //Sexo
-    $scope.setSexoFemenino = function(){
-        $scope.villanoSeleccionado.sexo = "Femenino" 
+    $scope.sexoOptions = function(unSexo){
+        return $scope.villanoSeleccionado.sexo == unSexo
     };
     
-    $scope.setSexoMasculino = function(){
-        $scope.villanoSeleccionado.sexo = "Masculino" 
-    };
-    
-    $scope.tipoDeSexo = function(){
-        $scope.sexo = "Masculino"
+    $scope.setSexo = function(unSexo){
+        $scope.villanoSeleccionado.sexo = unSexo
     };
     
     //Señas Particulares

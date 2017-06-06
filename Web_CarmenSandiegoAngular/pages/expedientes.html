@@ -48,12 +48,12 @@
                         </div><hr>
                         
                         <div class="form-group">
-                            <label for="sexo">Sexo:</label><br>
-                            <input type="radio" ng-model="viewData.villanoSeleccionado" ng-value="sexo" value="Femenino"> Femenino
-                            <input type="radio" ng-model="viewData.villanoSeleccionado" ng-model="sexo" value="Masculino"> Masculino
+                            <label>Sexo:</label><br>
+                            <input type="radio" ng-model="viewData.villanoSeleccionado" ng-checked="sexoOptions('Femenino')" ng-click="setSexo('Femenino')" value="Femenino"> Femenino
+                            <input type="radio" ng-model="viewData.villanoSeleccionado" ng-checked="sexoOptions('Masculino')" ng-click="setSexo('Masculino')" value="Masculino"> Masculino  
                         </div><hr>
                    
-                        <!--Señas name="gender" value="male" <label class="radio-inline">-->
+                        <!--Señas-->
                         <div class="form-group">
                         <table class="table table-hover">
                             <thead>
