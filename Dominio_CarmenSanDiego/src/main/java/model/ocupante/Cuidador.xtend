@@ -19,4 +19,8 @@ class Cuidador extends Ocupante{
     override actuar(Orden orden) {
         return pista
     }
+
+    override esUnVillano() {
+        false
+    }
 }

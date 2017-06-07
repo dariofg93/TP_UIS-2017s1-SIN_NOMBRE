@@ -43,4 +43,8 @@ class ExpedientesAppModel {
     def deleteVillano(int id) {
     	villanos.removeIf[ it.id == id]
     }
+
+    def buscarVillano(int id){
+        villanos.findFirst[ it.id == Integer.valueOf(id) ]
+    }
 }

@@ -28,6 +28,7 @@ import dtos.ViajarDTO
 import dtos.PistasDTO
 import java.util.Random
 import dummies.PaisesRepositorio
+import applicationModels.ResultadoJuegoAppModel
 
 @Controller
 class CarmenSanDiegoRestAPI {
@@ -36,6 +37,14 @@ class CarmenSanDiegoRestAPI {
     val List<Pais> paises = BaseCentralRepositorio.getMapamundi()
     val MapamundiAppModel mapamundi = new MapamundiAppModel(paises)
     val expedientesModel = new ExpedientesAppModel()
+
+    private def getErrorJson(String message) {
+        '{ "Error": "' + message + '" }'
+    }
+
+    private def getAceptJson(String message) {
+        '{ "Bien": "' + message + '" }'
+    }
 
     //***************************VILLANOS*****************************
 
@@ -58,7 +67,7 @@ class CarmenSanDiegoRestAPI {
     def getVillano() {
         response.contentType = ContentType.APPLICATION_JSON
         try {
-            ok(expedientesModel.villanos.findFirst[ it.id == Integer.valueOf(id) ].toJson)
+            ok(expedientesModel.buscarVillano(Integer.valueOf(id)).toJson)
         }
         catch(Exception e) {
             badRequest(getErrorJson("El id debe ser un numero entero"))
@@ -72,7 +81,7 @@ class CarmenSanDiegoRestAPI {
             val Villano villano = body.fromJson(Villano)
             try {
                 expedientesModel.agregarVillano(villano)
-                ok("Se agrego el nuevo villano".toJson)
+                ok(getAceptJson("Se agrego el nuevo villano"))
             }
             catch(Exception e) {
                 badRequest(getErrorJson("Introduzca un Villano bien formado"))
@@ -89,7 +98,7 @@ class CarmenSanDiegoRestAPI {
         try {
             val Villano villano = body.fromJson(Villano)
             expedientesModel.updateVillano(villano)
-            ok("Se ha modificado el villano".toJson)
+            ok(getAceptJson("Se ha modificado el villano"))
         }
         catch(Exception e) {
             badRequest(getErrorJson("El body debe ser un villano"))
@@ -142,7 +151,7 @@ class CarmenSanDiegoRestAPI {
             val Caso caso = CasosRespositorio.buscarCaso(Integer.valueOf(casoId))
             val RegistroLugar registro = caso.BuscarRegistroLugar(String.valueOf(nombreLugar))
 
-            ok(new PistasDTO(caso.detectiveVisitaLugar(registro.lugar)).toJson)
+            ok(new ResultadoJuegoAppModel(caso,registro).toJson)
         }
         catch(UserException e) {
             badRequest(getErrorJson("El nombre del lugar no es valido o el id del caso es incorrecto"))
@@ -226,10 +235,6 @@ class CarmenSanDiegoRestAPI {
         catch (NumberFormatException ex) {
             badRequest(getErrorJson("El id debe ser un numero entero"))
         }
-    }
-
-    private def getErrorJson(String message) {
-        '{ "error": "' + message + '" }'
     }
 
     //***************************INICIAR JUEGO*****************************

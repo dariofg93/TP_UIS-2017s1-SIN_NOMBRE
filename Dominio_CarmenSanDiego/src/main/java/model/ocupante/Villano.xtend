@@ -35,6 +35,10 @@ class Villano extends Ocupante{
         true
     }
 
+    override esUnVillano() {
+        true
+    }
+
     override actuar(Orden orden){
         switch(orden.fueEmitida()){
             case 1: return "ALTO!!! Detengase: " + orden.nombre
