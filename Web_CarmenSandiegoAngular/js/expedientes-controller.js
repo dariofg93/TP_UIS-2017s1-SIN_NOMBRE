@@ -13,7 +13,7 @@ angular.module("CarmenSandiego")
         $scope.villanosLength = response.data.length+1;
     })
     .catch(function(error) {
-            handleError(error.data);
+        handleError(error.data);
     });
     
     //Llamo a esta funcion para que una vez editado algun villano, los actualice
