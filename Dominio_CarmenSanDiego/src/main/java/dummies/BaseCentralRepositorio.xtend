@@ -25,7 +25,7 @@ class BaseCentralRepositorio {
     }
 
     def static buscarVillano(int idVillano){
-        acme.getVillanos.findFirst[ it.id == id]
+        acme.getVillanos.findFirst[ it.id == idVillano]
     }
 
     def static List<String> sexosPosibles(){

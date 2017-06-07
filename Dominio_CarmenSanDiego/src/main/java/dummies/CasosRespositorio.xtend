@@ -14,7 +14,7 @@ class CasosRespositorio {
     var static casos = new ArrayList<Caso>() => [
         add(BaseCentralRepositorio.crearCaso(1,
                     INTRO_A_DESCRIPCION + "A las 9 de la mañana en la ciudad del Cairo la comunidad científica fue conmovida" + SaltoDeLinea + " al darse cuenta del faltante de gran valor! El sarcófago del faraón" + SaltoDeLinea + " USERMAATRA-MERIAMON RAMSES-HEQAIUNU, el mejor conocido como Ramsés III. " + SaltoDeLinea + FINAL_DE_DESCRIPCION + SaltoDeLinea,
-                    "Robo del Faraón")
+                    "la Tumba del Faraón")
         )
     ]
 

@@ -6,6 +6,7 @@ import model.caso.Caso
 import model.registroLugar.RegistroLugar
 import model.ocupante.Ocupante
 import model.orden.Orden
+import model.ocupante.Villano
 
 @Observable
 @Accessors
@@ -26,9 +27,9 @@ class ResultadoJuegoAppModel {
     def esOrdenExitosaOFallida(Ocupante ocupante, String objeto, Orden unaOrden){
         if(unaOrden.fueEmitida == 1 && ocupante.esUnVillano){
             if(ocupante == unaOrden.getVillano) {
-                resultadoOrden = "En Hora Buena!!! "+ "Ha detenido a " + unaOrden.getVillano.nombre + " y recuperado " + objeto + ". Felicitaciones!!!"
+                resultadoOrden = "En Hora Buena!!! Ha detenido a " + unaOrden.getVillano.nombre + " y recuperado " + objeto + ". Felicitaciones!!!"
             }else{
-                resultadoOrden = "Mala Noticia. " + "Deberia tener Orden de Arresto Contra " +  unaOrden.getVillano.nombre +  ". Lamentablemente el crimen quedara impune."
+                resultadoOrden = "Malas Noticias. Deberia tener Orden de Arresto Contra " + (ocupante as Villano).nombre +  ". Lamentablemente el crimen quedara impune."
             }
         }
     }
