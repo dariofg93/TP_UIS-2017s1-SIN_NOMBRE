@@ -65,7 +65,7 @@ class CarmenSanDiegoRestAPI {
         }
     }
 
-    @Post("/villanos")
+    @Post("/crearVillano")
     def createVillano(@Body String body) {
         response.contentType = ContentType.APPLICATION_JSON
         try {
@@ -75,7 +75,7 @@ class CarmenSanDiegoRestAPI {
                 ok("Se agrego el nuevo villano".toJson)
             }
             catch(Exception e) {
-                badRequest(getErrorJson("Introdusca un Villano bien formado"))
+                badRequest(getErrorJson("Introduzca un Villano bien formado"))
             }
         }
         catch(Exception e) {

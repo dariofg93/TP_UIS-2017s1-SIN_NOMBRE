@@ -7,32 +7,53 @@ angular.module("CarmenSandiego")
     $scope.paisSeleccionado = {"id":$scope.paisesLength, "nombre":"", "caracteristicas": [], "conexiones": [], "lugaresDeInteres": []};
 
     //Get paises tabla
-    $http.get(url + "/paises").then(function(response) {
+    $http.get(url + "/paises")
+    .then(function(response) {
         $scope.paises = response.data;
         $scope.paisesLength = response.data.length+1;
-    });
+    })
+    .catch(function(error) {
+            handleError(error.data);
+    })
 
     //Get paises completos(para select conexiones)
-    $http.get(url + "/paisesCompletos").then(function(response) {
+    $http.get(url + "/paisesCompletos")
+    .then(function(response) {
         $scope.paisesCompletos = response.data;
-    });
+    })
+    .catch(function(error) {
+        handleError(error.data);
+    })
 
     //Llamo a esta funcion para que una vez editado/borrado/creado algun pais, los actualice
     $scope.actualizarDatos = function() {
-        $http.get(url + "/paises").then(function(response) {
+        $http.get(url + "/paises")
+        .then(function(response) {
             $scope.paises = response.data;
             $scope.paisesLength = response.data.length+1;
+        })
+        .catch(function(error) {
+            handleError(error.data);
         });
-        $http.get(url + "/paisesCompletos").then(function(response) {
+
+        $http.get(url + "/paisesCompletos")
+        .then(function(response) {
             $scope.paisesCompletos = response.data;
-        });
+        })
+        .catch(function(error) {
+            handleError(error.data);
+        })
     };
 
     //Editar Pais
     $scope.editarPais = function(paisId) {
-        $http.get(url + "/paises/" + paisId).then(function(response) {
+        $http.get(url + "/paises/" + paisId)
+        .then(function(response) {
             $scope.paisSeleccionado = response.data;
-        });
+        })
+        .catch(function(error) {
+            handleError(error.data);
+        })
     };
 
     //Actualizar Pais
@@ -46,10 +67,10 @@ angular.module("CarmenSandiego")
         .then(function(response, status) {
             $scope.actualizarDatos();
             alert(response.data); 
-        },
-        function(error) {
-            alert("error: " + error.data);
-        });
+        })
+        .catch(function(error) {
+            handleError(error.data);
+        })
     };
 
     $scope.crearPais = function() {
@@ -63,10 +84,10 @@ angular.module("CarmenSandiego")
             $scope.vaciarPais();
             $('#modalNuevoPais').modal('hide');  
             $scope.actualizarDatos();
-        },
-        function(error) {
-            alert("error: " + error.data);
-        });
+        })
+        .catch(function(error) {
+            handleError(error.data);
+        })
     }
 
     //Modal borrar Pais
@@ -77,9 +98,13 @@ angular.module("CarmenSandiego")
 
     //Confirmar borrar pais
     $scope.confirmarBorrarPais = function() {
-         $http.get(url + "/deletePais/" + $scope.paisABorrar.id).then(function(response) { //No andaba el 'DELETE'
+         $http.get(url + "/deletePais/" + $scope.paisABorrar.id)
+         .then(function(response) { //No andaba el 'DELETE'
             $scope.actualizarDatos();
-        });
+        })
+        .catch(function(error) {
+            handleError(error.data);
+        })
     };
 
     //Caracteristicas

@@ -6,16 +6,24 @@ angular.module("CarmenSandiego")
     $scope.viewData = {};
 
     //Post iniciar juego
-    $http.post(url + "/iniciarJuego").then(function(response, status) {
+    $http.post(url + "/iniciarJuego")
+    .then(function(response, status) {
         $scope.caso = response.data;
         $scope.idCaso = response.data.id;
-    });
+    })
+    .catch(function(error) {
+        handleError(error.data);
+    })
 
     //Get villanos
-    $http.get(url + "/villanos").then(function(response, status) {
+    $http.get(url + "/villanos")
+    .then(function(response, status) {
         $scope.villanos = response.data;
         $scope.villanoSeleccionado = response.data[0].id;
-    });
+    })
+    .catch(function(error) {
+        handleError(error.data);
+    })
 
     //Post viajar
     $scope.viajar = function() {
@@ -28,22 +36,23 @@ angular.module("CarmenSandiego")
         .then(function(response, status) {
             $scope.caso = response.data; //Explota en el try de viajar, revisar por que no viaja y me devuelve un nuevo caso.
             $scope.idCaso = response.data.id;
-        },
-        function(error) {
-            alert("error: " + error.data);
-        });
+        })
+        .catch(function(error) {
+            handleError(error.data);
+        })
     }
 
     //Get pista
     $scope.getPista = function(lugar) {
         $scope.lugarSeleccionado = lugar;
-        $http.get(url + "/pistaDelLugar/"+$scope.idCaso+"/"+lugar).then(function(response, status) {
+        $http.get(url + "/pistaDelLugar/"+$scope.idCaso+"/"+lugar)
+        .then(function(response, status) {
             $scope.pistas = (response.data.pista).split(','); //Obtiene las pistas si el lugar no tiene espacios, sino explota. Averiguar sobre "%20"
             $('#modalLugar').modal('show');
-        },
-        function(error) {
-            alert("error: " + error.data);
-        });
+        })
+        .catch(function(error) {
+            handleError(error.data);
+        })
     }
 
     //Post emitir orden de arresto
@@ -57,6 +66,9 @@ angular.module("CarmenSandiego")
         .then(function(response, status) {
             $scope.ordenEmitida = response.data; 
             alert(response.data);
-        });
+        })
+        .catch(function(error) {
+            handleError(error.data);
+        })
     }
 });

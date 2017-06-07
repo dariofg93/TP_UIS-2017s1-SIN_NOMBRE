@@ -4,22 +4,28 @@ angular.module("CarmenSandiego")
     $scope.title = "Expedientes";
     var url = "http://localhost:9000";
     $scope.viewData = {};
+    $scope.villanoSeleccionado = {"id":$scope.villanosLength, "nombre":"", "sexo":"", "seniasParticulares":[], "hobbies":[]};
 
     //Get villanos
-    $http.get(url + "/villanos").then(function(response) {
+    $http.get(url + "/villanos")
+    .then(function(response) {
         $scope.villanos = response.data;
-    });
-    
-    //Get villanos completos(para editarlos)
-    $http.get(url + "/villanosCompletos").then(function(response) {
-        $scope.villanosCompletos = response.data;
+        $scope.villanosLength = response.data.length+1;
+    })
+    .catch(function(error) {
+            handleError(error.data);
     });
     
     //Llamo a esta funcion para que una vez editado algun villano, los actualice
     $scope.actualizarDatos = function() {
-        $http.get(url + "/villanos").then(function(response) {
+        $http.get(url + "/villanos")
+        .then(function(response) {
             $scope.villanos = response.data;
-        });
+            $scope.villanosLength = response.data.length+1;
+        })
+        .catch(function(error) {
+            handleError(error.data);
+        })
     };
     
     //Editar Villano
@@ -40,10 +46,28 @@ angular.module("CarmenSandiego")
         .then(function(response, status) {
             $scope.actualizarDatos();
             alert(response.data); 
-        },
-        function(error) {
-            //alert("error: " + error.data);
-        });
+        })
+        .catch(function(error) {
+            handleError(error.data);
+        })
+    };
+
+    //Crear Villano
+    $scope.crearVillano = function() {
+        $http({
+            method: 'POST',
+            url: url + "/crearVillano",
+            data: $scope.villanoSeleccionado ,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
+        .then(function(response, status) {
+            $scope.vaciarVillano();
+            $('#modalNuevoVillano').modal('hide');  
+            $scope.actualizarDatos();
+        })
+        .catch(function(error) {
+            handleError(error.data);
+        })
     };
     
     //Modal borrar Villano
@@ -54,9 +78,13 @@ angular.module("CarmenSandiego")
 
     //Confirmar borrar villano
     $scope.confirmarBorrarVillano = function() {
-         $http.get(url + "/deleteVillano/" + $scope.villanoABorrar.id).then(function(response) { //No andaba el 'DELETE'
+         $http.get(url + "/deleteVillano/" + $scope.villanoABorrar.id)
+         .then(function(response) { //No andaba el 'DELETE'
             $scope.actualizarDatos();
-        });
+        })
+        .catch(function(error) {
+            handleError(error.data);
+        })
     };
     
     //Sexo
@@ -89,4 +117,8 @@ angular.module("CarmenSandiego")
         var index = $scope.villanoSeleccionado.hobbies.indexOf(hobbie);
         $scope.villanoSeleccionado.hobbies.splice(index, 1);
     };
+
+    $scope.vaciarVillano = function() {
+        $scope.villanoSeleccionado = {"id":$scope.villanosLength, "nombre":"", "sexo":"", "seniasParticulares":[], "hobbies":[]};
+    }
 });

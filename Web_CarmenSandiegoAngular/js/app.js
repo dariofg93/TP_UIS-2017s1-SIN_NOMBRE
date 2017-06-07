@@ -21,3 +21,10 @@ angular.module("CarmenSandiego", ["ngRoute"])
 		redirectTo: '/'
 	})
 });
+
+var handleError = function(error) {
+    if(error == null) {
+        alert("Se produjo un error");
+    }
+    else { alert(error) };
+}
