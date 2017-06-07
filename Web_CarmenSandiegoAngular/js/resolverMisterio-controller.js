@@ -48,11 +48,11 @@ angular.module("CarmenSandiego")
         $http.get(url + "/pistaDelLugar/"+$scope.idCaso+"/"+lugar)
         .then(function(response, status) {
             $scope.pistas = (response.data.pista).split(','); //Obtiene las pistas si el lugar no tiene espacios, sino explota. Averiguar sobre "%20"
-            $('#modalLugar').modal('show');
             if(response.data.resultadoOrden != null){
                 $scope.finalJuego = response.data.resultadoOrden
                 $('#modalFinalCaso').modal('show');
             }
+            else {$('#modalLugar').modal('show');}
         })
         .catch(function(error) {
             handleError(error.data);

@@ -144,6 +144,7 @@ angular.module("CarmenSandiego")
         $scope.paisSeleccionado = {"id":$scope.paisesLength, "nombre":"", "caracteristicas": [], "conexiones": [], "lugaresDeInteres": []};
     }
 
+    $scope.lugaresDeInteresSelect = [{type: "biblioteca", nombre: "Biblioteca"}, {type: "embajada", nombre: "Embajada"}, {type: "banco", nombre: "Banco"}];
 });
 
 

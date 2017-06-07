@@ -133,7 +133,7 @@
                         </table>
                         <div class="row">
                             <div class="col-md-9">
-                                <select ng-model="viewData.lugar" ng-options="paisCompleto.nombre for paisCompleto in paisesCompletos track by paisCompleto.id" class="form-control">
+                                <select ng-model="viewData.lugar" ng-options="lugar as lugar.nombre for lugar in lugaresDeInteresSelect" class="form-control">
                                     <option value="">Seleccione un lugar</option>
                                 </select>
                             </div>
