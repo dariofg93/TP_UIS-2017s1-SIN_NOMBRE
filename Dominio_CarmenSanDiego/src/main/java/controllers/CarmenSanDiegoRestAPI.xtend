@@ -38,6 +38,14 @@ class CarmenSanDiegoRestAPI {
     val MapamundiAppModel mapamundi = new MapamundiAppModel(paises)
     val expedientesModel = new ExpedientesAppModel()
 
+    private def getErrorJson(String message) {
+        '{ "Error": "' + message + '" }'
+    }
+
+    private def getAceptJson(String message) {
+        '{ "Bien": "' + message + '" }'
+    }
+
     //***************************VILLANOS*****************************
 
     @Get("/villanos")
@@ -59,7 +67,7 @@ class CarmenSanDiegoRestAPI {
     def getVillano() {
         response.contentType = ContentType.APPLICATION_JSON
         try {
-            ok(expedientesModel.villanos.findFirst[ it.id == Integer.valueOf(id) ].toJson)
+            ok(expedientesModel.buscarVillano(Integer.valueOf(id)).toJson)
         }
         catch(Exception e) {
             badRequest(getErrorJson("El id debe ser un numero entero"))
@@ -73,7 +81,7 @@ class CarmenSanDiegoRestAPI {
             val Villano villano = body.fromJson(Villano)
             try {
                 expedientesModel.agregarVillano(villano)
-                ok("Se agrego el nuevo villano".toJson)
+                ok(getAceptJson("Se agrego el nuevo villano"))
             }
             catch(Exception e) {
                 badRequest(getErrorJson("Introdusca un Villano bien formado"))
@@ -90,7 +98,7 @@ class CarmenSanDiegoRestAPI {
         try {
             val Villano villano = body.fromJson(Villano)
             expedientesModel.updateVillano(villano)
-            ok("Se ha modificado el villano".toJson)
+            ok(getAceptJson("Se ha modificado el villano"))
         }
         catch(Exception e) {
             badRequest(getErrorJson("El body debe ser un villano"))
@@ -227,10 +235,6 @@ class CarmenSanDiegoRestAPI {
         catch (NumberFormatException ex) {
             badRequest(getErrorJson("El id debe ser un numero entero"))
         }
-    }
-
-    private def getErrorJson(String message) {
-        '{ "error": "' + message + '" }'
     }
 
     //***************************INICIAR JUEGO*****************************

@@ -1,11 +1,11 @@
 package applicationModels
 
-import model.ocupante.Villano
 import org.uqbar.commons.utils.Observable
 import org.eclipse.xtend.lib.annotations.Accessors
 import model.caso.Caso
 import model.registroLugar.RegistroLugar
 import model.ocupante.Ocupante
+import model.orden.Orden
 
 @Observable
 @Accessors
@@ -18,15 +18,18 @@ class ResultadoJuegoAppModel {
     new (Caso caso, RegistroLugar registro){
         pista = caso.detectiveVisitaLugar(registro.lugar)
 
-        esOrdenExitosaOFallida(caso.obtenerOcupante(registro.lugar), caso.detective.ordenEmitida.getVillano, caso.objeto){
+        esOrdenExitosaOFallida(caso.obtenerOcupante(registro.lugar),
+                                caso.objeto, caso.detective.ordenEmitida){
         }
     }
 
-    def esOrdenExitosaOFallida(Ocupante ocupante, Villano villano, String objeto){
-        if(ocupante ==  villano){
-            resultadoOrden = "En Hora Buena!!!\n"+ "Ha detenido a" + villano.nombre + "y recuperado" + objeto + "\n Felicitaciones"
-        }else{
-            resultadoOrden = "Mala Noticia\n"+ "Deberia tener Orden de Arresto Contra" +  villano.nombre +  "\n Lamentablemente el crimen quedara impune"
+    def esOrdenExitosaOFallida(Ocupante ocupante, String objeto, Orden unaOrden){
+        if(unaOrden.fueEmitida == 1 && ocupante.esUnVillano){
+            if(ocupante == unaOrden.getVillano) {
+                resultadoOrden = "En Hora Buena!!! "+ "Ha detenido a " + unaOrden.getVillano.nombre + " y recuperado " + objeto + ". Felicitaciones!!!"
+            }else{
+                resultadoOrden = "Mala Noticia. " + "Deberia tener Orden de Arresto Contra " +  unaOrden.getVillano.nombre +  ". Lamentablemente el crimen quedara impune."
+            }
         }
     }
 

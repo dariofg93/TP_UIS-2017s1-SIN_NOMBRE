@@ -20,4 +20,8 @@ class Informante extends Ocupante{
     override actuar(Orden orden) {
         return String.join(", ", pistas)
     }
+
+    override esUnVillano() {
+        false
+    }
 }
