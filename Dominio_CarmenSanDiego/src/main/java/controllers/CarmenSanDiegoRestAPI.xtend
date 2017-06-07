@@ -28,6 +28,7 @@ import dtos.ViajarDTO
 import dtos.PistasDTO
 import java.util.Random
 import dummies.PaisesRepositorio
+import applicationModels.ResultadoJuegoAppModel
 
 @Controller
 class CarmenSanDiegoRestAPI {
@@ -142,7 +143,7 @@ class CarmenSanDiegoRestAPI {
             val Caso caso = CasosRespositorio.buscarCaso(Integer.valueOf(casoId))
             val RegistroLugar registro = caso.BuscarRegistroLugar(String.valueOf(nombreLugar))
 
-            ok(new PistasDTO(caso.detectiveVisitaLugar(registro.lugar)).toJson)
+            ok(new ResultadoJuegoAppModel(caso,registro).toJson)
         }
         catch(UserException e) {
             badRequest(getErrorJson("El nombre del lugar no es valido o el id del caso es incorrecto"))
