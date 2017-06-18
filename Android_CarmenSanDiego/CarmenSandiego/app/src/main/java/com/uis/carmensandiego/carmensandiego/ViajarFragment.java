@@ -10,14 +10,14 @@ import android.view.ViewGroup;
  * Created by priyank on 16/11/16.
  */
 
-public class FavouriteFragment extends Fragment {
+public class ViajarFragment extends Fragment {
 
-    public FavouriteFragment() {
+    public ViajarFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_favourite, container, false);
+        return inflater.inflate(R.layout.fragment_viajar, container, false);
     }
 }
 

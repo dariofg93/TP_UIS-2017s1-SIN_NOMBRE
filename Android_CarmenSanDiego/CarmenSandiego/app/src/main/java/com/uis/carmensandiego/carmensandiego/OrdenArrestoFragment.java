@@ -10,14 +10,14 @@ import android.view.ViewGroup;
  * Created by priyank on 16/11/16.
  */
 
-public class MusicFragment extends Fragment {
+public class OrdenArrestoFragment extends Fragment {
 
-    public MusicFragment() {
+    public OrdenArrestoFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_music, container, false);
+        return inflater.inflate(R.layout.fragment_ordenArresto, container, false);
     }
 }
 
