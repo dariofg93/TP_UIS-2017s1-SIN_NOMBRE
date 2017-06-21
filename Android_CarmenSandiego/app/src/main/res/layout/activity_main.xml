@@ -8,12 +8,20 @@
     android:orientation="vertical"
     tools:context="com.uis.carmensandiego.carmensandiego.MainActivity">
 
+    <TextView
+        android:layout_width="341dp"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:padding="10dp"
+        android:text="Estas en 'PAIS'"
+        android:textStyle="bold"
+        android:layout_gravity="top"/>
+
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-
     </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
