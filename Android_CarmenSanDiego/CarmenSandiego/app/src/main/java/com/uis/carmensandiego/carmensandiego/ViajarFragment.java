@@ -6,10 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by priyank on 16/11/16.
- */
-
 public class ViajarFragment extends Fragment {
 
     public ViajarFragment() {
