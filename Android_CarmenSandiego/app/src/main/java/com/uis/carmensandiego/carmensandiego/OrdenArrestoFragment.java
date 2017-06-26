@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import retrofit2.http.POST;
+//import retrofit2.http.POST;
 
 public class OrdenArrestoFragment extends Fragment {
 

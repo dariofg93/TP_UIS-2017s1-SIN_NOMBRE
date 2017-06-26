@@ -1,12 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:padding="10dp"
+android:weightSum="1">
+
+<TextView
+    android:layout_width="121dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top"
+    android:layout_marginTop="10dp"
+    android:layout_weight="0.12"
+    android:text="Pedir Pistas"
+    android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title" />
+
+
+<Button
+    android:id="@+id/boton1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pistas"
-        android:textStyle="bold"
-        android:layout_gravity="center"/>
-</FrameLayout>
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:text= ".PistasFragment"
+    tools:layout="@android:layout/list_content" />
+
+<Button
+    android:id="@+id/boton2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:text="Lugaree" />
+
+<Button
+    android:id="@+id/boton3"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:text="Lugaee" />
+
+<EditText
+    android:id="@+id/editText2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:layout_weight="0.43"
+    android:ems="10"
+    android:inputType="textPersonName"
+    android:text="Name" />
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Orden de arresto contra: 'VILLANO' "
+    android:layout_marginTop="30dp"
+    android:layout_gravity="top"/>
+
+
+
+
+</LinearLayout>
