@@ -25,7 +25,7 @@ public interface CarmenSanDiegoService {
                   Callback<Pista> callback);
 
     @POST("/viajar")
-    void iniciarJuego(@Body ViajarBody body, Callback<Caso> callback);
+    void viajar(@Body ViajarBody body, Callback<Caso> callback);
 
     @GET("/villanos")
     void getVillanos(Callback<List<Villano>> callback);
