@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
         fragment = new OrdenArrestoFragment();
         final FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.add(R.id.content, fragment).commit();
+
+        //GET INICIAR JUEGO PARA LLENAR EL CASO MODEL
+        ((TextView) findViewById(R.id.pais_actual)).setText("Estas en 'PAIS'");
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.navigation);
@@ -46,5 +50,5 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             });
-}
+    }
 }
