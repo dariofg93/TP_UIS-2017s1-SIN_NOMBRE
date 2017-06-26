@@ -7,12 +7,12 @@ public class Caso {
     private Integer id;
     private String ordenContra;
     private Pais pais;//lista de pais complejo
-    private Pais paisAnterior;//lista de pais simple
+    private PaisSimple paisAnterior;//lista de pais simple
     private List<String> paisesVisitados;
     private List<String> paisesFallidos;
 
 
-    public Caso(int id, String ordenContra, Pais pais, Pais paisAnterior, List<String> paisesVisitados, List<String> paisesFallidos){
+    public Caso(int id, String ordenContra, Pais pais, PaisSimple paisAnterior, List<String> paisesVisitados, List<String> paisesFallidos){
         this.id = id;
         this.ordenContra = ordenContra;
         this.pais = pais;
@@ -45,11 +45,11 @@ public class Caso {
         this.pais = pais;
     }
 
-    public Pais getPaisAnterior() {
+    public PaisSimple getPaisAnterior() {
         return paisAnterior;
     }
 
-    public void setPaisAnterior(Pais paisAnterior) {
+    public void setPaisAnterior(PaisSimple paisAnterior) {
         this.paisAnterior = paisAnterior;
     }
 

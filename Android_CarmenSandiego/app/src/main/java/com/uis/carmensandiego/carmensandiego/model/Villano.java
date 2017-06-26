@@ -4,12 +4,11 @@ public class Villano {
 
     private String nombre;
 
-
     private int id;
 
 	public Villano(String unNombre, int unId){
         this.nombre = unNombre;
-        this.id = unId;//nose si es necesario
+        this.id = unId;
     }
 
     public String getNombre() {
