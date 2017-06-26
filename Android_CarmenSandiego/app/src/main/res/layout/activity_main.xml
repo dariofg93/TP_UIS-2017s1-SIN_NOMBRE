@@ -9,11 +9,11 @@
     tools:context="com.uis.carmensandiego.carmensandiego.MainActivity">
 
     <TextView
+        android:id="@+id/pais_actual"
         android:layout_width="341dp"
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:padding="10dp"
-        android:text="Estas en 'PAIS'"
         android:textStyle="bold"
         android:layout_gravity="top"/>
 
