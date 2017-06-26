@@ -26,8 +26,8 @@ class ResultadoJuegoAppModel {
 
     def esOrdenExitosaOFallida(Ocupante ocupante, String objeto, Orden unaOrden){
         if(unaOrden.fueEmitida == 1 && ocupante.esUnVillano){
-            if(ocupante == unaOrden.getVillano) {
-                resultadoOrden = "En Hora Buena!!! Ha detenido a " + unaOrden.getVillano.nombre + " y recuperado " + objeto + ". Felicitaciones!!!"
+            if(ocupante == unaOrden.obtenerVillano) {
+                resultadoOrden = "En Hora Buena!!! Ha detenido a " + unaOrden.obtenerVillano.nombre + " y recuperado " + objeto + ". Felicitaciones!!!"
             }else{
                 resultadoOrden = "Malas Noticias. Deberia tener Orden de Arresto Contra " + (ocupante as Villano).nombre +  ". Lamentablemente el crimen quedara impune."
             }

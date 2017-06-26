@@ -16,6 +16,8 @@ class OrdenTest {
     @Before
     def void setUp() {
         villanoMock = mock(Villano)
+        when(villanoMock.nombre).thenReturn("Pepe")
+
         ordenEmitida = new OrdenEmitida(villanoMock)
         ordenNula = new OrdenNula()
     }
@@ -26,8 +28,8 @@ class OrdenTest {
     }
 
     @Test(expected=NoEstaElVillanoException)
-    def void getVillanoTestSinVillano() {
-        ordenNula.getVillano
+    def void obtenerVillanoTestSinVillano() {
+        ordenNula.obtenerVillano
     }
 
     @Test
@@ -38,8 +40,6 @@ class OrdenTest {
 
     @Test
     def void nombreTest() {
-        when(villanoMock.nombre).thenReturn("Pepe")
-
         Assert.assertEquals(ordenEmitida.nombre,"Pepe")
         Assert.assertEquals(ordenNula.nombre,"Nadie")
     }

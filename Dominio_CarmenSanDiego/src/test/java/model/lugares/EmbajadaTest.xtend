@@ -23,13 +23,12 @@ class EmbajadaTest {
         )
 
         unaEmbajada = new Embajada("Provincia")
-
     }
 
     @Test
     def void pistasDeEmbajada() {
         var pistas = unaEmbajada.pedirPistas(responsable,paisActual)
-        Assert.assertTrue(pistas.contains("Bandera Azul y Blanca"))
-        Assert.assertTrue(pistas.contains("Moneda Peso"))
+
+        Assert.assertEquals(pistas.size,2)
     }
 }

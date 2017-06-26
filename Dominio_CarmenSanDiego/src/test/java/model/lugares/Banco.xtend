@@ -29,7 +29,6 @@ class BancoTest {
     @Test
     def void pistasDeBanco() {
         var pistas = unBanco.pedirPistas(responsable,paisActual)
-        Assert.assertTrue(pistas.contains("Bandera Azul y Blanca") || pistas.contains("Moneda Peso"))
-        Assert.assertTrue(pistas.contains("Sobretodo amarillo") || pistas.contains("Usa guantes"))
+        Assert.assertEquals(pistas.size,2)
     }
 }

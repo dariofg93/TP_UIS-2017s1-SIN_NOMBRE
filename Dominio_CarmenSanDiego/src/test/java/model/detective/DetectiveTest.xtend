@@ -65,7 +65,7 @@ class DetectiveTest {
     @Test
     def void emitirOrden() {
         sherlockHolmes.emitirOrden(villanoMock)
-        Assert.assertEquals(sherlockHolmes.ordenEmitida.getVillano,villanoMock)
+        Assert.assertEquals(sherlockHolmes.ordenEmitida.obtenerVillano,villanoMock)
     }
 
     @Test

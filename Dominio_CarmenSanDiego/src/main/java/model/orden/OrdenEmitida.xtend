@@ -9,6 +9,7 @@ class OrdenEmitida extends Orden{
     var Villano villano
 
     new(Villano unVillano){
+        nombre = unVillano.nombre
         villano = unVillano
     }
 
@@ -16,7 +17,5 @@ class OrdenEmitida extends Orden{
         1
     }
 
-    override nombre() { villano.nombre }
-
-    override getVillano(){ villano }
+    override obtenerVillano(){ villano }
 }

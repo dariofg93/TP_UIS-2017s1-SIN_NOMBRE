@@ -35,18 +35,16 @@ class ClubTest {
     def void pistasDeBibliotecaSincHobbie() {
         when(rnd.nextInt(100)).thenReturn(75)
         var pistas = unClub.pedirPistas(responsable,paisActual)
-        Assert.assertTrue(pistas.contains("Sobretodo amarillo"))
-        Assert.assertTrue(pistas.contains("Usa guantes"))
+
+        Assert.assertEquals(pistas.size,2)
     }
 
     @Test
     def void pistasDeBibliotecaConcHobbie() {
         when(rnd.nextInt(100)).thenReturn(25)
         var pistas = unClub.pedirPistas(responsable,paisActual)
-        Assert.assertTrue(pistas.contains("Sobretodo amarillo"))
-        Assert.assertTrue(pistas.contains("Usa guantes"))
+
         Assert.assertEquals(pistas.size,3)
-        //La tercera es "Juega Golf" o "Estudia programacion"
     }
 }
 

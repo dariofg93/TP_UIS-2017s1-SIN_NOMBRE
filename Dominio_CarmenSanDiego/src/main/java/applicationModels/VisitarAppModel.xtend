@@ -36,7 +36,7 @@ class VisitarAppModel {
 
     def villanoDeOrden(){
         try{
-            detective.ordenEmitida.getVillano
+            detective.ordenEmitida.obtenerVillano
         }catch(NoEstaElVillanoException nv){
             new Villano()
         }

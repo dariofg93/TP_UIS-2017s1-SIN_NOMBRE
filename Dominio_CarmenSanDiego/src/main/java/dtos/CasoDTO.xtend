@@ -1,7 +1,6 @@
 package dtos
 
 import model.caso.Caso
-import model.pais.Pais
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 
@@ -9,6 +8,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 class CasoDTO {
 
     var Integer id
+    var String ordenContra
     var PaisComplejoDTO pais
     var PaisSimpleDTO paisAnterior
     var List<String> paisesVisitados
@@ -16,6 +16,7 @@ class CasoDTO {
 
     new(Caso unCaso){
         id = unCaso.id
+        ordenContra = unCaso.detective.ordenEmitida.nombre
         pais = new PaisComplejoDTO(unCaso.detective.lugarActual)
         paisesVisitados = unCaso.detective.recorridoCriminal
         paisesFallidos = unCaso.detective.destinosFallidos
