@@ -29,7 +29,7 @@ public class PistasFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_pistas, container, false); // <-- AQUIII
     }
 
-    public void obtenerLugares() {
+    public void obtenerLugares(Caso caso) {
         Call<Caso> casoCall = carmenSanDiegoService.iniciarJuego();
 
         casoCall.enqueue(new Callback<Caso>() {
