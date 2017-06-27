@@ -16,6 +16,7 @@ android:weightSum="1">
         android:text="Pedir Pistas"
         android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title" />
 
+    <!--
     <Button
         android:id="@+id/boton1"
         android:layout_width="match_parent"
@@ -46,7 +47,7 @@ android:weightSum="1">
         android:layout_weight="0.43"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name" />
+        android:text="Name" />-->
 
     <TextView
         android:layout_width="wrap_content"

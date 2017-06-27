@@ -13,9 +13,9 @@ import com.uis.carmensandiego.carmensandiego.model.Caso;
 import com.uis.carmensandiego.carmensandiego.service.CarmenSanDiegoService;
 import com.uis.carmensandiego.carmensandiego.service.Connection;
 
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PistasFragment extends Fragment {
 
@@ -26,24 +26,27 @@ public class PistasFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        lvLugares = (ListView) container.findViewById(R.id.listLugares);
-
         return inflater.inflate(R.layout.fragment_pistas, container, false); // <-- AQUIII
     }
 
     public void obtenerLugares() {
+        Call<Caso> casoCall = carmenSanDiegoService.iniciarJuego();
 
-        carmenSanDiegoService.iniciarJuego(new Callback<Caso>() {
+        casoCall.enqueue(new Callback<Caso>() {
             @Override
-            public void success(Caso caso, Response response) {
+            public void onResponse(Call<Caso> call, Response<Caso> response) {
+                lvLugares = (ListView) getActivity().findViewById(R.id.listLugares);
+                Caso caso = response.body();
                 LugaresAdapter adapter = new LugaresAdapter(getActivity(),caso.getPais().getLugares());
+                System.out.print("Lo que traigo del server es: " + caso.getId() + caso.getOrdenContra() + caso.getPais());
+
                 lvLugares.setAdapter(adapter);
             }
 
             @Override
-            public void failure(RetrofitError error) {
-                Log.e("", error.getMessage());
-                error.printStackTrace();
+            public void onFailure(Call<Caso> call, Throwable t) {
+                t.printStackTrace();
+                Log.e("Error al obtener caso", t.getMessage());
             }
         });
     }

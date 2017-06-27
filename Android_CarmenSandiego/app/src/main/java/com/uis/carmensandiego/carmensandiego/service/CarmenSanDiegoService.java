@@ -7,26 +7,26 @@ import com.uis.carmensandiego.carmensandiego.model.Pista;
 import com.uis.carmensandiego.carmensandiego.model.Villano;
 
 import java.util.List;
-import retrofit.Callback;
-import retrofit.http.Body;
-import retrofit.http.GET;
-import retrofit.http.POST;
+
+import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface CarmenSanDiegoService {
     @POST("/iniciarJuego")
-    void iniciarJuego(Callback<Caso> callback);
+    Call<Caso> iniciarJuego();
 
     @POST("/emitirOrden")
-    void emitirOrden(@Body EmitirOrdenBody body, Callback<String> callback);
+    Call<String> emitirOrden(@Body EmitirOrdenBody body);
 
     @GET("/pistasDelLugar/{casoId}/{nombreLugar}")
-    void getLibro(@retrofit.http.Path("LibroId") String id,
-                  @retrofit.http.Path("nombreLugar") String lugar,
-                  Callback<Pista> callback);
+    Call<Pista> getLibro(@Path("LibroId") String id, @Path("nombreLugar") String lugar);
 
     @POST("/viajar")
-    void viajar(@Body ViajarBody body, Callback<Caso> callback);
+    Call<Caso> viajar(@Body ViajarBody body);
 
     @GET("/villanos")
-    void getVillanos(Callback<List<Villano>> callback);
+    Call<List<Villano>> getVillanos();
 }
