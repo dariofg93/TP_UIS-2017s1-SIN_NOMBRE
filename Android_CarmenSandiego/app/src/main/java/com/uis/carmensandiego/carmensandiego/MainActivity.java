@@ -6,12 +6,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.uis.carmensandiego.carmensandiego.adapter.LugaresAdapter;
 import com.uis.carmensandiego.carmensandiego.model.Caso;
 import com.uis.carmensandiego.carmensandiego.service.CarmenSanDiegoService;
 import com.uis.carmensandiego.carmensandiego.service.Connection;
@@ -66,21 +64,31 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
     }
+
+    public void setCaso(Caso unCaso){
+        this.caso = unCaso;
+    }
+
     public void iniciarJuego() {
         Call<Caso> casoCall = carmenSanDiegoService.iniciarJuego();
+        casoCall.enqueue(new CasoCallBack());
+    }
 
-        casoCall.enqueue(new Callback<Caso>() {
-            @Override
-            public void onResponse(Call<Caso> call, Response<Caso> response) {
-                Caso caso = response.body();
-                System.out.print("Lo que traigo del server es: " + caso.getId() + caso.getOrdenContra() + caso.getPais());
+    class CasoCallBack implements Callback<Caso> {
+        @Override
+        public void onResponse(Call<Caso> call, Response<Caso> response) {
+            if(response.isSuccessful()){
+                setearCasoAActivity(MainActivity.this,response.body());
             }
+        }
 
-            @Override
-            public void onFailure(Call<Caso> call, Throwable t) {
-                t.printStackTrace();
-                Log.e("Error al obtener caso", t.getMessage());
-            }
-        });
+        @Override
+        public void onFailure(Call<Caso> call, Throwable t) {
+            Toast.makeText(getBaseContext(), "Error en la respuesta", Toast.LENGTH_SHORT).show();
+        }
+
+        private void setearCasoAActivity(MainActivity activity, Caso unCaso){
+            activity.setCaso(unCaso);
+        }
     }
 }
