@@ -2,6 +2,7 @@ package com.uis.carmensandiego.carmensandiego;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.telecom.Call;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,9 +26,12 @@ public class PistasFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_pistas, container, false); // <-- AQUIII
     }
 
-    /*public void obtenerLugares(Caso caso) {
-        Call<Caso> casoCall = carmenSanDiegoService.iniciarJuego();
+    public void obtenerLugares(Caso caso) {
 
+        LugaresAdapter adapter = new LugaresAdapter(getActivity(),caso.getPais().getLugares());
+        lvLugares.setAdapter(adapter);
+/*
+   Call<Caso> casoCall = carmenSanDiegoService.iniciarJuego();
         casoCall.enqueue(new Callback<Caso>() {
             @Override
             public void onResponse(Call<Caso> call, Response<Caso> response) {
@@ -45,6 +49,8 @@ public class PistasFragment extends Fragment {
                 Log.e("Error al obtener caso", t.getMessage());
             }
         });
-    }*/
+        */
+
+    }
 }
 
