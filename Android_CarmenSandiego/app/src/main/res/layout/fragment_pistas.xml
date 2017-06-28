@@ -16,6 +16,6 @@ android:weightSum="1">
         android:id="@+id/lugar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="mostrarPista()"/>
+        android:onClick="mostrarPista"/>
 
 </LinearLayout>

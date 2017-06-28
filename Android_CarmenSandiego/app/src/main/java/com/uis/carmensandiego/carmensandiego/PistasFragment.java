@@ -8,10 +8,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.telecom.Call;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.uis.carmensandiego.carmensandiego.adapter.LugaresAdapter;
 import com.uis.carmensandiego.carmensandiego.model.Caso;
@@ -62,5 +66,18 @@ public class PistasFragment extends Fragment {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
     }
+
+
+    Button button = (Button) getView().findViewById(R.id.lugar);
+    String nombreLugar = button.getText().toString();
+
+
+
+    int idVillanoSeleccionado = getIdVillano(villanos, nombreVillanoSeleccionado);
+
+    Toast toastOrdenEmitida = Toast.makeText(getContext(), "Orden emitida exitosamente contra: "+ nombreVillanoSeleccionado, Toast.LENGTH_SHORT);
+        toastOrdenEmitida.setGravity(Gravity.CENTER, 0, 0);
+
+        toastOrdenEmitida.show();
 }
 
