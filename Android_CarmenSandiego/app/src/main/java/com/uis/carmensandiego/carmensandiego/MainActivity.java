@@ -14,12 +14,6 @@ import com.uis.carmensandiego.carmensandiego.model.Caso;
 import com.uis.carmensandiego.carmensandiego.service.CarmenSanDiegoService;
 import com.uis.carmensandiego.carmensandiego.service.Connection;
 
-import java.io.IOException;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class MainActivity extends AppCompatActivity {
 
     private Fragment fragment;
@@ -70,7 +64,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void iniciarJuego() {
-        Intent intent = new Intent(MainActivity.this, BackgroundService.class);
+        Intent intent = new Intent(this, IniciarCasoService.class);
+        intent.putExtra("myActivity", new WrapperActivity(this));
         startService(intent);
     }
 

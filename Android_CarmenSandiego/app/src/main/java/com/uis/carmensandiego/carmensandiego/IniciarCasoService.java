@@ -12,13 +12,13 @@ import java.io.IOException;
 
 import retrofit2.Call;
 
-class BackgroundService extends IntentService{
+class IniciarCasoService extends IntentService{
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
      *
      * @param name Used to name the worker thread, important only for debugging.
      */
-    public BackgroundService(String name) {
+    public IniciarCasoService(String name) {
         super(name);
     }
 
@@ -27,7 +27,9 @@ class BackgroundService extends IntentService{
         CarmenSanDiegoService carmenSanDiegoService = Connection.getInstance();
         Call<Caso> casoCall = carmenSanDiegoService.iniciarJuego();
         try {
-            setCasoAActivity(/**Aca deberia estar la mainActivity, la que tiene el caso*/ new MainActivity(),casoCall.execute().body());
+            WrapperActivity wrapper = intent.getParcelableExtra("myActivity");
+            setCasoAActivity(wrapper.getActivity(),casoCall.execute().body());
+            System.out.print("sd");
         } catch
             (IOException e) { e.printStackTrace();}
     }
