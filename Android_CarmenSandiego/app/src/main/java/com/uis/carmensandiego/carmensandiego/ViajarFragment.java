@@ -6,7 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.uis.carmensandiego.carmensandiego.model.Caso;
+
 public class ViajarFragment extends Fragment {
+
+    private Caso caso =  ((MainActivity) getActivity()).getCaso();
 
     public ViajarFragment() {
     }

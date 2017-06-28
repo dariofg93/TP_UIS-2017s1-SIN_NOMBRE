@@ -24,6 +24,15 @@
         android:layout_weight="1">
     </FrameLayout>
 
+    <TextView
+        android:id="@+id/orden_arresto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="bottom"/>
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"

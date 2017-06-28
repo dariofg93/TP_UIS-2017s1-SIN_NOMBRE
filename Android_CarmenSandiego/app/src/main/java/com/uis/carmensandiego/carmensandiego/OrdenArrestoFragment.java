@@ -9,10 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.uis.carmensandiego.carmensandiego.model.Caso;
 import com.uis.carmensandiego.carmensandiego.model.Villano;
 import com.uis.carmensandiego.carmensandiego.service.CarmenSanDiegoService;
 import com.uis.carmensandiego.carmensandiego.service.Connection;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit.Callback;
@@ -21,9 +23,9 @@ import retrofit.client.Response;
 
 public class OrdenArrestoFragment extends Fragment {
 
-    private String ordenContra = "Aun no se emitio ninguna orden";
     private int idSeleccionado;
     private List<Villano> villanos;
+    private Caso caso =  ((MainActivity) getActivity()).getCaso();
 
     public OrdenArrestoFragment() {
     }
@@ -56,11 +58,20 @@ public class OrdenArrestoFragment extends Fragment {
     public void llenarSpinnerVillanos(View view, List<Villano> villanos) {
         this.villanos = villanos;
         Spinner spinner = (Spinner) view.findViewById(R.id.spinner_villanos);
+        List<String> nombresVillanos = getNombresVillanos(villanos);
 
-        /*ArrayAdapter<Villano> adapter = new ArrayAdapter<Villano>(this, R.layout.simple_spinner_dropdown_item, villanos);
-        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(dataAdapter);*/
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.support_simple_spinner_dropdown_item, nombresVillanos);
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+
+        spinner.setAdapter(adapter);
+    }
+
+    public List<String> getNombresVillanos(List<Villano> villanos) {
+        List<String> nombres = new ArrayList<>();
+        for(Villano v : villanos) {
+            nombres.add(v.getNombre());
+        }
+        return nombres;
     }
 
 

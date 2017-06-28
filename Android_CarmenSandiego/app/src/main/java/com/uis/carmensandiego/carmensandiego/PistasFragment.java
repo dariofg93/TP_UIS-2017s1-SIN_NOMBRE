@@ -17,6 +17,7 @@ import com.uis.carmensandiego.carmensandiego.service.Connection;
 public class PistasFragment extends Fragment {
 
     private ListView lvLugares;
+    private Caso caso =  ((MainActivity) getActivity()).getCaso();
 
     public PistasFragment() {}
 
