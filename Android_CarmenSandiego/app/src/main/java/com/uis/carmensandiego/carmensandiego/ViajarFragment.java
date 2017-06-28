@@ -2,6 +2,8 @@ package com.uis.carmensandiego.carmensandiego;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.telecom.Call;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +16,16 @@ import android.widget.Toast;
 import com.uis.carmensandiego.carmensandiego.adapter.ConexionesAdapter;
 import com.uis.carmensandiego.carmensandiego.model.Caso;
 import com.uis.carmensandiego.carmensandiego.model.Pais;
+import com.uis.carmensandiego.carmensandiego.model.Viajar;
+import com.uis.carmensandiego.carmensandiego.service.CarmenSanDiegoService;
+import com.uis.carmensandiego.carmensandiego.service.Connection;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class ViajarFragment extends Fragment {
 
@@ -77,8 +86,23 @@ public class ViajarFragment extends Fragment {
     }
 
     public void viajar(String nombrePaisSeleccionado) {
+        Caso caso = ((MainActivity) getActivity()).getCaso();
+        int idPaisSeleccionado = getIdPais(caso.getPais().getConexiones(), nombrePaisSeleccionado);
 
-        //int idPaisSeleccionado = getIdPais(conexiones, nombrePaisSeleccionado);
+        CarmenSanDiegoService carmenSanDiegoService = new Connection().getService();
+        Viajar viajarRequest = new Viajar(caso.getId(), idPaisSeleccionado);
+        carmenSanDiegoService.viajar(viajarRequest, new Callback<Caso>() {
+            @Override
+            public void success(Caso caso, Response response) {
+                //Reemplazar el caso
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.e("error", error.getMessage());
+                error.printStackTrace();
+            }
+        });
 
         Toast toastOrdenEmitida = Toast.makeText(getContext(), "Conexion: "+ nombrePaisSeleccionado, Toast.LENGTH_SHORT);
         toastOrdenEmitida.setGravity(Gravity.NO_GRAVITY, 0, 0);
