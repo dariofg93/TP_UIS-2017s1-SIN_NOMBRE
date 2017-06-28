@@ -50,6 +50,7 @@ class CarmenSanDiegoRestAPI {
 
     @Get("/villanos")
     def getVillanos() {
+    	System.out.println("Get villanos");
         response.contentType = ContentType.APPLICATION_JSON
 
         var List<VillanoDTO> villanosSimple = expedientesModel.villanos.stream.map(v | new VillanoDTO(v)).collect(Collectors.toList)

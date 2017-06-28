@@ -83,5 +83,6 @@ public class MainActivity extends AppCompatActivity {
     public void llenarMainActivity(Caso caso) {
         this.caso = caso;
         ((TextView) findViewById(R.id.pais_actual)).setText("Estas en " + caso.getPais().getNombre());
+
     }
 }
