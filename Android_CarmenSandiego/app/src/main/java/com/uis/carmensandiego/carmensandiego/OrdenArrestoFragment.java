@@ -3,11 +3,14 @@ package com.uis.carmensandiego.carmensandiego;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.uis.carmensandiego.carmensandiego.model.Caso;
 import com.uis.carmensandiego.carmensandiego.model.Villano;
@@ -25,7 +28,6 @@ public class OrdenArrestoFragment extends Fragment {
 
     private int idSeleccionado;
     private List<Villano> villanos;
-    private Caso caso =  ((MainActivity) getActivity()).getCaso();
 
     public OrdenArrestoFragment() {
     }
@@ -33,6 +35,17 @@ public class OrdenArrestoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_orden_arresto, container, false);
+
+        //Listener para el boton onclick, sino explota
+        Button button = (Button) view.findViewById(R.id.emitir_orden);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                emitirOrdenContra();
+            }
+        });
 
         obtenerVillanos(view);
 
@@ -72,6 +85,30 @@ public class OrdenArrestoFragment extends Fragment {
             nombres.add(v.getNombre());
         }
         return nombres;
+    }
+
+    private int getIdVillano(List<Villano> villanos, String nombreSeleccionado) {
+        int id = 0;
+        for(Villano v : villanos){
+            if (v.getNombre() == nombreSeleccionado){
+                id = v.getId();
+            }
+        }
+        return id;
+    }
+
+    public void emitirOrdenContra() {
+
+        Spinner spinner = (Spinner) getView().findViewById(R.id.spinner_villanos);
+        String nombreVillanoSeleccionado = spinner.getSelectedItem().toString();
+
+        int idVillanoSeleccionado = getIdVillano(villanos, nombreVillanoSeleccionado);
+
+        Toast toastOrdenEmitida = Toast.makeText(getContext(), "Orden emitida exitosamente contra: "+ nombreVillanoSeleccionado, Toast.LENGTH_SHORT);
+        toastOrdenEmitida.setGravity(Gravity.CENTER, 0, 0);
+
+        toastOrdenEmitida.show();
+
     }
 
 
