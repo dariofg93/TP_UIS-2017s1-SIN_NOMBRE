@@ -25,7 +25,6 @@ public class OrdenArrestoFragment extends Fragment {
 
     private int idSeleccionado;
     private List<Villano> villanos;
-    private Caso caso =  ((MainActivity) getActivity()).getCaso();
 
     public OrdenArrestoFragment() {
     }

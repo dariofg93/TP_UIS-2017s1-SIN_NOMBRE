@@ -54,8 +54,6 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case R.id.pistas:
                             fragment = new PistasFragment();
-                            ((PistasFragment)fragment).obtenerLugares(caso);
-
                             break;
                     }
                     final FragmentTransaction transaction = fragmentManager.beginTransaction();
