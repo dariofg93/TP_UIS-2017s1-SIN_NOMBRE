@@ -1,5 +1,6 @@
 package com.uis.carmensandiego.carmensandiego;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -8,11 +9,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.uis.carmensandiego.carmensandiego.model.Caso;
 import com.uis.carmensandiego.carmensandiego.service.CarmenSanDiegoService;
 import com.uis.carmensandiego.carmensandiego.service.Connection;
+
+import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         //GET INICIAR JUEGO PARA LLENAR EL CASO MODEL
         iniciarJuego();
+        System.out.print("Hola");
         ((TextView) findViewById(R.id.pais_actual)).setText("Estas en " + caso.getPais().getNombre());
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
@@ -62,33 +65,16 @@ public class MainActivity extends AppCompatActivity {
                     transaction.replace(R.id.content, fragment).commit();
                     return true;
                 }
-            });
-    }
-
-    public void setCaso(Caso unCaso){
-        this.caso = unCaso;
+            }
+        );
     }
 
     public void iniciarJuego() {
-        Call<Caso> casoCall = carmenSanDiegoService.iniciarJuego();
-        casoCall.enqueue(new CasoCallBack());
+        Intent intent = new Intent(MainActivity.this, BackgroundService.class);
+        startService(intent);
     }
 
-    class CasoCallBack implements Callback<Caso> {
-        @Override
-        public void onResponse(Call<Caso> call, Response<Caso> response) {
-            if(response.isSuccessful()){
-                setearCasoAActivity(MainActivity.this,response.body());
-            }
-        }
-
-        @Override
-        public void onFailure(Call<Caso> call, Throwable t) {
-            Toast.makeText(getBaseContext(), "Error en la respuesta", Toast.LENGTH_SHORT).show();
-        }
-
-        private void setearCasoAActivity(MainActivity activity, Caso unCaso){
-            activity.setCaso(unCaso);
-        }
+    public void setCaso(Caso caso) {
+        this.caso = caso;
     }
 }
