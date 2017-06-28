@@ -10,9 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.uis.carmensandiego.carmensandiego.model.Caso;
+import com.uis.carmensandiego.carmensandiego.model.OrdenEmitida;
+import com.uis.carmensandiego.carmensandiego.model.Viajar;
 import com.uis.carmensandiego.carmensandiego.model.Villano;
 import com.uis.carmensandiego.carmensandiego.service.CarmenSanDiegoService;
 import com.uis.carmensandiego.carmensandiego.service.Connection;
@@ -100,15 +103,36 @@ public class OrdenArrestoFragment extends Fragment {
     public void emitirOrdenContra() {
 
         Spinner spinner = (Spinner) getView().findViewById(R.id.spinner_villanos);
-        String nombreVillanoSeleccionado = spinner.getSelectedItem().toString();
+        final String nombreVillanoSeleccionado = spinner.getSelectedItem().toString();
 
         int idVillanoSeleccionado = getIdVillano(villanos, nombreVillanoSeleccionado);
 
-        Toast toastOrdenEmitida = Toast.makeText(getContext(), "Orden emitida exitosamente contra: "+ nombreVillanoSeleccionado, Toast.LENGTH_SHORT);
-        toastOrdenEmitida.setGravity(Gravity.CENTER, 0, 0);
+        CarmenSanDiegoService carmenSanDiegoService = new Connection().getService();
+        Caso caso = ((MainActivity) getActivity()).getCaso();
+        OrdenEmitida ordenEmitidaBody = new OrdenEmitida(idVillanoSeleccionado, caso.getId());
+        carmenSanDiegoService.emitirOrdenPara(ordenEmitidaBody, new Callback<String>() {
+            @Override
+            public void success(String okMsg, Response response) {
+                procesarOrdenEmitida(okMsg, nombreVillanoSeleccionado);
+            }
 
+            @Override
+            public void failure(RetrofitError error) {
+                Log.e("", error.getMessage());
+                error.printStackTrace();
+            }
+        });
+        Toast toastOrdenEmitida = Toast.makeText(getContext(), "Orden emitida correctamente contra: "+nombreVillanoSeleccionado, Toast.LENGTH_SHORT);
+        toastOrdenEmitida.setGravity(Gravity.NO_GRAVITY, 0, 0);
         toastOrdenEmitida.show();
+    }
 
+    public void procesarOrdenEmitida(String responseMsg, String nombreVillanoSeleccionado) {
+        ((TextView) getView().findViewById(R.id.orden_arresto)).setText("Orden de arresto contra: " + nombreVillanoSeleccionado);
+        //No muestra el toast ni actualiza el textview hasta que se vuelve a abrir la aplicacion
+        Toast toastOrdenEmitida = Toast.makeText(getContext(), "", Toast.LENGTH_SHORT);
+        toastOrdenEmitida.setGravity(Gravity.BOTTOM, 0, 0);
+        toastOrdenEmitida.show();
     }
 
 

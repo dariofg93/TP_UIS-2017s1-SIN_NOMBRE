@@ -254,6 +254,7 @@ class CarmenSanDiegoRestAPI {
     @Post("/emitirOrden")
     def emitirOrden(@Body String body) {
         
+        System.out.println("Emitir orden");
         val req = body.fromJson(OrdenEmitidaDTO)
 
         try {
