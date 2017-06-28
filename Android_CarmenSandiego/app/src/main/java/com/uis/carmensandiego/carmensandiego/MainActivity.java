@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -14,11 +15,14 @@ import com.uis.carmensandiego.carmensandiego.model.Caso;
 import com.uis.carmensandiego.carmensandiego.service.CarmenSanDiegoService;
 import com.uis.carmensandiego.carmensandiego.service.Connection;
 
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
 public class MainActivity extends AppCompatActivity {
 
     private Fragment fragment;
     private FragmentManager fragmentManager;
-    private CarmenSanDiegoService carmenSanDiegoService = Connection.getInstance();
     private Caso caso;
 
     @Override
@@ -33,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
         //GET INICIAR JUEGO PARA LLENAR EL CASO MODEL
         iniciarJuego();
-        System.out.print("Hola");
-        ((TextView) findViewById(R.id.pais_actual)).setText("Estas en " + caso.getPais().getNombre());
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.navigation);
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case R.id.pistas:
                             fragment = new PistasFragment();
-                            ((PistasFragment)fragment).obtenerLugares(caso); //Aca le pasas el caso para obtener los lugares
+                             //Aca le pasas el caso para obtener los lugares
                             break;
                     }
                     final FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -64,12 +66,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void iniciarJuego() {
-        Intent intent = new Intent(this, IniciarCasoService.class);
-        intent.putExtra("myActivity", new WrapperActivity(this));
-        startService(intent);
+        CarmenSanDiegoService carmenSanDiegoService = new Connection().getService();
+        carmenSanDiegoService.iniciarJuego(new Callback<Caso>() {
+            @Override
+            public void success(Caso caso, Response response) {
+                llenarMainActivity(caso);
+            }
+            @Override
+            public void failure(RetrofitError error) {
+                Log.e("", error.getMessage());
+                error.printStackTrace();
+            }
+        });
     }
 
-    public void setCaso(Caso caso) {
+    public void llenarMainActivity(Caso caso) {
         this.caso = caso;
+        ((TextView) findViewById(R.id.pais_actual)).setText("Estas en " + caso.getPais().getNombre());
     }
 }

@@ -3,30 +3,33 @@ package com.uis.carmensandiego.carmensandiego.service;
 import com.uis.carmensandiego.carmensandiego.bodies.EmitirOrdenBody;
 import com.uis.carmensandiego.carmensandiego.bodies.ViajarBody;
 import com.uis.carmensandiego.carmensandiego.model.Caso;
+import com.uis.carmensandiego.carmensandiego.model.OrdenEmitida;
 import com.uis.carmensandiego.carmensandiego.model.Pista;
+import com.uis.carmensandiego.carmensandiego.model.Viajar;
 import com.uis.carmensandiego.carmensandiego.model.Villano;
 
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
+import retrofit.Callback;
+import retrofit.http.Body;
+import retrofit.http.GET;
+import retrofit.http.POST;
+import retrofit.http.Path;
+import retrofit.http.Query;
 
 public interface CarmenSanDiegoService {
     @POST("/iniciarJuego")
-    Call<Caso> iniciarJuego();
-
-    @POST("/emitirOrden")
-    Call<String> emitirOrden(@Body EmitirOrdenBody body);
-
-    @GET("/pistasDelLugar/{casoId}/{nombreLugar}")
-    Call<Pista> getLibro(@Path("LibroId") String id, @Path("nombreLugar") String lugar);
-
-    @POST("/viajar")
-    Call<Caso> viajar(@Body ViajarBody body);
+    void iniciarJuego(Callback<Caso> callback);
 
     @GET("/villanos")
-    Call<List<Villano>> getVillanos();
+    void getVillanos(Callback<List<Villano>> callback);
+
+    @GET("/pistasDelLugar/{casoId}/{nombreLugar}")
+    void getPista(@Path("casoId") int idCaso, @Query("nombreLugar") String lugar, Callback<String> callback);
+
+    @POST("/emitirOrden")
+    void emitirOrdenPara(@Body OrdenEmitida ordenEmitida, Callback<OrdenEmitida> callback);
+
+    @POST("/viajar")
+    void viajar(@Body Viajar viajar, Callback<Caso> callback);
 }

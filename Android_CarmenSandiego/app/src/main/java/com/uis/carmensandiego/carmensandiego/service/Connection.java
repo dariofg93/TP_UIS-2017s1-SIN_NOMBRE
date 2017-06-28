@@ -1,19 +1,16 @@
 package com.uis.carmensandiego.carmensandiego.service;
 
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit.RestAdapter;
 
 public class Connection {
 
-    public static CarmenSanDiegoService getInstance(){
-        String SERVER_IP_GENY = "192.168.1.34";//esta ip es la del servidor.
-        String API_URL = "http://"+ SERVER_IP_GENY +":9000";
+    public CarmenSanDiegoService getService() {
+        String SERVER_IP = "192.168.0.12"; //esta ip se usa para comunicarse con mi localhost en el emulador de Android Studio
+        String SERVER_IP_GENY = "192.168.56.1";//esta ip se usa para comunicarse con mi localhost en el emulador de Genymotion
+        String API_URL = "http://"+ SERVER_IP +":9000";
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(CarmenSanDiegoService.class);
+        RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint(API_URL).build();
+        CarmenSanDiegoService carmenSanDiegoService = restAdapter.create(CarmenSanDiegoService.class);
+        return carmenSanDiegoService;
     }
 }

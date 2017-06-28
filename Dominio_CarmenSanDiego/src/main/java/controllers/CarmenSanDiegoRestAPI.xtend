@@ -241,6 +241,7 @@ class CarmenSanDiegoRestAPI {
 
     @Post("/iniciarJuego")
     def iniciarJuego() {
+    	System.out.println("Iniciar juego");
     	response.contentType = ContentType.APPLICATION_JSON
         var casos = CasosRespositorio.casos
         var CasoDTO caso = new CasoDTO(casos.get(new Random().nextInt(casos.size)))

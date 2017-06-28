@@ -13,14 +13,10 @@ import com.uis.carmensandiego.carmensandiego.model.Caso;
 import com.uis.carmensandiego.carmensandiego.service.CarmenSanDiegoService;
 import com.uis.carmensandiego.carmensandiego.service.Connection;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class PistasFragment extends Fragment {
 
     private ListView lvLugares;
-    private CarmenSanDiegoService carmenSanDiegoService = Connection.getInstance();
 
     public PistasFragment() {}
 
@@ -29,7 +25,7 @@ public class PistasFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_pistas, container, false); // <-- AQUIII
     }
 
-    public void obtenerLugares(Caso caso) {
+    /*public void obtenerLugares(Caso caso) {
         Call<Caso> casoCall = carmenSanDiegoService.iniciarJuego();
 
         casoCall.enqueue(new Callback<Caso>() {
@@ -49,6 +45,6 @@ public class PistasFragment extends Fragment {
                 Log.e("Error al obtener caso", t.getMessage());
             }
         });
-    }
+    }*/
 }
 
