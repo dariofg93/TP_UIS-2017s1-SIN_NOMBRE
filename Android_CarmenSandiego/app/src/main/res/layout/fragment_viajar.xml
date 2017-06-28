@@ -5,25 +5,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Viajar"
-        android:textSize="25dp"
-        android:layout_gravity="top"/>
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
         android:id="@+id/listConexiones"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Destinos recorridos"
-        android:layout_gravity="top"
-        android:layout_marginTop="25dp"
-        android:textSize="25dp" />
+
 
 </LinearLayout>

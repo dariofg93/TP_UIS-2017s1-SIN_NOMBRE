@@ -2,12 +2,16 @@ package com.uis.carmensandiego.carmensandiego;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.uis.carmensandiego.carmensandiego.adapter.ConexionesAdapter;
 import com.uis.carmensandiego.carmensandiego.model.Caso;
 import com.uis.carmensandiego.carmensandiego.model.Pais;
 
@@ -28,28 +32,57 @@ public class ViajarFragment extends Fragment {
 
         llenarConexiones(view);
 
-        //obtenerVisitados(view):
+        final ListView lv = (ListView) view.findViewById(R.id.listConexiones);
+        //NO ANDA
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String conexionSeleccionada = (String) (lv.getItemAtPosition(position));
+
+                Toast toastOrdenEmitida = Toast.makeText(getContext(), "Conexion: "+ conexionSeleccionada, Toast.LENGTH_SHORT);
+                toastOrdenEmitida.setGravity(Gravity.NO_GRAVITY, 0, 0);
+                toastOrdenEmitida.show();
+                viajar(conexionSeleccionada);
+            }
+        });
 
         return view;
     }
 
     public void llenarConexiones(View view){
-        Caso caso =  ((MainActivity) getActivity()).getCaso();
-        this.conexiones = caso.getPais().getConexiones();
-        List<String> nombreConexiones = getNombreConexiones(conexiones);
-        ListView lView = (ListView) view.findViewById(R.id.listConexiones);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.fragment_viajar, nombreConexiones);
-
-        lView.setAdapter(adapter);
+        Caso caso = ((MainActivity) getActivity()).getCaso();
+        ListView lvConexiones = (ListView) view.findViewById(R.id.listConexiones);
+        List<String> conexionesNombre = this.getNombreConexiones(caso.getPais().getConexiones());
+        ConexionesAdapter adapter = new ConexionesAdapter(getActivity(),conexionesNombre);
+        lvConexiones.setAdapter(adapter);
     }
+
 
     public List<String> getNombreConexiones(List<Pais> pais){
         List<String> nombreConexiones = new ArrayList<>();
-        for(Pais p : conexiones){
+        for(Pais p : pais){
             nombreConexiones.add(p.getNombre());
         }
         return nombreConexiones;
+    }
+
+    private int getIdPais(List<Pais> conexiones, String paisSeleccionado) {
+        int id = 0;
+        for(Pais pais : conexiones){
+            if (pais.getNombre() == paisSeleccionado){
+                id = pais.getId();
+            }
+        }
+        return id;
+    }
+
+    public void viajar(String nombrePaisSeleccionado) {
+
+        //int idPaisSeleccionado = getIdPais(conexiones, nombrePaisSeleccionado);
+
+        Toast toastOrdenEmitida = Toast.makeText(getContext(), "Conexion: "+ nombrePaisSeleccionado, Toast.LENGTH_SHORT);
+        toastOrdenEmitida.setGravity(Gravity.NO_GRAVITY, 0, 0);
+        toastOrdenEmitida.show();
 
     }
 }

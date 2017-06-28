@@ -71,11 +71,11 @@ public class PistasFragment extends Fragment {
     Button button = (Button) getView().findViewById(R.id.lugar);
     String nombreLugar = button.getText().toString();
 
-    int idVillanoSeleccionado = getIdVillano(villanos, nombreVillanoSeleccionado);
+    /*int idVillanoSeleccionado = getIdVillano(villanos, nombreVillanoSeleccionado);
 
     Toast toastOrdenEmitida = Toast.makeText(getContext(), "Orden emitida exitosamente contra: "+ nombreVillanoSeleccionado, Toast.LENGTH_SHORT);
         toastOrdenEmitida.setGravity(Gravity.CENTER, 0, 0);
 
-        toastOrdenEmitida.show();
+        toastOrdenEmitida.show();*/
 }
 
