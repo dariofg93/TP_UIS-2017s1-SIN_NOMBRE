@@ -47,10 +47,6 @@ public class ViajarFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String conexionSeleccionada = (String) (lv.getItemAtPosition(position));
-
-                Toast toastOrdenEmitida = Toast.makeText(getContext(), "Conexion: "+ conexionSeleccionada, Toast.LENGTH_SHORT);
-                toastOrdenEmitida.setGravity(Gravity.NO_GRAVITY, 0, 0);
-                toastOrdenEmitida.show();
                 viajar(conexionSeleccionada);
             }
         });
@@ -85,7 +81,7 @@ public class ViajarFragment extends Fragment {
         return id;
     }
 
-    public void viajar(String nombrePaisSeleccionado) {
+    public void viajar(final String nombrePaisSeleccionado) {
         Caso caso = ((MainActivity) getActivity()).getCaso();
         int idPaisSeleccionado = getIdPais(caso.getPais().getConexiones(), nombrePaisSeleccionado);
 
@@ -94,7 +90,9 @@ public class ViajarFragment extends Fragment {
         carmenSanDiegoService.viajar(viajarRequest, new Callback<Caso>() {
             @Override
             public void success(Caso caso, Response response) {
-                //Reemplazar el caso
+                Toast toastOrdenEmitida = Toast.makeText(getContext(), "Conexion: "+ nombrePaisSeleccionado, Toast.LENGTH_SHORT);
+                toastOrdenEmitida.setGravity(Gravity.NO_GRAVITY, 0, 0);
+                toastOrdenEmitida.show();
             }
 
             @Override
@@ -103,10 +101,6 @@ public class ViajarFragment extends Fragment {
                 error.printStackTrace();
             }
         });
-
-        Toast toastOrdenEmitida = Toast.makeText(getContext(), "Conexion: "+ nombrePaisSeleccionado, Toast.LENGTH_SHORT);
-        toastOrdenEmitida.setGravity(Gravity.NO_GRAVITY, 0, 0);
-        toastOrdenEmitida.show();
 
     }
 }

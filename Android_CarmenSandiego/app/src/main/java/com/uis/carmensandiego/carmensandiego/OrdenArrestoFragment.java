@@ -110,10 +110,10 @@ public class OrdenArrestoFragment extends Fragment {
         CarmenSanDiegoService carmenSanDiegoService = new Connection().getService();
         Caso caso = ((MainActivity) getActivity()).getCaso();
         OrdenEmitida ordenEmitidaBody = new OrdenEmitida(idVillanoSeleccionado, caso.getId());
-        carmenSanDiegoService.emitirOrdenPara(ordenEmitidaBody, new Callback<String>() {
+        carmenSanDiegoService.emitirOrdenPara(ordenEmitidaBody, new Callback<Caso>() {
             @Override
-            public void success(String okMsg, Response response) {
-                procesarOrdenEmitida(okMsg, nombreVillanoSeleccionado);
+            public void success(Caso caso, Response response) {
+                procesarOrdenEmitida(caso, nombreVillanoSeleccionado);
             }
 
             @Override
@@ -122,16 +122,12 @@ public class OrdenArrestoFragment extends Fragment {
                 error.printStackTrace();
             }
         });
-        Toast toastOrdenEmitida = Toast.makeText(getContext(), "Orden emitida correctamente contra: "+nombreVillanoSeleccionado, Toast.LENGTH_SHORT);
-        toastOrdenEmitida.setGravity(Gravity.NO_GRAVITY, 0, 0);
-        toastOrdenEmitida.show();
     }
 
-    public void procesarOrdenEmitida(String responseMsg, String nombreVillanoSeleccionado) {
-        ((TextView) getView().findViewById(R.id.orden_arresto)).setText("Orden de arresto contra: " + nombreVillanoSeleccionado);
-        //No muestra el toast ni actualiza el textview hasta que se vuelve a abrir la aplicacion
-        Toast toastOrdenEmitida = Toast.makeText(getContext(), "", Toast.LENGTH_SHORT);
-        toastOrdenEmitida.setGravity(Gravity.BOTTOM, 0, 0);
+    public void procesarOrdenEmitida(Caso caso, String nombreVillanoSeleccionado) {
+        ((TextView) getActivity().findViewById(R.id.orden_arresto)).setText("Orden de arresto contra: " + nombreVillanoSeleccionado);
+        Toast toastOrdenEmitida = Toast.makeText(getContext(), "Orden emitida correctamente contra: "+nombreVillanoSeleccionado, Toast.LENGTH_SHORT);
+        toastOrdenEmitida.setGravity(Gravity.NO_GRAVITY, 0, 0);
         toastOrdenEmitida.show();
     }
 

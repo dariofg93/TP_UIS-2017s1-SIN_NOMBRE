@@ -262,7 +262,7 @@ class CarmenSanDiegoRestAPI {
             val Villano villano = BaseCentralRepositorio.buscarVillano(Integer.valueOf(req.villanoId))
 
             caso.detectiveEmiteOrdenContra(villano)
-            ok("Orden Emitida Exitosamente")
+            ok(new CasoDTO(caso).toJson)
         }
         catch (UserException exception) {
             badRequest("Se deben pasar por parametros un villano y un caso")
